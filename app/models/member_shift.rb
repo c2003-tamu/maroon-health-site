@@ -1,0 +1,2 @@
+class MemberShift < ApplicationRecord
+end

@@ -1,0 +1,42 @@
+<%= form_with(model: member_shift) do |form| %>
+  <% if member_shift.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(member_shift.errors.count, "error") %> prohibited this member_shift from being saved:</h2>
+
+      <ul>
+        <% member_shift.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :ideal_volunteers, style: "display: block" %>
+    <%= form.number_field :ideal_volunteers %>
+  </div>
+
+  <div>
+    <%= form.label :ideal_officers, style: "display: block" %>
+    <%= form.number_field :ideal_officers %>
+  </div>
+
+  <div>
+    <%= form.label :start_time, style: "display: block" %>
+    <%= form.datetime_field :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, style: "display: block" %>
+    <%= form.datetime_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
