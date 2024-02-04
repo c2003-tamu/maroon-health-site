@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "members/show", type: :view do
   before(:each) do
     assign(:member, Member.create!(
-      role: nil,
+      role: Role.create!(name: 'Volunteer'),
       first_name: "First Name",
       last_name: "Last Name"
     ))

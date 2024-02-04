@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe "medication_transactions/edit", type: :view do
-  let(:medication_transaction) {
+  
+  let(:role_volunteer) { Role.create(name: 'Volunteer') }
+  let(:member1) { Member.create(first_name: 'Ada', last_name: 'Lovelace', role: role_volunteer) }
+  let(:medication) { Medication.create(name: 'Panadol', stock: 100, notes: 'For headaches and fever') }
+
+  let(:medication_transaction) do
     MedicationTransaction.create!(
-      medication: nil,
-      member: nil,
+      medication: medication,
+      member: member1,
       amount: 1
     )
-  }
+  end
 
   before(:each) do
     assign(:medication_transaction, medication_transaction)

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "members/edit", type: :view do
   let(:member) {
     Member.create!(
-      role: nil,
+      role: Role.create!(name: 'Volunteer'),
       first_name: "MyString",
       last_name: "MyString"
     )

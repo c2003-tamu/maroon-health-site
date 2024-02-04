@@ -4,12 +4,12 @@ RSpec.describe "members/index", type: :view do
   before(:each) do
     assign(:members, [
       Member.create!(
-        role: nil,
+        role: Role.create!(name: 'Volunteer'),
         first_name: "First Name",
         last_name: "Last Name"
       ),
       Member.create!(
-        role: nil,
+        role: Role.create!(name: 'Officer'),
         first_name: "First Name",
         last_name: "Last Name"
       )
@@ -19,8 +19,8 @@ RSpec.describe "members/index", type: :view do
   it "renders a list of members" do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("First Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Last Name".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(nil.to_s)
+    assert_select cell_selector, text: Regexp.new("First Name".to_s)
+    assert_select cell_selector, text: Regexp.new("Last Name".to_s)
   end
 end

@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "medication_transactions/show", type: :view do
   before(:each) do
+    # Create instances of Medication and Member
+    medication = Medication.create!(name: 'Panadol', stock: 100, notes: 'For headaches and fever')
+    member = Member.create!(first_name: 'John', last_name: 'Doe', role: Role.create!(name: 'Volunteer'))
+
     assign(:medication_transaction, MedicationTransaction.create!(
-      medication: nil,
-      member: nil,
+      medication: medication,
+      member: member,
       amount: 2
     ))
   end
