@@ -1,0 +1,18 @@
+require 'rails_helper'
+
+RSpec.describe "medications/show", type: :view do
+  before(:each) do
+    assign(:medication, Medication.create!(
+      name: "Name",
+      stock: 2,
+      notes: "Notes"
+    ))
+  end
+
+  it "renders attributes in <p>" do
+    render
+    expect(rendered).to match(/Name/)
+    expect(rendered).to match(/2/)
+    expect(rendered).to match(/Notes/)
+  end
+end
