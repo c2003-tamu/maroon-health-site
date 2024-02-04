@@ -10,5 +10,8 @@ RSpec.feature 'Navbar', type: :feature do
     visit '/about'
     expect(page).to have_selector('nav')
 
+    visit '/donation'
+    expect(page).to have_selector('nav')
+
   end
 end
