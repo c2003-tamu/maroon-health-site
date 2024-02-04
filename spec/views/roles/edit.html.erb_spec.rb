@@ -1,22 +1,23 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "roles/edit", type: :view do
-  let(:role) {
+RSpec.describe('roles/edit', type: :view) do
+  let(:role) do
     Role.create!(
-      name: "MyString"
+      name: 'MyString'
     )
-  }
+  end
 
-  before(:each) do
+  before do
     assign(:role, role)
   end
 
-  it "renders the edit role form" do
+  it 'renders the edit role form' do
     render
 
-    assert_select "form[action=?][method=?]", role_path(role), "post" do
-
-      assert_select "input[name=?]", "role[name]"
+    assert_select 'form[action=?][method=?]', role_path(role), 'post' do
+      assert_select 'input[name=?]', 'role[name]'
     end
   end
 end

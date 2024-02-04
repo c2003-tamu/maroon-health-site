@@ -1,28 +1,29 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "medications/edit", type: :view do
-  let(:medication) {
+RSpec.describe('medications/edit', type: :view) do
+  let(:medication) do
     Medication.create!(
-      name: "MyString",
+      name: 'MyString',
       stock: 1,
-      notes: "MyText"
+      notes: 'MyText'
     )
-  }
+  end
 
-  before(:each) do
+  before do
     assign(:medication, medication)
   end
 
-  it "renders the edit medication form" do
+  it 'renders the edit medication form' do
     render
 
-    assert_select "form[action=?][method=?]", medication_path(medication), "post" do
+    assert_select 'form[action=?][method=?]', medication_path(medication), 'post' do
+      assert_select 'input[name=?]', 'medication[name]'
 
-      assert_select "input[name=?]", "medication[name]"
+      assert_select 'input[name=?]', 'medication[stock]'
 
-      assert_select "input[name=?]", "medication[stock]"
-
-      assert_select "textarea[name=?]", "medication[notes]"
+      assert_select 'textarea[name=?]', 'medication[notes]'
     end
   end
 end

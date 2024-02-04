@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class FaqsController < ApplicationController
-  before_action :set_faq, only: %i[ show edit update destroy ]
+  before_action :set_faq, only: %i[show edit update destroy]
 
   # GET /faqs or /faqs.json
   def index
@@ -7,8 +9,7 @@ class FaqsController < ApplicationController
   end
 
   # GET /faqs/1 or /faqs/1.json
-  def show
-  end
+  def show; end
 
   # GET /faqs/new
   def new
@@ -16,8 +17,7 @@ class FaqsController < ApplicationController
   end
 
   # GET /faqs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /faqs or /faqs.json
   def create
@@ -25,11 +25,11 @@ class FaqsController < ApplicationController
 
     respond_to do |format|
       if @faq.save
-        format.html { redirect_to faq_url(@faq), notice: "Faq was successfully created." }
-        format.json { render :show, status: :created, location: @faq }
+        format.html { redirect_to(faq_url(@faq), notice: 'Faq was successfully created.') }
+        format.json { render(:show, status: :created, location: @faq) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @faq.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @faq.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,33 +38,34 @@ class FaqsController < ApplicationController
   def update
     respond_to do |format|
       if @faq.update(faq_params)
-        format.html { redirect_to faq_url(@faq), notice: "Faq was successfully updated." }
-        format.json { render :show, status: :ok, location: @faq }
+        format.html { redirect_to(faq_url(@faq), notice: 'Faq was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @faq) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @faq.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @faq.errors, status: :unprocessable_entity) }
       end
     end
   end
 
   # DELETE /faqs/1 or /faqs/1.json
   def destroy
-    @faq.destroy
+    @faq.destroy!
 
     respond_to do |format|
-      format.html { redirect_to faqs_url, notice: "Faq was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to(faqs_url, notice: 'Faq was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_faq
-      @faq = Faq.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def faq_params
-      params.require(:faq).permit(:question, :answer)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_faq
+    @faq = Faq.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def faq_params
+    params.require(:faq).permit(:question, :answer)
+  end
 end
