@@ -9,7 +9,7 @@ class MedicationsController < ApplicationController
   def index
   
     @medications = if params[:search]
-                     Medication.where('name LIKE ?', "%#{params[:search]}%")
+                     Medication.where('LOWER(name) LIKE ?', "%#{params[:search]}%")
                    else
                      Medication.all
                    end
