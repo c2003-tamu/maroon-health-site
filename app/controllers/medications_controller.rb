@@ -1,9 +1,20 @@
 class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[ show edit update destroy ]
+  
+  def lowstock
+    @medications = Medication.where("stock <= ?", 10)
+  end
 
   # GET /medications or /medications.json
   def index
-    @medications = Medication.all
+  
+    @medications = if params[:search]
+                     Medication.where('name LIKE ?', "%#{params[:search]}%")
+                   else
+                     Medication.all
+                   end
+
+  
   end
 
   # GET /medications/1 or /medications/1.json

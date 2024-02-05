@@ -1,0 +1,29 @@
+
+<% if @medications.any? %>
+  <table class="listing" summary="medication list" style="width: 100%;">
+    <tr class="header">
+      <th>#</th>
+      <th>Medication</th>
+      <th>Stock</th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
+    <% @medications.each do |medication| %>
+    <tr>
+      <td style="text-align: center;"><%= medication.id %></td>
+      <td style="text-align: center;"><%= medication.name %></td>
+      <td style="text-align: center;"><%= medication.stock %></td>
+      <td style="text-align: center;"><%= medication.notes %></td>
+      <td class="actions" style="text-align: center;">
+        <%= link_to("Show", medication_path(medication), class: 'action show') %>
+        <%= link_to("Edit", edit_medication_path(medication), class: 'action edit') %>
+        <%= button_to "Delete this Medicine", medication, method: :delete %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+<%else%>
+  <p> No Medications Found </p>
+<%end%>
+
+
