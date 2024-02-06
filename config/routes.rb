@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :member_shifts
   resources :roles
   resources :faqs
+  resources :members
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
