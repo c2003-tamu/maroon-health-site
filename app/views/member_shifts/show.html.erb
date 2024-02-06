@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @member_shift %>
+
+<div>
+  <%= link_to "Edit this member shift", edit_member_shift_path(@member_shift) %> |
+  <%= link_to "Back to member shifts", member_shifts_path %>
+
+  <%= button_to "Destroy this member shift", @member_shift, method: :delete %>
+</div>

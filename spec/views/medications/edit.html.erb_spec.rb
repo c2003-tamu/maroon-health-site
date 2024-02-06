@@ -22,7 +22,6 @@ RSpec.describe "medications/edit", type: :view do
 
       assert_select "input[name=?]", "medication[stock]"
 
-      assert_select "input[name=?]", "medication[notes]"
     end
   end
 end

@@ -10,16 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_04_203849) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_02_233348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "medications", force: :cascade do |t|
-    t.string "name"
-    t.integer "stock"
-    t.string "notes"
+  create_table "faqs", force: :cascade do |t|
+    t.text "question"
+    t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "medication_transactions", force: :cascade do |t|
+    t.bigint "medication_id", null: false
+    t.bigint "member_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["medication_id"], name: "index_medication_transactions_on_medication_id"
+    t.index ["member_id"], name: "index_medication_transactions_on_member_id"
+  end
+
+  create_table "medications", force: :cascade do |t|
+    t.string "name"
+    t.integer "stock"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "member_shifts", force: :cascade do |t|
+    t.string "title"
+    t.integer "ideal_volunteers"
+    t.integer "ideal_officers"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_members_on_role_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "medication_transactions", "medications"
+  add_foreign_key "medication_transactions", "members"
+  add_foreign_key "members", "roles"
 end
