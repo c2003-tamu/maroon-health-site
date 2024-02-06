@@ -1,2 +1,1 @@
-release: rails db:migrate
-	 rails import:medications
+release: rails db:migrate && rails import:medications
