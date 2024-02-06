@@ -9,7 +9,8 @@ class MedicationsController < ApplicationController
   def index
   
     @medications = if params[:search]
-                     Medication.where('LOWER(name) LIKE ?', "%#{params[:search]}%")
+                     search_term = params[:search].downcase
+                     Medication.where("name % ?", search_term).order(Arel.sql("similarity(name, '#{search_term}') DESC"))
                    else
                      Medication.order(:name)
                    end
