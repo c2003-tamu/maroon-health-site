@@ -10,4 +10,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  # for testing purposes
+  root 'members#index'
 end
