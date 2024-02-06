@@ -10,9 +10,11 @@
     <% @medications.each do |medication| %>
     <tr>
       <td style="text-align: center;"><%= medication.name %></td>
-      <% if medication.stock <= 10 %>
+      <% if medication.stock <= 5 %>
         <td style="text-align: center; background-color: red;"><%= medication.stock %></td>
-      <% else%>
+      <% elsif medication.stock <= 10%>
+        <td style="text-align: center; background-color: yellow;"><%= medication.stock %> </td> 
+      <% else %>
         <td style="text-align: center; background-color: green;"><%= medication.stock %> </td> 
       <%end%>  
       <td style="text-align: center;"><%= medication.notes %></td>
