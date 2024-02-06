@@ -11,7 +11,7 @@ class Member < ApplicationRecord
   belongs_to :role
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, member.id: auth.uid).first_or_create do |member|
+    where(provider: auth.provider, id: auth.uid).first_or_create do |member|
       member.email = auth.info.email
       member.password = Devise.friendly_token[0, 20]
       member.full_name = auth.info.name
