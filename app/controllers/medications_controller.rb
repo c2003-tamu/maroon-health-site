@@ -9,8 +9,9 @@ class MedicationsController < ApplicationController
   def index
   
     @medications = if params[:search]
-                     search_term = ActiveRecord::Base.sanitize_sql_like(params[:search].downcase)
-                     Medication.where("name ILIKE ?", "%#{search_term}%").order("similarity(name, '#{search_term}') DESC")
+                     search_term = ActiveRecord::Base.sanitize_sql(params[:search].downcase)
+                     similarity_expression = Arel.sql("similarity(name, '#{search_term}')")
+                     Medication.where("name % ?", search_term).order(similarity_expression.desc)
                      #Medication.where("name % ?", params[:search].downcase).order(Arel.sql("similarity(name, '#{params[:search].downcase}') DESC"))
                    else
                      Medication.order(:name)
