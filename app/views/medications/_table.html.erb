@@ -2,7 +2,6 @@
 <% if @medications.any? %>
   <table class="listing" summary="medication list" style="width: 100%;">
     <tr class="header">
-      <th>#</th>
       <th>Medication</th>
       <th>Stock</th>
       <th>Notes</th>
@@ -10,9 +9,12 @@
     </tr>
     <% @medications.each do |medication| %>
     <tr>
-      <td style="text-align: center;"><%= medication.id %></td>
       <td style="text-align: center;"><%= medication.name %></td>
-      <td style="text-align: center;"><%= medication.stock %></td>
+      <% if medication.stock <= 10 %>
+        <td style="text-align: center; background-color: red;"><%= medication.stock %></td>
+      <% else%>
+        <td style="text-align: center; background-color: green;"><%= medication.stock %> </td> 
+      <%end%>  
       <td style="text-align: center;"><%= medication.notes %></td>
       <td class="actions" style="text-align: center;">
         <%= link_to("Show", medication_path(medication), class: 'action show') %>

@@ -11,7 +11,7 @@ class MedicationsController < ApplicationController
     @medications = if params[:search]
                      Medication.where('LOWER(name) LIKE ?', "%#{params[:search]}%")
                    else
-                     Medication.all
+                     Medication.order(:name)
                    end
 
   
