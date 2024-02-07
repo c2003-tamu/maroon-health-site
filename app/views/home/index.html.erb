@@ -1,6 +1,16 @@
 <!-- app/views/home/index.html.erb -->
 <h1>Welcome to the Home Page</h1>
 
+<div class="patients-box">
+    <div class="icon-container">
+        <%= image_tag 'icons/heart-plus.svg', class: 'icon' %>
+    </div>
+    <div class="text-container">
+      <p>Patients Served</p>
+      <p class="counter"><%= @patients_served %></p>
+    </div>
+  </div>
+
 <h2>Photo Gallery</h2>
 <div class="photo-gallery">
   <% @photo_files.each do |photo_path| %>
