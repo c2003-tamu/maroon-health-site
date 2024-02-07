@@ -1,15 +1,42 @@
 <!-- app/views/home/index.html.erb -->
 <h1>Welcome to the Home Page</h1>
 
-<div class="patients-box">
-    <div class="icon-container">
-        <%= image_tag 'icons/heart-plus.svg', class: 'icon' %>
+<div class="stat-boxes-container">
+
+    <!-- Patients Served Counter -->
+    <div class="stat-box">
+        <div class="icon-container">
+            <%= image_tag 'icons/heart-plus.svg', class: 'icon' %>
+        </div>
+        <div class="text-container">
+            <p>Patients Served</p>
+            <p class="stat"><%= @patients_served %></p>
+        </div>
     </div>
-    <div class="text-container">
-      <p>Patients Served</p>
-      <p class="counter"><%= @patients_served %></p>
+
+    <!-- Operating Since -->
+    <div class="stat-box">
+        <div class="icon-container">
+            <%= image_tag 'icons/clock.svg', class: 'icon' %>
+        </div>
+        <div class="text-container">
+            <p>Operating Since</p>
+            <p class="stat">2019</p>
+        </div>
     </div>
-  </div>
+
+    <!-- Staff Count -->
+    <div class="stat-box">
+        <div class="icon-container">
+            <%= image_tag 'icons/person.svg', class: 'icon' %>
+        </div>
+        <div class="text-container">
+            <p>Staff Count</p>
+            <p class="stat">25</p>
+        </div>
+    </div>
+
+</div>
 
 <h2>Photo Gallery</h2>
 <div class="photo-gallery">

@@ -60,18 +60,21 @@
     /*
         PATIENTS SERVED STYLING
     */
-    .patients-box {
+    .stat-boxes-container {
+        display: flex;
+        justify-content: center;
+    }
+    .stat-box {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
         background-color: #732F2F;
         color: white;
         padding: 20px;
         border-radius: 8px;
-        margin: 20px auto; /* Center the box on the page and add some margin */
-        width: 150px; /* Set the width of the box */
-        height: 150px; /* Set the height of the box to match the width */
+        margin: 10px;
+        width: 150px;
+        height: 150px;
     }
 
     .icon-container {
@@ -87,7 +90,7 @@
         font-size: 1.2em;
     }
     
-    .counter {
+    .stat {
         font-size: 2em;
         font-weight: bold;
         margin-top: 5px;
