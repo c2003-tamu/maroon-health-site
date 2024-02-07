@@ -1,24 +1,17 @@
-# README
+# Maroon Health Site
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version 3.1.2
 
-Things you may want to cover:
+* PLEASE ENSURE YOU ARE IN THE DOCKER CONTAINER PROVIDED BY PROFESSOR WADE
 
-* Ruby version
+* To install dependencies run: bundle install
 
-* System dependencies
+* To create database run: rails db:create
 
-* Configuration
+* To migrate database changes run: rails db:migrate
 
-* Database creation
+* To import medication data run: rails import:medications
 
-* Database initialization
+* To run: rails s --binding=0.0.0.0
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Uses CI/CD, so deployment is handled automatically by Heroku
