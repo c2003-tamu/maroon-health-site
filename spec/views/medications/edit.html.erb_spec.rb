@@ -24,4 +24,38 @@ RSpec.describe "medications/edit", type: :view do
 
     end
   end
+
+  it "successfully edits the right medication" do
+    visit edit_medication_path(medication)
+
+    fill_in 'medication[name]', with: "a"
+    fill_in 'medication[stock]', with: 100
+
+    click_button 'Update Medication'
+    
+    expect(page).to have_content('Medication was successfully updated.')
+  end 
+
+  it "has error if stock is negative" do
+    visit edit_medication_path(medication)
+    
+    fill_in 'medication[name]', with: "a"
+    fill_in 'medication[stock]', with: -2212
+
+    click_button 'Update Medication'
+
+    expect(page).to have_content('1 error prohibited this medication from being saved')
+  end
+
+  it "has error if name is empty" do
+    visit edit_medication_path(medication)
+
+    fill_in 'medication[name]', with: ''
+
+    click_button 'Update Medication'
+
+    expect(page).to have_content('1 error prohibited this medication from being saved')
+  end
+
+
 end
