@@ -1,8 +1,8 @@
 <!-- app/views/home/index.html.erb -->
 <h1>Welcome to the Home Page</h1>
 
+<h2>Photo Gallery</h2>
 <div class="photo-gallery">
-  <h2>Photo Gallery</h2>
   <% @photo_files.each do |photo_path| %>
     <%= image_tag photo_path.sub('app/assets/images/', '') %>
   <% end %>

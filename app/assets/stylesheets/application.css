@@ -1,9 +1,30 @@
+/* These colors were gotten from the Tamu Brand Guide */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #500000;
+}
+
+a {
+    color: #006483
+}
+
+a:hover {
+    color: #004362
+}
+
 /* Add padding to the body to push the content down below the navbar */
 body {
     padding-top: 25px;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
+/*
+    NAVBAR STYLING
+*/
 .navbar {
     position: fixed;
     top: 0;
@@ -36,16 +57,31 @@ body {
     background-color: #732F2F;
 }
 
-
-
-/* These colors were gotten from the Tamu Brand Guide */
-a {
-    color: #006483
+/*
+    PHOTO GALLERY STYLING
+*/
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
 }
 
-a:hover {
-    color: #004362
+.photo-gallery img {
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    border: 2px solid #ddd;
+    /* Add a light gray border around the images */
+    border-radius: 8px;
+    /* Optional: Add rounded corners */
+    transition: 0.3s;
+    /* Add a smooth transition effect */
 }
-h1, h2, h3, h4, h5, h6 {
-    color: #500000;
+
+.photo-gallery img:hover {
+    transform: scale(1.1);
+    /* Enlarge the image on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Add a subtle shadow on hover */
 }
