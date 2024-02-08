@@ -31,6 +31,7 @@
 /config/master.key
 coverage
 
+<<<<<<< HEAD
 # Ignore .env
 /.env/
 .env

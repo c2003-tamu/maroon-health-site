@@ -83,3 +83,9 @@ group :test do
 end
 
 gem 'brakeman'
+
+gem 'dotenv-rails'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'

@@ -2,6 +2,7 @@
 
 class MembersController < ApplicationController
   before_action :set_member, only: %i[show edit update destroy]
+  before_action :check_admin
 
   # GET /members or /members.json
   def index
@@ -12,27 +13,27 @@ class MembersController < ApplicationController
   def show; end
 
   # GET /members/new
-  def new
-    @member = Member.new
-  end
+  # def new
+  #   @member = Member.new
+  # end
 
   # GET /members/1/edit
   def edit; end
 
   # POST /members or /members.json
-  def create
-    @member = Member.new(member_params)
+  # def create
+  #   @member = Member.new(member_params)
 
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to(member_url(@member), notice: 'Member was successfully created.') }
-        format.json { render(:show, status: :created, location: @member) }
-      else
-        format.html { render(:new, status: :unprocessable_entity) }
-        format.json { render(json: @member.errors, status: :unprocessable_entity) }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @member.save
+  #       format.html { redirect_to(member_url(@member), notice: 'Member was successfully created.') }
+  #       format.json { render(:show, status: :created, location: @member) }
+  #     else
+  #       format.html { render(:new, status: :unprocessable_entity) }
+  #       format.json { render(json: @member.errors, status: :unprocessable_entity) }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /members/1 or /members/1.json
   def update
@@ -66,6 +67,13 @@ class MembersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def member_params
-    params.require(:member).permit(:role_id, :first_name, :last_name)
+    params.require(:member).permit(:role, :full_name)
+  end
+
+  def check_admin
+    unless current_member && current_member.admin?
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
   end
 end

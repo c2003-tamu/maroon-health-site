@@ -1,5 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
+<% if current_member %>
+  <h2><%= current_member.email %></h2>
+    <%= image_tag(current_member.avatar_url) %>
+    <%= link_to "Edit Account", edit_member_registration_path %>
+    <%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete %>
+  <% else %>
+    <%= link_to "Login", new_member_session_path %>
+  <% end %>
+
 <h1>Members</h1>
 
 <div id="members">
@@ -10,5 +19,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New member", new_member_path %>
