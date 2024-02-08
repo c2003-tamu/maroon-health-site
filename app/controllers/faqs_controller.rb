@@ -2,6 +2,8 @@
 
 class FaqsController < ApplicationController
   before_action :set_faq, only: %i[show edit update destroy]
+  before_action :check_admin  
+
 
   # GET /faqs or /faqs.json
   def index
@@ -68,4 +70,12 @@ class FaqsController < ApplicationController
   def faq_params
     params.require(:faq).permit(:question, :answer)
   end
+
+ def check_admin
+   unless current_member && current_member.admin?
+     flash[:alert] = "You are not authorized to access this page."
+     redirect_to root_path
+   end
+ end
+
 end
