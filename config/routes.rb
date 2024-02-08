@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'about#index'
   get 'donation', to: 'donation#index'
-  resources :members
+  resources :members, except: [:new, :create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
