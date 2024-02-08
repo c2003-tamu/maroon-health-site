@@ -1,51 +1,132 @@
-/* Add padding to the body to push the content down below the navbar */
-body {
-    padding-top: 25px;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-}
+    /* These colors and fonts were gotten from the Tamu Brand Guide */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #500000;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+    }
+    a {
+        color: #006483
+    }
 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #500000;
-    color: #ffffff;
-}
+    a:hover {
+        color: #004362
+    }
 
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
+    /* Add padding to the body to push the content down below the navbar */
+    body {
+        padding-top: 25px;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    }
 
-.navbar li {
-    float: left;
-}
+    /*
+        NAVBAR STYLING
+    */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #500000;
+        color: #ffffff;
+    }
 
-.navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+    .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
 
-.navbar li a:hover {
-    background-color: #732F2F;
-}
+    .navbar li {
+        float: left;
+    }
+
+    .navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .navbar li a:hover {
+        background-color: #732F2F;
+    }
+
+    /*
+        PATIENTS SERVED STYLING
+    */
+    .stat-boxes-container {
+        display: flex;
+        justify-content: center;
+    }
+    .stat-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #732F2F;
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 10px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .icon-container {
+        font-size: 3em;
+    }
+    
+    .text-container {
+        text-align: center;
+    }
+    
+    .text-container p {
+        margin: 0;
+        font-size: 1.2em;
+    }
+    
+    .stat {
+        font-size: 2em;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    
+    .icon {
+        width: 1.5em;
+        height: 1.5em;
+    }
 
 
+    /*
+        PHOTO GALLERY STYLING
+    */
+    .photo-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+    .photo-gallery img {
+        width: 300px;
+        height: 225px;
+        margin: 10px;
+        border: 2px solid #ddd;
+        /* Add a light gray border around the images */
+        border-radius: 8px;
+        /* Optional: Add rounded corners */
+        transition: 0.3s;
+        /* Add a smooth transition effect */
+    }
 
-/* These colors were gotten from the Tamu Brand Guide */
-a {
-    color: #006483
-}
-
-a:hover {
-    color: #004362
-}
-h1, h2, h3, h4, h5, h6 {
-    color: #500000;
-}
+    .photo-gallery img:hover {
+        transform: scale(1.1);
+        /* Enlarge the image on hover */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        /* Add a subtle shadow on hover */
+    }
