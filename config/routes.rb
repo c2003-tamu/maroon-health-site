@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   # for testing purposes
-  root 'members#index'
+  root 'faqs#index'
 end

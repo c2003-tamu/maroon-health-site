@@ -2,6 +2,7 @@
 
 class MembersController < ApplicationController
   before_action :set_member, only: %i[show edit update destroy]
+  before_action :check_admin
 
   # GET /members or /members.json
   def index
@@ -67,5 +68,12 @@ class MembersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def member_params
     params.require(:member).permit(:role, :full_name)
+  end
+
+  def check_admin
+    unless current_member && current_member.admin?
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
   end
 end
