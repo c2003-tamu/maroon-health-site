@@ -16,5 +16,9 @@ class Member < ApplicationRecord
       member.avatar_url = auth.info.image
     end
   end
+
+  def admin?
+    role == "admin"
+  end
   
 end
