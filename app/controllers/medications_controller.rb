@@ -1,6 +1,6 @@
 class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[ show edit update destroy ]
-  
+  before_action :check_admin  
   def lowstock
     @medications = Medication.where("stock <= ?", 10)
   end
@@ -81,4 +81,13 @@ class MedicationsController < ApplicationController
     def medication_params
       params.require(:medication).permit(:name, :stock, :notes)
     end
+    def check_admin
+      unless current_member && current_member.admin?
+        flash[:alert] = "You are not authorized to access this page."
+        redirect_to root_path
+      end
+    end
+
+
+
 end

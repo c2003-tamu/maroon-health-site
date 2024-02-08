@@ -3,5 +3,16 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About Us", about_path %></li>
         <li><%= link_to "Donate", donation_path %></li>
+
+        <% if current_member && current_member.admin? %>
+          <li><%= link_to "Members", members_path %></li>
+          <li><%= link_to "Medications", medications_path %></li>
+        <%end%>
+
+        <%if current_member%>
+          <li><%= link_to "Logout", new_member_session_path %></li>
+        <%else%>
+          <li><%= link_to "Login", new_member_session_path %></li>
+        <%end%>
     </ul>
 </nav>
