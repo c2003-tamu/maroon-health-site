@@ -85,7 +85,6 @@ end
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'brakeman'
 gem 'yaml_db'
-gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
