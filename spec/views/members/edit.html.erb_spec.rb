@@ -6,8 +6,9 @@ RSpec.describe('members/edit', type: :view) do
   let(:member) do
     Member.create!(
       role: Role.create!(name: 'Volunteer'),
-      first_name: 'MyString',
-      last_name: 'MyString'
+      full_name: 'MyString',
+      email: 'test@gmail.com',
+      password: 'test12'
     )
   end
 
@@ -16,14 +17,11 @@ RSpec.describe('members/edit', type: :view) do
   end
 
   it 'renders the edit member form' do
-    render
+    visit edit_member_path(member)
 
-    assert_select 'form[action=?][method=?]', member_path(member), 'post' do
-      assert_select 'input[name=?]', 'member[role_id]'
+    fill_in 'member[role]', with: 'hello'
+    click_button 'Update'
 
-      assert_select 'input[name=?]', 'member[first_name]'
-
-      assert_select 'input[name=?]', 'member[last_name]'
-    end
+    expect(page).to have_content('Member was successfully updated')
   end
 end

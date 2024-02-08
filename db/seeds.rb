@@ -3,21 +3,21 @@
 # seeds.rb
 
 # Roles
-role_admin = Role.create!(name: 'Admin')
-role_officer = Role.create!(name: 'Officer')
-role_volunteer = Role.create!(name: 'Volunteer')
+#role_admin = Role.create!(name: 'Admin')
+#role_officer = Role.create!(name: 'Officer')
+#role_volunteer = Role.create!(name: 'Volunteer')
 
 # Members
-Member.create!(first_name: 'Ada', last_name: 'Lovelace', role: role_admin)
-Member.create!(first_name: 'Alan', last_name: 'Turing', role: role_officer)
-Member.create!(first_name: 'Grace', last_name: 'Hopper', role: role_volunteer)
-Member.create!(first_name: 'John', last_name: 'von Neumann', role: role_admin)
-Member.create!(first_name: 'Linus', last_name: 'Torvalds', role: role_officer)
-Member.create!(first_name: 'Margaret', last_name: 'Hamilton', role: role_volunteer)
-Member.create!(first_name: 'Tim', last_name: 'Berners-Lee', role: role_admin)
-Member.create!(first_name: 'Donald', last_name: 'Knuth', role: role_officer)
-Member.create!(first_name: 'Ada', last_name: 'Yonath', role: role_volunteer)
-Member.create!(first_name: 'Shafi', last_name: 'Goldwasser', role: role_admin)
+#Member.create!(full_name: 'Ada', role: 'role_admin')
+#Member.create!(full_name: 'Alan', role: 'role_officer')
+#Member.create!(full_name: 'Grace', role: 'role_volunteer')
+#Member.create!(full_name: 'John', role: 'role_admin')
+#Member.create!(full_name: 'Linus', role: 'role_officer')
+#Member.create!(full_name: 'Margaret', role: 'role_volunteer')
+#Member.create!(full_name: 'Tim', role: 'role_admin')
+#Member.create!(full_name: 'Donald', role: 'role_officer')
+#Member.create!(full_name: 'Ada', role: 'role_volunteer')
+#Member.create!(full_name: 'Shafi', role: 'role_admin')
 
 # MemberShifts
 MemberShift.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_officers: 2, start_time: Time.zone.now, end_time: Time.zone.now + 4.hours)
