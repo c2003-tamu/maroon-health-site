@@ -10,9 +10,9 @@
         <%end%>
 
         <%if current_member%>
-          <li><%= link_to "Logout", new_member_session_path %></li>
+          <li><%= button_to "Logout", destroy_member_session_path, method: :delete, data: { turbo: "false" } %></li>
         <%else%>
-          <li><%= link_to "Login", new_member_session_path %></li>
+          <li><%= link_to "Volunteer Login", new_member_session_path %></li>
         <%end%>
     </ul>
 </nav>
