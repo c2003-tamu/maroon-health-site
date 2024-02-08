@@ -82,8 +82,9 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'brakeman'
-
+gem 'yaml_db'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth'
