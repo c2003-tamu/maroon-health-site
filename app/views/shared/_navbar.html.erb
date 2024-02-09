@@ -7,6 +7,7 @@
         <% if current_member && current_member.admin? %>
           <li><%= link_to "Members", members_path %></li>
           <li><%= link_to "Medications", medications_path %></li>
+          <li><%= link_to "Add FAQS", faqs_path %></li>
         <%end%>
 
         <%if current_member%>
