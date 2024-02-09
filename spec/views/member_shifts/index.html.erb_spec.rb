@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe('member_shifts/index', type: :view) do
+RSpec.describe('events/index', type: :view) do
   before do
-    assign(:member_shifts, [
-      MemberShift.create!(
+    assign(:events, [
+      Event.create!(
         title: 'Title',
         ideal_volunteers: 2,
         ideal_officers: 3
       ),
-      MemberShift.create!(
+      Event.create!(
         title: 'Title',
         ideal_volunteers: 2,
         ideal_officers: 3
@@ -19,7 +19,7 @@ RSpec.describe('member_shifts/index', type: :view) do
     )
   end
 
-  it 'renders a list of member_shifts' do
+  it 'renders a list of events' do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
     assert_select cell_selector, text: Regexp.new('Title'.to_s), count: 2

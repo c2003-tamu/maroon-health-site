@@ -1,10 +1,10 @@
-<%= form_with(model: member_shift) do |form| %>
-  <% if member_shift.errors.any? %>
+<%= form_with(model: event) do |form| %>
+  <% if event.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(member_shift.errors.count, "error") %> prohibited this member_shift from being saved:</h2>
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
-        <% member_shift.errors.each do |error| %>
+        <% event.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

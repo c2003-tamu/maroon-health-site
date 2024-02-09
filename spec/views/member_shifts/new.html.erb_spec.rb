@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe('member_shifts/new', type: :view) do
+RSpec.describe('events/new', type: :view) do
   before do
-    assign(:member_shift, MemberShift.new(
+    assign(:event, Event.new(
                             title: 'MyString',
                             ideal_volunteers: 1,
                             ideal_officers: 1
@@ -12,15 +12,15 @@ RSpec.describe('member_shifts/new', type: :view) do
     )
   end
 
-  it 'renders new member_shift form' do
+  it 'renders new event form' do
     render
 
-    assert_select 'form[action=?][method=?]', member_shifts_path, 'post' do
-      assert_select 'input[name=?]', 'member_shift[title]'
+    assert_select 'form[action=?][method=?]', events_path, 'post' do
+      assert_select 'input[name=?]', 'event[title]'
 
-      assert_select 'input[name=?]', 'member_shift[ideal_volunteers]'
+      assert_select 'input[name=?]', 'event[ideal_volunteers]'
 
-      assert_select 'input[name=?]', 'member_shift[ideal_officers]'
+      assert_select 'input[name=?]', 'event[ideal_officers]'
     end
   end
 end

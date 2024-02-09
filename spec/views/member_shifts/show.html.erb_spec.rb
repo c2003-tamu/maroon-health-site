@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe('member_shifts/show', type: :view) do
+RSpec.describe('events/show', type: :view) do
   before do
-    assign(:member_shift, MemberShift.create!(
+    assign(:event, Event.create!(
                             title: 'Title',
                             ideal_volunteers: 2,
                             ideal_officers: 3
