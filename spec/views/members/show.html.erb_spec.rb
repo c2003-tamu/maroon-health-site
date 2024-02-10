@@ -5,9 +5,10 @@ require 'rails_helper'
 RSpec.describe('members/show', type: :view) do
   before do
     assign(:member, Member.create!(
-                      role: Role.create!(name: 'Volunteer'),
-                      first_name: 'First Name',
-                      last_name: 'Last Name'
+                      role: 'admin',
+                      full_name: 'First Name',
+                      email: 'test@gmail.com',
+                      password: 'test12'
                     )
     )
   end
@@ -16,6 +17,5 @@ RSpec.describe('members/show', type: :view) do
     render
     expect(rendered).to(match(//))
     expect(rendered).to(match(/First Name/))
-    expect(rendered).to(match(/Last Name/))
   end
 end
