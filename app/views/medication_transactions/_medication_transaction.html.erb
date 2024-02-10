@@ -1,12 +1,12 @@
 <div id="<%= dom_id medication_transaction %>">
   <p>
-    <strong>Medication:</strong>
-    <%= medication_transaction.medication_id %>
+    <strong>Medication Name:</strong>
+    <%= medication_transaction.medication.name %>
   </p>
 
   <p>
     <strong>Member:</strong>
-    <%= medication_transaction.member_id %>
+    <%= medication_transaction.member.full_name %>
   </p>
 
   <p>
