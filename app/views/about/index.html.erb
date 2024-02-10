@@ -63,5 +63,5 @@
 <% @resources.each do |resource| %>
     <strong><%= resource.title %></strong>
     <p><%= resource.description %></p>
-    <a href = "<%= resource.url %>">Learn more here</a>
+    <%= link_to "Learn more here", resource.url, target:"_blank" %>
 <% end %>
