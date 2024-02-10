@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :resources
   get 'medications/lowstock', to: 'medications#lowstock', as: 'lowstock_medications'
   resources :medications
   devise_for :members, controllers: {omniauth_callbacks: 'members/omniauth_callbacks', sessions: 'members/sessions', registrations: 'members/registrations'}
