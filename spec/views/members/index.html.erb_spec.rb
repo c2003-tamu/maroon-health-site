@@ -12,7 +12,7 @@ RSpec.describe('members/index', type: :view) do
         password: 'test12'
       ),
       Member.create!(
-        role: 'Officer',
+        role: 'volunteer',
         full_name: 'Full name 2',
         email: 'test2@gmail.com',       
         password: 'test12'
