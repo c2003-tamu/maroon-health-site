@@ -2,15 +2,13 @@
 <% if @medications.any? %>
   <table class="listing" summary="medication list" style="width: 100%;">
     <tr class="header">
-      <th>Delete</th>
       <th>Medication</th>
       <th>Stock</th>
       <th>Notes</th>
       <th>Actions</th>
     </tr>
     <% @medications.each do |medication| %>
-      <tr style="outline: thin solid">
-        <td style="text-align: center;"><%= button_to "Delete this Medicine", medication, method: :delete %></td>  
+      <tr style="outline: thin solid"> 
       <td style="text-align: center;"><%= medication.name %></td>
       <% if medication.stock <= 5 %>
         <td style="text-align: center; background-color: red;"><%= medication.stock %></td>
@@ -20,8 +18,10 @@
         <td style="text-align: center; background-color: green;"><%= medication.stock %> </td> 
       <%end%>  
       <td style="text-align: center;"><%= medication.notes %></td>
+      
       <td class="actions" style="text-align: center;">
-        <%= link_to("Show", medication_path(medication), class: 'action show') %>
+        <%= link_to("Show/Edit", medication_path(medication), class: 'action show') %>
+        <br/>
         <%= link_to("Make Transaction", new_medication_transaction_path(id: medication.id), class: 'action edit') %>
       </td>
     </tr>
