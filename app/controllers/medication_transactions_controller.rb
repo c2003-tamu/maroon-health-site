@@ -2,6 +2,7 @@
 
 class MedicationTransactionsController < ApplicationController
   before_action :set_medication_transaction, only: %i[show edit update destroy]
+  before_action :check_admin
 
   # GET /medication_transactions or /medication_transactions.json
   def index
@@ -13,7 +14,12 @@ class MedicationTransactionsController < ApplicationController
 
   # GET /medication_transactions/new
   def new
-    @medication_transaction = MedicationTransaction.new
+    if params[:id].present?
+      @medication_transaction = MedicationTransaction.new(id: params[:id])
+      @medication_transaction.medication_id = params[:id]
+    else
+      @medication_transaction = MedicationTransaction.new
+    end
   end
 
   # GET /medication_transactions/1/edit
@@ -28,7 +34,7 @@ class MedicationTransactionsController < ApplicationController
       if @medication_transaction.save
         update_medication_stock(@medication_transaction, :decrease)
 
-        format.html { redirect_to(medication_transaction_url(@medication_transaction), notice: 'Medication transaction was successfully created.') }
+        format.html { redirect_to(medications_path, notice: 'Medication transaction was successfully created.') }
         format.json { render(:show, status: :created, location: @medication_transaction) }
       else
         format.html { render(:new, status: :unprocessable_entity) }
@@ -110,6 +116,13 @@ class MedicationTransactionsController < ApplicationController
       end
     when :decrease
       medication.update(stock: medication.stock - amount)
+    end
+  end
+
+  def check_admin
+    unless current_member && current_member.admin?
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
     end
   end
 
