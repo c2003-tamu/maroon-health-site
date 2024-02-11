@@ -80,6 +80,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'webdrivers'
+  gem 'rails-controller-testing'
 end
 
 gem 'dotenv-rails', require: 'dotenv/rails-now'
