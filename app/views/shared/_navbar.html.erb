@@ -9,7 +9,10 @@
           <li><%= link_to "Medications", medications_path %></li>
           <li><%= link_to "Add FAQS", faqs_path %></li>
           <li><%= link_to "Add Resources", resources_path %></li>
+        <% elsif current_member && current_member.role == "volunteer" %>
+          <li><%= link_to "Medications", medications_path %></li>
         <%end%>
+          
 
         <%if current_member%>
           <li><%= button_to "Logout", destroy_member_session_path, method: :delete, data: { turbo: "false" } %></li>

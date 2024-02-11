@@ -2,7 +2,9 @@
 
 <% if current_member %>
   <h2><%= current_member.email %></h2>
-    <%= image_tag(current_member.avatar_url) %>
+    <% if current_member.avatar_url.present? %>
+      <%= image_tag(current_member.avatar_url) %>
+    <%end%>
     <%= link_to "Edit Account", edit_member_registration_path %>
     <%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete %>
   <% else %>
