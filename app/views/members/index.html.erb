@@ -5,7 +5,7 @@
     <% if current_member.avatar_url.present? %>
       <%= image_tag(current_member.avatar_url) %>
     <%end%>
-    <%= link_to "Edit Account", edit_member_registration_path %>
+    <%= link_to "Edit Account", edit_member_url(current_member) %>
     <%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete %>
   <% else %>
     <%= link_to "Login", new_member_session_path %>
