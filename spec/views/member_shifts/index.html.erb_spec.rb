@@ -8,12 +8,16 @@ RSpec.describe('member_shifts/index', type: :view) do
       MemberShift.create!(
         title: 'Title',
         ideal_volunteers: 2,
-        ideal_officers: 3
+        ideal_officers: 3,
+        start_time: Time.zone.now,
+        end_time: Time.zone.now + 1.hour
       ),
       MemberShift.create!(
         title: 'Title',
         ideal_volunteers: 2,
-        ideal_officers: 3
+        ideal_officers: 3,
+        start_time: Time.zone.now,
+        end_time: Time.zone.now + 1.hour
       )
     ]
     )
@@ -23,7 +27,7 @@ RSpec.describe('member_shifts/index', type: :view) do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
     assert_select cell_selector, text: Regexp.new('Title'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(3.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(2.to_s), count: 6
+    assert_select cell_selector, text: Regexp.new(3.to_s), count: 6
   end
 end

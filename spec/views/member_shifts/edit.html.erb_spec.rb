@@ -7,7 +7,9 @@ RSpec.describe('member_shifts/edit', type: :view) do
     MemberShift.create!(
       title: 'MyString',
       ideal_volunteers: 1,
-      ideal_officers: 1
+      ideal_officers: 1,
+      start_time: Time.zone.now,
+      end_time: Time.zone.now + 1.hour
     )
   end
 
