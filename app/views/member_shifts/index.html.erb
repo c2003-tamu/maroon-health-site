@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Member Shifts</h1>
+
+<div id="membershifts">
+  <% @member_shifts.each do |member_shift| %>
+    <%= render member_shift %>
+    <p>
+      <%= link_to "Show this member shift", member_shift %>
+    </p>
+  <% end %>
+</div>

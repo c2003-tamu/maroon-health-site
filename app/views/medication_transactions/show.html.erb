@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @medication_transaction %>
+
+<div>
+  <%= link_to "Edit this medication transaction", edit_medication_transaction_path(@medication_transaction) %> |
+  <%= link_to "Back to medication transactions", medication_transactions_path %>
+
+  <%= button_to "Destroy this medication transaction", @medication_transaction, method: :delete %>
+</div>

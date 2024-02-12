@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Medication transactions</h1>
+
+<%= link_to "Back to Medications", medications_path %>
+
+<div id="medication_transactions">
+  <% @medication_transactions.each do |medication_transaction| %>
+    <%= render medication_transaction %>
+    <p>
+      <%= link_to "Show this medication transaction", medication_transaction %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New medication transaction", new_medication_transaction_path %>

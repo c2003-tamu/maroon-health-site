@@ -1,0 +1,8 @@
+
+<%= form_with(url: medications_path, method: "get") do %>
+  <%= text_field_tag(:search, params[:search], placeholder: "Search medications...") %>
+  <%= submit_tag("Search") %>
+  <%= link_to "Clear Search", medications_path, class: "btn btn-primary" %>
+<% end %>
+
+

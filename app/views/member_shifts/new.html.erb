@@ -1,0 +1,16 @@
+<h2>Sign up for this event?</h2>
+
+<%= form_for [@event, @member_shift] do |f| %>
+  <p>
+    <strong>Event:</strong>
+    <%= @event.title %>
+  </p>
+
+  <p>
+    <strong>Start Date:</strong>
+    <%= @event.start_time %>
+  </p>
+
+    <%= f.hidden_field :member_id, value: current_member.id %>
+    <%= f.submit "Sign Up" %>
+  <% end %>

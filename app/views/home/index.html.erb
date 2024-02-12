@@ -1,0 +1,47 @@
+<!-- app/views/home/index.html.erb -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap">
+<h1>Maroon Health</h1>
+
+<div class="stat-boxes-container">
+
+    <!-- Patients Served Counter -->
+    <div class="stat-box">
+        <div class="icon-container">
+            <%= image_tag 'icons/heart-plus.svg', class: 'icon' %>
+        </div>
+        <div class="text-container">
+            <p>Patients Served</p>
+            <p class="stat"><%= @patients_served %></p>
+        </div>
+    </div>
+
+    <!-- Operating Since -->
+    <div class="stat-box">
+        <div class="icon-container">
+            <%= image_tag 'icons/clock.svg', class: 'icon' %>
+        </div>
+        <div class="text-container">
+            <p>Operating Since</p>
+            <p class="stat">2019</p>
+        </div>
+    </div>
+
+    <!-- Staff Count -->
+    <div class="stat-box">
+        <div class="icon-container">
+            <%= image_tag 'icons/person.svg', class: 'icon' %>
+        </div>
+        <div class="text-container">
+            <p>Staff Count</p>
+            <p class="stat">25</p>
+        </div>
+    </div>
+
+</div>
+
+<h2>Photo Gallery</h2>
+<div class="photo-gallery">
+  <% @photo_files.each do |photo_path| %>
+    <%= image_tag photo_path.sub('app/assets/images/', '') %>
+  <% end %>
+</div>
