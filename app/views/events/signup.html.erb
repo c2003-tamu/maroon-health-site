@@ -1,0 +1,13 @@
+<% @events.each do |event| %>
+    <p><strong><%= event.title %></strong></p>
+    <p>Starts at <%= event.start_time %></p>
+    <p><%= event.ideal_volunteers %> slots open</p>
+    <% if event.registered?(current_member) %>
+      <p>You are signed up for this event.</p>
+      <%= link_to 'Unregister', member_shift_path(event.member_shifts.find_by(member_id: current_member.id)), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% elsif event.can_sign_up? %>
+      <%= link_to 'Sign Up', new_event_member_shift_path(event) %>
+    <% else %>
+      <p>Event is full</p>
+    <% end %>
+  <% end %>

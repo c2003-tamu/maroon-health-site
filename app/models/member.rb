@@ -20,5 +20,9 @@ class Member < ApplicationRecord
   def admin?
     role == "admin"
   end
+
+  def volunteer?
+    role == "volunteer"
+  end
   
 end

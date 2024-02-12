@@ -1,0 +1,15 @@
+<h1>Unregister from this event?</h1>
+
+<p>
+  <strong>Event:</strong>
+  <%= @member_shift.event.title %>
+</p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @member_shift.member.full_name %>
+</p>
+
+<%= button_to "Unregister from this event", @member_shift, method: :delete %>
+
+<!-- Add more fields as necessary -->

@@ -24,4 +24,8 @@
     <%= event.end_time %>
   </p>
 
+  <% member_shifts = MemberShift.where(event_id: event.id) %>
+  <% member_names = member_shifts.map { |ms| ms.member.full_name } %>
+  <%= member_names.join(', ') %>
+
 </div>

@@ -58,6 +58,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def signup
+    @events = Event.all
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -70,7 +74,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :ideal_volunteers, :ideal_officers, :start_time, :end_time)
   end
 
-  # Only admins can create, edit, and delete event sign-ups
+  # # Only admins can create, edit, and delete event sign-ups
   # def check_admin
   #   unless current_member && current_member.admin?
   #     flash[:alert] = "You are not authorized to access that page."

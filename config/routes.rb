@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   devise_for :members, controllers: {omniauth_callbacks: 'members/omniauth_callbacks', sessions: 'members/sessions', registrations: 'members/registrations'}
   resources :medication_transactions
   resources :medications
-  resources :events
+  resources :events do
+    resources :member_shifts, only: [:new, :create, :destroy]
+  end
   resources :roles
   resources :faqs
+  resources :member_shifts
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'about#index'
   get 'donation', to: 'donation#index'
+  get '/signup', to: 'events#signup', as: 'signup'
   resources :members, except: [:new, :create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
