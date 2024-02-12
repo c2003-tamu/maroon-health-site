@@ -2,7 +2,7 @@
 
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
-  # before_action :check_admin
+  before_action :check_admin, except: [:signup]
 
   # GET /events or /events.json
   def index
@@ -59,6 +59,7 @@ class EventsController < ApplicationController
   end
 
   def signup
+    check_vol
     @events = Event.all
   end
 
@@ -73,12 +74,19 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :ideal_volunteers, :ideal_officers, :start_time, :end_time)
   end
+  
+  def check_vol
+    unless current_member && (current_member.admin? || current_member.role == "volunteer")
+      flash[:alert] = "You are not authorized to access that page."
+      redirect_to root_path
+    end
+  end
 
-  # # Only admins can create, edit, and delete event sign-ups
-  # def check_admin
-  #   unless current_member && current_member.admin?
-  #     flash[:alert] = "You are not authorized to access that page."
-  #     redirect_to root_path
-  #   end
-  # end
+   # Only admins can create, edit, and delete event sign-ups
+   def check_admin
+     unless current_member && current_member.admin?
+       flash[:alert] = "You are not authorized to access that page."
+       redirect_to root_path
+     end
+   end
 end
