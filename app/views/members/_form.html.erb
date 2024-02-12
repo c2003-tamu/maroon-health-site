@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :role, style: "display: block" %>
-    <%= form.text_field :role %>
+    <%= form.select :role, options_for_select(["admin", "volunteer"], @member.role) %>
   </div>
 
   <div>

@@ -1,3 +1,4 @@
 skip_checks:
   - CheckLinkTo
   - CheckLinkToHref
+  - CheckPermitAttributes

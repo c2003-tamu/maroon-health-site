@@ -1,71 +1,46 @@
-# frozen_string_literal: true
-
 class MemberShiftsController < ApplicationController
-  before_action :set_member_shift, only: %i[show edit update destroy]
+  before_action :set_event, only: [:new, :create]
 
-  # GET /member_shifts or /member_shifts.json
   def index
     @member_shifts = MemberShift.all
   end
 
-  # GET /member_shifts/1 or /member_shifts/1.json
-  def show; end
+  def show
+    @member_shift = MemberShift.find(params[:id])
+  end
 
-  # GET /member_shifts/new
   def new
     @member_shift = MemberShift.new
   end
 
-  # GET /member_shifts/1/edit
-  def edit; end
-
-  # POST /member_shifts or /member_shifts.json
   def create
     @member_shift = MemberShift.new(member_shift_params)
-
-    respond_to do |format|
-      if @member_shift.save
-        format.html { redirect_to(member_shift_url(@member_shift), notice: 'Member shift was successfully created.') }
-        format.json { render(:show, status: :created, location: @member_shift) }
-      else
-        format.html { render(:new, status: :unprocessable_entity) }
-        format.json { render(json: @member_shift.errors, status: :unprocessable_entity) }
-      end
+    @member_shift.event = @event
+    if @member_shift.save
+      @event.decrement!(:ideal_volunteers)
+      redirect_to signup_url, notice: 'You have successfully signed up for this event.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /member_shifts/1 or /member_shifts/1.json
-  def update
-    respond_to do |format|
-      if @member_shift.update(member_shift_params)
-        format.html { redirect_to(member_shift_url(@member_shift), notice: 'Member shift was successfully updated.') }
-        format.json { render(:show, status: :ok, location: @member_shift) }
-      else
-        format.html { render(:edit, status: :unprocessable_entity) }
-        format.json { render(json: @member_shift.errors, status: :unprocessable_entity) }
-      end
-    end
-  end
-
-  # DELETE /member_shifts/1 or /member_shifts/1.json
   def destroy
-    @member_shift.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to(member_shifts_url, notice: 'Member shift was successfully destroyed.') }
-      format.json { head(:no_content) }
-    end
+    @member_shift = MemberShift.find(params[:id])
+    @event = @member_shift.event
+    @member_shift.destroy
+  
+    @event.increment(:ideal_volunteers).update_columns(ideal_volunteers: @event.ideal_volunteers)
+  
+    redirect_to signup_url, notice: 'Successfully unregistered from this event.'
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_member_shift
-    @member_shift = MemberShift.find(params[:id])
+  def set_event
+    @event = Event.find(params[:event_id])
   end
 
-  # Only allow a list of trusted parameters through.
   def member_shift_params
-    params.require(:member_shift).permit(:title, :ideal_volunteers, :ideal_officers, :start_time, :end_time)
+    params.require(:member_shift).permit(:member_id)
   end
 end

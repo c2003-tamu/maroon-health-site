@@ -2,7 +2,7 @@
 
 class FaqsController < ApplicationController
   before_action :set_faq, only: %i[show edit update destroy]
- # before_action :check_admin  
+  #before_action :check_admin  
 
 
   # GET /faqs or /faqs.json

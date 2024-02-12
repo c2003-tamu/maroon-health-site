@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<h1>Unregister from this event?</h1>
 
-<%= render @member_shift %>
+<p>
+  <strong>Event:</strong>
+  <%= @member_shift.event.title %>
+</p>
 
-<div>
-  <%= link_to "Edit this member shift", edit_member_shift_path(@member_shift) %> |
-  <%= link_to "Back to member shifts", member_shifts_path %>
+<p>
+  <strong>Member:</strong>
+  <%= @member_shift.member.full_name %>
+</p>
 
-  <%= button_to "Destroy this member shift", @member_shift, method: :delete %>
-</div>
+<%= button_to "Unregister from this event", @member_shift, method: :delete %>
+
+<!-- Add more fields as necessary -->

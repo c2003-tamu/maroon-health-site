@@ -1,9 +1,16 @@
-<h1>New member shift</h1>
+<h2>Sign up for this event?</h2>
 
-<%= render "form", member_shift: @member_shift %>
+<%= form_for [@event, @member_shift] do |f| %>
+  <p>
+    <strong>Event:</strong>
+    <%= @event.title %>
+  </p>
 
-<br>
+  <p>
+    <strong>Start Date:</strong>
+    <%= @event.start_time %>
+  </p>
 
-<div>
-  <%= link_to "Back to member shifts", member_shifts_path %>
-</div>
+    <%= f.hidden_field :member_id, value: current_member.id %>
+    <%= f.submit "Sign Up" %>
+  <% end %>

@@ -19,18 +19,18 @@
 #Member.create!(full_name: 'Ada', role: 'role_volunteer')
 #Member.create!(full_name: 'Shafi', role: 'role_admin')
 
-# MemberShifts
-MemberShift.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_officers: 2, start_time: Time.zone.now, end_time: Time.zone.now + 4.hours)
-MemberShift.create!(title: 'Evening Shift', ideal_volunteers: 3, ideal_officers: 1, start_time: Time.zone.now + 5.hours,
+# Events
+Event.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_officers: 2, start_time: Time.zone.now, end_time: Time.zone.now + 4.hours)
+Event.create!(title: 'Evening Shift', ideal_volunteers: 3, ideal_officers: 1, start_time: Time.zone.now + 5.hours,
                     end_time: Time.zone.now + 9.hours
 )
-MemberShift.create!(title: 'Night Shift', ideal_volunteers: 4, ideal_officers: 1, start_time: Time.zone.now + 10.hours,
+Event.create!(title: 'Night Shift', ideal_volunteers: 4, ideal_officers: 1, start_time: Time.zone.now + 10.hours,
                     end_time: Time.zone.now + 14.hours
 )
-MemberShift.create!(title: 'Weekend Shift', ideal_volunteers: 6, ideal_officers: 2, start_time: Time.zone.now + 2.days,
+Event.create!(title: 'Weekend Shift', ideal_volunteers: 6, ideal_officers: 2, start_time: Time.zone.now + 2.days,
                     end_time: Time.zone.now + 2.days + 8.hours
 )
-MemberShift.create!(title: 'Holiday Shift', ideal_volunteers: 8, ideal_officers: 3, start_time: Time.zone.now + 5.days,
+Event.create!(title: 'Holiday Shift', ideal_volunteers: 8, ideal_officers: 3, start_time: Time.zone.now + 5.days,
                     end_time: Time.zone.now + 5.days + 10.hours
 )
 

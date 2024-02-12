@@ -1,0 +1,31 @@
+<div id="<%= dom_id event %>">
+  <p>
+    <strong>Title:</strong>
+    <%= event.title %>
+  </p>
+
+  <p>
+    <strong>Ideal volunteers:</strong>
+    <%= event.ideal_volunteers %>
+  </p>
+
+  <p>
+    <strong>Ideal officers:</strong>
+    <%= event.ideal_officers %>
+  </p>
+
+  <p>
+    <strong>Start time:</strong>
+    <%= event.start_time %>
+  </p>
+
+  <p>
+    <strong>End time:</strong>
+    <%= event.end_time %>
+  </p>
+
+  <% member_shifts = MemberShift.where(event_id: event.id) %>
+  <% member_names = member_shifts.map { |ms| ms.member.full_name } %>
+  <%= member_names.join(', ') %>
+
+</div>

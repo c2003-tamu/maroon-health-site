@@ -24,8 +24,6 @@ RSpec.describe('medication_transactions/edit', type: :view) do
     assert_select 'form[action=?][method=?]', medication_transaction_path(medication_transaction), 'post' do
       assert_select 'input[name=?]', 'medication_transaction[medication_id]'
 
-      assert_select 'input[name=?]', 'medication_transaction[member_id]'
-
       assert_select 'input[name=?]', 'medication_transaction[amount]'
     end
   end

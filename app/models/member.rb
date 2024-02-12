@@ -6,8 +6,7 @@ class Member < ApplicationRecord
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+  devise :database_authenticatable, :rememberable, :validatable,
           # for Google OmniAuth
          :omniauthable, omniauth_providers: [:google_oauth2]
 
@@ -23,4 +22,9 @@ class Member < ApplicationRecord
   def admin?
     role == "admin"
   end
+
+  def volunteer?
+    role == "volunteer"
+  end
+  
 end

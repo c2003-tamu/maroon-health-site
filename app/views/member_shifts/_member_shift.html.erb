@@ -1,27 +1,4 @@
-<div id="<%= dom_id member_shift %>">
-  <p>
-    <strong>Title:</strong>
-    <%= member_shift.title %>
-  </p>
-
-  <p>
-    <strong>Ideal volunteers:</strong>
-    <%= member_shift.ideal_volunteers %>
-  </p>
-
-  <p>
-    <strong>Ideal officers:</strong>
-    <%= member_shift.ideal_officers %>
-  </p>
-
-  <p>
-    <strong>Start time:</strong>
-    <%= member_shift.start_time %>
-  </p>
-
-  <p>
-    <strong>End time:</strong>
-    <%= member_shift.end_time %>
-  </p>
-
+<div class="member-shift">
+  <p>Volunteer: <%= member_shift.member.full_name %></p>
+  <p>Signed up for event: <%= member_shift.event.title %></p>
 </div>

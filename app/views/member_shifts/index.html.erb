@@ -1,8 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Member shifts</h1>
+<h1>Member Shifts</h1>
 
-<div id="member_shifts">
+<div id="membershifts">
   <% @member_shifts.each do |member_shift| %>
     <%= render member_shift %>
     <p>
@@ -10,5 +10,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New member shift", new_member_shift_path %>

@@ -6,7 +6,11 @@ class MemberShift < ApplicationRecord
     validates :end_time, presence: true
   
     validate :start_time_before_end_time
-  
+    belongs_to :event
+    belongs_to :member
+
+
+
     private
   
     def start_time_before_end_time
@@ -14,3 +18,5 @@ class MemberShift < ApplicationRecord
       errors.add(:end_time, 'must be after start time') if end_time <= start_time
     end
   end
+  
+  
