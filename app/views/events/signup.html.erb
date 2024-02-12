@@ -1,3 +1,6 @@
+<% if @events.count == 0 %>
+  <p>Currently no events</p>
+<%end%>
 <% @events.each do |event| %>
     <p><strong><%= event.title %></strong></p>
     <p>Starts at <%= event.start_time %></p>
