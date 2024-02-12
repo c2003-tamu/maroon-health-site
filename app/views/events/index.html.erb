@@ -3,6 +3,9 @@
 <h1>Events</h1>
 
 <div id="events">
+  <% if @events.count == 0 %>
+    <p>Currently no events</p>
+  <%else%>
   <% @events.each do |event| %>
     <%= render event %>
     <p>
