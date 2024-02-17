@@ -5,7 +5,7 @@
   <h2><%= day.strftime("%A, %B %e, %Y") %></h2>
   <ul>
     <% events_on_day.each do |event_today| %>
-      <li><a href="<%= calendar_event_path(event_today) %>"><%= event_today.title %></a></li>
+      <li><a href="<%= display_calendar_event_path(event_today) %>"><%= event_today.title %></a></li>
     <% end %>
   </ul>
 <% end %>

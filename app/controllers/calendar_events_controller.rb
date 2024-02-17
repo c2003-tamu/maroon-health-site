@@ -1,5 +1,5 @@
 class CalendarEventsController < ApplicationController
-  before_action :set_calendar_event, only: %i[ show edit update destroy ]
+  before_action :set_calendar_event, only: %i[ show display edit update destroy ]
 
   # GET /calendar_events or /calendar_events.json
   def index
@@ -8,6 +8,9 @@ class CalendarEventsController < ApplicationController
 
   # GET /calendar_events/1 or /calendar_events/1.json
   def show
+  end
+
+  def display
   end
 
   # GET /calendar_events/new
