@@ -1,0 +1,8 @@
+<h1>Calendar</h1>
+
+<% @calendar_events.each do |calendar_event| %>
+    <strong><%= calendar_event.title %></strong>
+    <p><%= calendar_event.description %></p>
+    <p><%= calendar_event.start_datetime %></p>
+    <p><%= calendar_event.end_datetime %></p>
+<% end %>

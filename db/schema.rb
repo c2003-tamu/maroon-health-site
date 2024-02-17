@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_12_121213) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_17_010710) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
+
+  create_table "calendar_events", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
+    t.datetime "start_datetime", null: false
+    t.datetime "end_datetime", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["start_datetime"], name: "index_calendar_events_on_start_datetime"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "title"

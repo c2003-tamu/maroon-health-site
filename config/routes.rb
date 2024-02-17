@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'about#index'
   get 'donation', to: 'donation#index'
+  get 'calendar', to: 'calendar#index'
   get '/signup', to: 'events#signup', as: 'signup'
   resources :members, except: [:new, :create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
