@@ -14,7 +14,7 @@ RSpec.describe('members/index', type: :view) do
       Member.create!(
         role: 'volunteer',
         full_name: 'Full name 2',
-        email: 'test2@gmail.com',       
+        email: 'test2@gmail.com',
         password: 'test12'
       )
     ]
@@ -23,7 +23,7 @@ RSpec.describe('members/index', type: :view) do
 
   it 'renders a list of members' do
     visit members_path
-    expect(page).to have_content('Full name')
-    expect(page).to have_content('Full name 2')
+    expect(page).to(have_content('Full name'))
+    expect(page).to(have_content('Full name 2'))
   end
 end

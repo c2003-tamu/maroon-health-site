@@ -2,7 +2,7 @@
 
 class MembersController < ApplicationController
   before_action :set_member, only: %i[show edit update destroy]
-  #before_action :check_admin
+  # before_action :check_admin
 
   # GET /members or /members.json
   def index
@@ -71,9 +71,9 @@ class MembersController < ApplicationController
   end
 
   def check_admin
-    unless current_member# && current_member.admin?
-      flash[:alert] = "You are not authorized to access this page."
-      redirect_to root_path
+    unless current_member&.admin?
+      flash[:alert] = 'You are not authorized to access this page.'
+      redirect_to(root_path)
     end
   end
 end
