@@ -16,8 +16,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_12_121213) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "event_id"
+    t.string "title"
+    t.integer "ideal_volunteers"
+    t.integer "ideal_officers"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,6 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_12_121213) do
     t.string "name"
     t.integer "stock"
     t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "member_shifts", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
