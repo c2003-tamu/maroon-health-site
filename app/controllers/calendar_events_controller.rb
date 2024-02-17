@@ -1,5 +1,6 @@
 class CalendarEventsController < ApplicationController
   before_action :set_calendar_event, only: %i[ show display edit update destroy ]
+  before_action :check_admin, except: [:display]
 
   # GET /calendar_events or /calendar_events.json
   def index
@@ -69,5 +70,12 @@ class CalendarEventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def calendar_event_params
       params.require(:calendar_event).permit(:title, :description, :start_datetime, :end_datetime)
+    end
+
+    def check_admin
+      unless current_member && current_member.admin?
+        flash[:alert] = "You are not authorized to access that page."
+        redirect_to root_path
+      end
     end
 end
