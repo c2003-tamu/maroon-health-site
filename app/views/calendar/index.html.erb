@@ -1,8 +1,11 @@
 <h1>Calendar</h1>
+<p>Click on an event title to view full details.</p>
 
-<% @calendar_events.each do |calendar_event| %>
-    <strong><%= calendar_event.title %></strong>
-    <p><%= calendar_event.description %></p>
-    <p><%= calendar_event.start_datetime %></p>
-    <p><%= calendar_event.end_datetime %></p>
+<% @calendar_events.group_by { |calendar_event| calendar_event.start_datetime.to_date }.each do |day, events_on_day| %>
+  <h2><%= day.strftime("%A, %B %e, %Y") %></h2>
+  <ul>
+    <% events_on_day.each do |event_today| %>
+      <li><a href="<%= calendar_event_path(event_today) %>"><%= event_today.title %></a></li>
+    <% end %>
+  </ul>
 <% end %>

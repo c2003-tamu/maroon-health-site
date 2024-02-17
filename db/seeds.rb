@@ -1,3 +1,8 @@
+# Empty all tables
+ActiveRecord::Base.connection.tables.each do |table|
+  ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} RESTART IDENTITY CASCADE;")
+end
+
 # Members
 Member.create!(email: 'thisisanemail@gmail.com', password: 'password', role: 'admin')
 Member.create!(email: 'chungus@gmail.com', password: 'password123', role: 'volunteer')
@@ -19,7 +24,7 @@ Event.create!(title: 'Holiday Shift', ideal_volunteers: 8, ideal_officers: 3, st
 
 # Calendar Events
 CalendarEvent.create!(title: 'Workshop on Stress Management', description: 'Learn how to manage stress effectively', start_datetime: Time.zone.now + 1.day, end_datetime: Time.zone.now + 1.day + 2.hours)
-CalendarEvent.create!(title: 'Seminar on Healthy Eating', description: 'Discover the benefits of a healthy diet', start_datetime: Time.zone.now + 2.days, end_datetime: Time.zone.now + 2.days + 3.hours)
+CalendarEvent.create!(title: 'Seminar on Healthy Eating', description: 'Discover the benefits of a healthy diet', start_datetime: Time.zone.now + 1.days, end_datetime: Time.zone.now + 1.days + 3.hours)
 CalendarEvent.create!(title: 'Social Gathering', description: 'Join us for a fun evening of games and music', start_datetime: Time.zone.now + 3.days, end_datetime: Time.zone.now + 3.days + 4.hours)
 CalendarEvent.create!(title: 'Volunteer Orientation', description: 'Learn about our organization and how you can help', start_datetime: Time.zone.now + 4.days, end_datetime: Time.zone.now + 4.days + 1.hour)
 CalendarEvent.create!(title: 'Health Fair', description: 'Get free health screenings and learn about healthy living', start_datetime: Time.zone.now + 5.days, end_datetime: Time.zone.now + 5.days + 5.hours)
