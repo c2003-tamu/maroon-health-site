@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_17_010710) do
     t.datetime "end_datetime", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["start_datetime"], name: "index_calendar_events_on_start_datetime"
   end
 
   create_table "events", force: :cascade do |t|

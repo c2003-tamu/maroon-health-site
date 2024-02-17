@@ -8,7 +8,5 @@ class CreateCalendarEvents < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-
-    add_index :calendar_events, :start_datetime
   end
 end
