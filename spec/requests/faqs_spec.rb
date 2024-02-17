@@ -26,6 +26,18 @@ RSpec.describe('/faqs', type: :request) do
     skip('Add a hash of attributes invalid for your model')
   end
 
+  let(:admin_member) do
+    Member.create!(
+      email: 'user@gmail.com',
+      password: 'password123',
+      role: 'admin'
+    )
+  end
+
+  before do
+    sign_in admin_member
+  end
+
   describe 'GET /index' do
     it 'renders a successful response' do
       Faq.create!(valid_attributes)
