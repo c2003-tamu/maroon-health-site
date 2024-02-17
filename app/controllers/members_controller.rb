@@ -67,7 +67,9 @@ class MembersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def member_params
-    params.require(:member).permit(:role, :full_name)
+    params.require(:member).permit(:role, :full_name).tap do |whitelisted|
+      whitelisted[:role] = params[:member][:role] if ['admin', 'volunteer'].include?(params[:member][:role])
+    end
   end
 
   def check_admin
