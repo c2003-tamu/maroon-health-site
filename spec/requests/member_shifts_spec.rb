@@ -22,19 +22,21 @@ RSpec.describe "MemberShifts", type: :request do
   end
 
   describe "GET /new" do
-    it "returns http success" do
-      get "/member_shifts/new/1"
-      puts response.body
-      puts response.status
+    it "renders the new template successfully" do
+      event = Event.create!(title: "Event Title", ideal_volunteers: 5, ideal_officers: 5, start_time: Time.now, end_time: Time.now + 2.hours)
+      get "/member_shifts/new", params: { event_id: event.id }
+
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /create" do
-    it "returns http success" do
-      get "/member_shifts/create/1"
-      puts response.body
-      puts response.status
+  describe "POST /create" do
+    it "creates a new member shift successfully" do
+      event = Event.create!(title: "Event Title", ideal_volunteers: 5, ideal_officers: 5, start_time: Time.now, end_time: Time.now + 2.hours)
+      member = Member.create!(email: "user@example.com", password: "password", role: "volunteer")
+
+      post "/member_shifts", params: { member_shift: { member_id: member.id }, event_id: event.id }
+      follow_redirect!
       expect(response).to have_http_status(:success)
     end
   end
