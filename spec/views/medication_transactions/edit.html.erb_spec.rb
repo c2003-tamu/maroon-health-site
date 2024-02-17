@@ -14,7 +14,23 @@ RSpec.describe('medication_transactions/edit', type: :view) do
     )
   end
 
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
   before do
+    sign_in admin_member
     assign(:medication_transaction, medication_transaction)
   end
 
@@ -23,9 +39,6 @@ RSpec.describe('medication_transactions/edit', type: :view) do
 
     assert_select 'form[action=?][method=?]', medication_transaction_path(medication_transaction), 'post' do
       assert_select 'input[name=?]', 'medication_transaction[medication_id]'
-
-      assert_select 'input[name=?]', 'medication_transaction[member_id]'
-
       assert_select 'input[name=?]', 'medication_transaction[amount]'
     end
   end

@@ -9,15 +9,31 @@ RSpec.describe "medications/new", type: :view do
     ))
   end
 
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
+  before do
+    sign_in admin_member
+  end
+
   it "renders new medication form" do
     render
 
     assert_select "form[action=?][method=?]", medications_path, "post" do
-
       assert_select "input[name=?]", "medication[name]"
-
       assert_select "input[name=?]", "medication[stock]"
-
       assert_select "input[name=?]", "medication[notes]"
     end
   end

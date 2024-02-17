@@ -28,9 +28,16 @@ RSpec.describe('/faqs', type: :request) do
 
   let(:admin_member) do
     Member.create!(
-      email: 'user@gmail.com',
-      password: 'password123',
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
       role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
     )
   end
 

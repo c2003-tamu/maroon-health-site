@@ -4,9 +4,16 @@ RSpec.describe "MemberShifts", type: :request do
 
   let(:admin_member) do
     Member.create!(
-      email: 'user@gmail.com',
-      password: 'password123',
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
       role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
     )
   end
 
@@ -16,7 +23,7 @@ RSpec.describe "MemberShifts", type: :request do
 
   describe "GET /new" do
     it "returns http success" do
-      get "/member_shifts/new"
+      get "/member_shifts/new/1"
       puts response.body
       puts response.status
       expect(response).to have_http_status(:success)
@@ -25,7 +32,7 @@ RSpec.describe "MemberShifts", type: :request do
 
   describe "GET /create" do
     it "returns http success" do
-      get "/member_shifts/create"
+      get "/member_shifts/create/1"
       puts response.body
       puts response.status
       expect(response).to have_http_status(:success)

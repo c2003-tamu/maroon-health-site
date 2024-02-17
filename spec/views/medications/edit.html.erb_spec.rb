@@ -9,20 +9,40 @@ RSpec.describe "medications/edit", type: :view do
     )
   }
 
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
   before(:each) do
     assign(:medication, medication)
+  end
+
+  before do
+    sign_in admin_member
   end
 
   it "renders the edit medication form" do
     render
 
     assert_select "form[action=?][method=?]", medication_path(medication), "post" do
-
-      assert_select "input[name=?]", "medication[name]"
-
-      assert_select "input[name=?]", "medication[stock]"
-
+      assert_select "input[name=?][value=?]", "medication[name]", "MyString"
+      assert_select "input[name=?][value=?]", "medication[stock]", "1"
+      assert_select "input[name=?][value=?]", "medication[notes]", "MyString"
+  
+      assert_select "input[type=submit][value=?]", "Update Medication"
     end
+  
   end
 
   it "successfully edits the right medication" do
