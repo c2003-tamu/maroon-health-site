@@ -4,7 +4,9 @@ RSpec.describe "calendar_events/edit", type: :view do
   let(:calendar_event) {
     CalendarEvent.create!(
       title: "MyString",
-      description: "MyText"
+      description: "MyText",
+      start_datetime: DateTime.now,
+      end_datetime: DateTime.now + 1.hour
     )
   }
 

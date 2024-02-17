@@ -14,22 +14,45 @@ require 'rails_helper'
 
 RSpec.describe "/calendar_events", type: :request do
   
-  # This should return the minimal set of attributes required to create a valid
-  # CalendarEvent. As you add validations to CalendarEvent, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { title: "Valid Title", description: "Valid Description", start_datetime: DateTime.now, end_datetime: DateTime.now + 1.hour }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { title: "", description: "Invalid Description", start_datetime: DateTime.now, end_datetime: DateTime.now + 1.hour }
   }
 
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
+  before do
+    sign_in admin_member
+  end
+
   describe "GET /index" do
-    it "renders a successful response" do
+    it "renders a successful response for admins" do
       CalendarEvent.create! valid_attributes
       get calendar_events_url
       expect(response).to be_successful
+    end
+
+    it "does not allow access to non-admin members" do
+      sign_in volunteer_member
+      CalendarEvent.create! valid_attributes
+      get calendar_events_url
+      expect(response).to redirect_to(root_path)
     end
   end
 
@@ -89,8 +112,9 @@ RSpec.describe "/calendar_events", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { title: "Updated Title", description: "Updated Description", start_datetime: DateTime.now, end_datetime: DateTime.now + 1.hour }
       }
+
 
       it "updates the requested calendar_event" do
         calendar_event = CalendarEvent.create! valid_attributes
