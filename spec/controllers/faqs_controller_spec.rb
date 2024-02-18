@@ -3,12 +3,29 @@
 require 'rails_helper'
 
 RSpec.describe(FaqsController, type: :controller) do
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
   let(:valid_attributes) do
     { question: 'What is your question?', answer: 'This is the answer.' }
   end
-
   let(:invalid_attributes) do
     { question: nil, answer: nil }
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
+  before do
+    sign_in admin_member
   end
 
   describe 'GET #index' do

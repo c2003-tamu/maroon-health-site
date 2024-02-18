@@ -2,7 +2,7 @@
 
 class ResourcesController < ApplicationController
   before_action :set_resource, only: %i[show edit update destroy]
-  # before_action :check_admin
+  before_action :check_admin
 
   # GET /resources or /resources.json
   def index

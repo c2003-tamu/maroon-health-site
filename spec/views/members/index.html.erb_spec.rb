@@ -19,6 +19,22 @@ RSpec.describe('members/index', type: :view) do
       )
     ]
     )
+    sign_in admin_member
+  end
+
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
   end
 
   it 'renders a list of members' do

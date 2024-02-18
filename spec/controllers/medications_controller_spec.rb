@@ -3,12 +3,29 @@
 require 'rails_helper'
 
 RSpec.describe(MedicationsController, type: :controller) do
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
   let(:valid_attributes) do
     { name: 'Aspirin', stock: 20, notes: 'Pain relief' }
   end
-
   let(:invalid_attributes) do
     { name: nil, stock: nil, notes: nil }
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
+  before do
+    sign_in admin_member
   end
 
   describe 'GET #index' do

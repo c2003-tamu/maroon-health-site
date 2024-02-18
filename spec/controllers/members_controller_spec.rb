@@ -3,12 +3,36 @@
 require 'rails_helper'
 
 RSpec.describe(MembersController, type: :controller) do
+  let(:member) do
+    Member.create!(
+      email: 'test@gmail.com',
+      password: 'test12',
+      role: 'admin'
+    )
+  end
   let(:valid_attributes) do
     { full_name: 'John Doe', email: 'john@example.com', role: 'admin', password: 'password' }
   end
-
   let(:invalid_attributes) do
     { full_name: nil, email: nil, role: 'blahblahblah', password: nil }
+  end
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
+  before do
+    sign_in admin_member
   end
 
   describe 'GET #index' do

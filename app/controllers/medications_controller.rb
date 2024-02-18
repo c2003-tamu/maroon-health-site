@@ -2,7 +2,7 @@
 
 class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[show edit update destroy]
-  # before_action :check_admin
+  before_action :check_admin
   def lowstock
     @medications = Medication.where('stock <= ?', 10)
   end

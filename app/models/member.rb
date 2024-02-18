@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Member < ApplicationRecord
-  validates :full_name, presence: true
   validates :role, presence: true, inclusion: { in: %w[admin volunteer], message: '%<value>s is not a valid role' }
 
   # Include default devise modules. Others available are:

@@ -6,9 +6,26 @@ RSpec.describe(ResourcesController, type: :controller) do
   let(:valid_attributes) do
     { url: 'https://example.com', title: 'Example Resource', description: 'This is a sample resource.' }
   end
-
   let(:invalid_attributes) do
     { url: nil, title: nil, description: nil }
+  end
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
+  before do
+    sign_in admin_member
   end
 
   describe 'GET #index' do
