@@ -30,9 +30,6 @@ RSpec.describe('events/edit', type: :view) do
 
   before do
     sign_in admin_member
-  end
-
-  before do
     assign(:event, event)
   end
 

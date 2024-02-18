@@ -10,7 +10,7 @@ RSpec.describe('medication_transactions/new', type: :view) do
                                       amount: 1
                                     )
     )
-  end 
+  end
 
   it 'renders new medication_transaction form' do
     render

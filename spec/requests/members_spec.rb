@@ -54,12 +54,12 @@ RSpec.describe('/members', type: :request) do
     end
   end
 
-  #describe 'GET /new' do
-   # it 'renders a successful response' do
-    #  get new_member_url
-     # expect(response).to(be_successful)
-    #end
-  #end
+  # describe 'GET /new' do
+  # it 'renders a successful response' do
+  #  get new_member_url
+  # expect(response).to(be_successful)
+  # end
+  # end
 
   describe 'GET /edit' do
     it 'renders a successful response' do
@@ -69,33 +69,33 @@ RSpec.describe('/members', type: :request) do
     end
   end
 
-  #describe 'POST /create' do
-   # context 'with valid parameters' do
-    #  it 'creates a new Member' do
-     #   expect do
-      #    post(members_url, params: { member: valid_attributes })
-       # end.to(change(Member, :count).by(1))
-    #  end
+  # describe 'POST /create' do
+  # context 'with valid parameters' do
+  #  it 'creates a new Member' do
+  #   expect do
+  #    post(members_url, params: { member: valid_attributes })
+  # end.to(change(Member, :count).by(1))
+  #  end
 
-     # it 'redirects to the created member' do
-     #   post members_url, params: { member: valid_attributes }
-      #  expect(response).to(redirect_to(member_url(Member.last)))
-     # end
-   # end
+  # it 'redirects to the created member' do
+  #   post members_url, params: { member: valid_attributes }
+  #  expect(response).to(redirect_to(member_url(Member.last)))
+  # end
+  # end
 
-   # context 'with invalid parameters' do
+  # context 'with invalid parameters' do
   #    it 'does not create a new Member' do
-   #     expect do
-    #      post(members_url, params: { member: invalid_attributes })
-     #   end.to(change(Member, :count).by(0))
-     # end
+  #     expect do
+  #      post(members_url, params: { member: invalid_attributes })
+  #   end.to(change(Member, :count).by(0))
+  # end
 
-    #  it "renders a response with 422 status (i.e. to display the 'new' template)" do
-     #   post members_url, params: { member: invalid_attributes }
-      #  expect(response).to(have_http_status(:unprocessable_entity))
-     # end
-   # end
- # end
+  #  it "renders a response with 422 status (i.e. to display the 'new' template)" do
+  #   post members_url, params: { member: invalid_attributes }
+  #  expect(response).to(have_http_status(:unprocessable_entity))
+  # end
+  # end
+  # end
 
   describe 'PATCH /update' do
     context 'with valid parameters' do

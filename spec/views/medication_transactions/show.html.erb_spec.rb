@@ -6,7 +6,7 @@ RSpec.describe('medication_transactions/show', type: :view) do
   before do
     # Create instances of Medication and Member
     medication = Medication.create!(name: 'Panadol', stock: 100, notes: 'For headaches and fever')
-    member = Member.create!(full_name: 'John', role: 'admin', email: 'test@gmail.com', password:'test12')
+    member = Member.create!(full_name: 'John', role: 'admin', email: 'test@gmail.com', password: 'test12')
 
     assign(:medication_transaction, MedicationTransaction.create!(
                                       medication: medication,

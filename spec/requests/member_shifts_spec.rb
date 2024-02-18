@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "MemberShifts", type: :request do
-
+RSpec.describe('MemberShifts', type: :request) do
   let(:admin_member) do
     Member.create!(
       email: 'ilovebeinganadmin@gmail.com',
@@ -21,24 +22,23 @@ RSpec.describe "MemberShifts", type: :request do
     sign_in admin_member
   end
 
-  describe "GET /new" do
-    it "renders the new template successfully" do
-      event = Event.create!(title: "Event Title", ideal_volunteers: 5, ideal_officers: 5, start_time: Time.now, end_time: Time.now + 2.hours)
-      get "/member_shifts/new", params: { event_id: event.id }
+  describe 'GET /new' do
+    it 'renders the new template successfully' do
+      event = Event.create!(title: 'Event Title', ideal_volunteers: 5, ideal_officers: 5, start_time: Time.zone.now, end_time: Time.zone.now + 2.hours)
+      get '/member_shifts/new', params: { event_id: event.id }
 
-      expect(response).to have_http_status(:success)
+      expect(response).to(have_http_status(:success))
     end
   end
 
-  describe "POST /create" do
-    it "creates a new member shift successfully" do
-      event = Event.create!(title: "Event Title", ideal_volunteers: 5, ideal_officers: 5, start_time: Time.now, end_time: Time.now + 2.hours)
-      member = Member.create!(email: "user@example.com", password: "password", role: "volunteer")
+  describe 'POST /create' do
+    it 'creates a new member shift successfully' do
+      event = Event.create!(title: 'Event Title', ideal_volunteers: 5, ideal_officers: 5, start_time: Time.zone.now, end_time: Time.zone.now + 2.hours)
+      member = Member.create!(email: 'user@example.com', password: 'password', role: 'volunteer')
 
-      post "/member_shifts", params: { member_shift: { member_id: member.id }, event_id: event.id }
+      post '/member_shifts', params: { member_shift: { member_id: member.id }, event_id: event.id }
       follow_redirect!
-      expect(response).to have_http_status(:success)
+      expect(response).to(have_http_status(:success))
     end
   end
-
 end

@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "medications/edit", type: :view do
-  let(:medication) {
+RSpec.describe('medications/edit', type: :view) do
+  let(:medication) do
     Medication.create!(
-      name: "MyString",
+      name: 'MyString',
       stock: 1,
-      notes: "MyString"
+      notes: 'MyString'
     )
-  }
+  end
 
   let(:admin_member) do
     Member.create!(
@@ -24,58 +26,52 @@ RSpec.describe "medications/edit", type: :view do
     )
   end
 
-  before(:each) do
-    assign(:medication, medication)
-  end
-
   before do
+    assign(:medication, medication)
     sign_in admin_member
   end
 
-  it "renders the edit medication form" do
+  it 'renders the edit medication form' do
     render
 
-    assert_select "form[action=?][method=?]", medication_path(medication), "post" do
-      assert_select "input[name=?][value=?]", "medication[name]", "MyString"
-      assert_select "input[name=?][value=?]", "medication[stock]", "1"
-      assert_select "input[name=?][value=?]", "medication[notes]", "MyString"
-  
-      assert_select "input[type=submit][value=?]", "Update Medication"
+    assert_select 'form[action=?][method=?]', medication_path(medication), 'post' do
+      assert_select 'input[name=?][value=?]', 'medication[name]', 'MyString'
+      assert_select 'input[name=?][value=?]', 'medication[stock]', '1'
+      assert_select 'input[name=?][value=?]', 'medication[notes]', 'MyString'
+
+      assert_select 'input[type=submit][value=?]', 'Update Medication'
     end
-  
   end
 
-  it "successfully edits the right medication" do
+  it 'successfully edits the right medication' do
     visit edit_medication_path(medication)
 
-    fill_in 'medication[name]', with: "a"
+    fill_in 'medication[name]', with: 'a'
     fill_in 'medication[stock]', with: 100
 
     click_button 'Update Medication'
-    
-    expect(page).to have_content('Medication was successfully updated.')
-  end 
 
-  it "has error if stock is negative" do
+    expect(page).to(have_content('Medication was successfully updated.'))
+  end
+
+  it 'has error if stock is negative' do
     visit edit_medication_path(medication)
-    
-    fill_in 'medication[name]', with: "a"
+
+    fill_in 'medication[name]', with: 'a'
     fill_in 'medication[stock]', with: -2212
 
     click_button 'Update Medication'
 
-    expect(page).to have_content('1 error prohibited this medication from being saved')
+    expect(page).to(have_content('1 error prohibited this medication from being saved'))
   end
 
-  it "has error if name is empty" do
+  it 'has error if name is empty' do
     visit edit_medication_path(medication)
 
     fill_in 'medication[name]', with: ''
 
     click_button 'Update Medication'
 
-    expect(page).to have_content('1 error prohibited this medication from being saved')
+    expect(page).to(have_content('1 error prohibited this medication from being saved'))
   end
-
-
 end

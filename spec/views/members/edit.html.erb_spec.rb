@@ -10,11 +10,6 @@ RSpec.describe('members/edit', type: :view) do
       role: 'admin'
     )
   end
-
-  before do
-    assign(:member, member)
-  end
-
   let(:admin_member) do
     Member.create!(
       email: 'ilovebeinganadmin@gmail.com',
@@ -31,14 +26,15 @@ RSpec.describe('members/edit', type: :view) do
   end
 
   before do
+    assign(:member, member)
     sign_in admin_member
-  end 
+  end
 
   it 'renders the edit member form' do
     visit edit_member_path(member)
 
     click_button 'Update'
 
-    expect(page).to have_content('Member was successfully updated')
+    expect(page).to(have_content('Member was successfully updated'))
   end
 end

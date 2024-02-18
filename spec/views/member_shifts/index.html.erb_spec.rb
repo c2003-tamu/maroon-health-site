@@ -21,6 +21,7 @@ RSpec.describe('events/index', type: :view) do
       )
     ]
     )
+    sign_in admin_member
   end
 
   let(:admin_member) do
@@ -36,10 +37,6 @@ RSpec.describe('events/index', type: :view) do
       password: 'ilovehelpingpeople123',
       role: 'volunteer'
     )
-  end
-
-  before do
-    sign_in admin_member
   end
 
   it 'renders a list of events' do

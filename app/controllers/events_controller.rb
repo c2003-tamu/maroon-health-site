@@ -74,19 +74,19 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :ideal_volunteers, :ideal_officers, :start_time, :end_time)
   end
-  
+
   def check_vol
-    unless current_member && (current_member.admin? || current_member.role == "volunteer")
-      flash[:alert] = "You are not authorized to access that page."
-      redirect_to root_path
+    unless current_member && (current_member.admin? || current_member.role == 'volunteer')
+      flash[:alert] = 'You are not authorized to access that page.'
+      redirect_to(root_path)
     end
   end
 
-   # Only admins can create, edit, and delete event sign-ups
-   def check_admin
-     unless current_member && current_member.admin?
-       flash[:alert] = "You are not authorized to access that page."
-       redirect_to root_path
-     end
-   end
+  # Only admins can create, edit, and delete event sign-ups
+  def check_admin
+    unless current_member&.admin?
+      flash[:alert] = 'You are not authorized to access that page.'
+      redirect_to(root_path)
+    end
+  end
 end

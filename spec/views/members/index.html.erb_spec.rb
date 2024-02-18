@@ -14,11 +14,12 @@ RSpec.describe('members/index', type: :view) do
       Member.create!(
         role: 'Officer',
         full_name: 'Full name 2',
-        email: 'test2@gmail.com',       
+        email: 'test2@gmail.com',
         password: 'test12'
       )
     ]
     )
+    sign_in admin_member
   end
 
   let(:admin_member) do
@@ -36,13 +37,9 @@ RSpec.describe('members/index', type: :view) do
     )
   end
 
-  before do
-    sign_in admin_member
-  end
-
   it 'renders a list of members' do
     visit members_path
-    expect(page).to have_content('Full name')
-    expect(page).to have_content('Full name 2')
+    expect(page).to(have_content('Full name'))
+    expect(page).to(have_content('Full name 2'))
   end
 end

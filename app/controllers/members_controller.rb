@@ -67,15 +67,15 @@ class MembersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def member_params
-    params.require(:member).permit(:role, :full_name).tap do |whitelisted|
-      whitelisted[:role] = params[:member][:role] if ['admin', 'volunteer'].include?(params[:member][:role])
+    params.require(:member).permit(:role, :full_name).tap do |allowlisted|
+      allowlisted[:role] = params[:member][:role] if %w[admin volunteer].include?(params[:member][:role])
     end
   end
 
   def check_admin
-    unless current_member# && current_member.admin?
-      flash[:alert] = "You are not authorized to access this page."
-      redirect_to root_path
+    unless current_member&.admin?
+      flash[:alert] = 'You are not authorized to access this page.'
+      redirect_to(root_path)
     end
   end
 end

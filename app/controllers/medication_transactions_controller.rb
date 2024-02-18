@@ -80,15 +80,8 @@ class MedicationTransactionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def medication_transaction_params
-    params.require(:medication_transaction).permit(:medication_id,:amount)
+    params.require(:medication_transaction).permit(:medication_id, :amount)
   end
-  def check_admin
-    unless current_member && current_member.admin?
-      flash[:alert] = "You are not authorized to access this page."
-      redirect_to root_path
-    end
-  end
-
 
   def update_medication_stock(transaction, type)
     medication = transaction.medication
@@ -96,7 +89,7 @@ class MedicationTransactionsController < ApplicationController
 
     case type
     when :increase
-      medication.update(stock: medication.stock + amount)
+      medication.update!(stock: medication.stock + amount)
     when :update
       original_amount = transaction.amount_before_last_save
       difference = amount - original_amount
@@ -105,25 +98,22 @@ class MedicationTransactionsController < ApplicationController
         original_medication_id, updated_medication_id = transaction.saved_changes[:medication_id]
         original_medication = Medication.find_by(id: original_medication_id)
         updated_medication = Medication.find_by(id: updated_medication_id)
-      
-        original_medication.update(stock: original_medication.stock + transaction.amount_before_last_save)
-        
-        if updated_medication
-          updated_medication.update(stock: updated_medication.stock - transaction.amount_before_last_save)
-        end
+
+        original_medication.update!(stock: original_medication.stock + transaction.amount_before_last_save)
+
+        updated_medication&.update!(stock: updated_medication.stock - transaction.amount_before_last_save)
       else
-        medication.update(stock: medication.stock - difference)
+        medication.update!(stock: medication.stock - difference)
       end
     when :decrease
-      medication.update(stock: medication.stock - amount)
+      medication.update!(stock: medication.stock - amount)
     end
   end
 
   def check_admin
     unless current_member && (current_member.admin? || current_member.volunteer?)
-      flash[:alert] = "You are not authorized to access this page."
-      redirect_to root_path
+      flash[:alert] = 'You are not authorized to access this page.'
+      redirect_to(root_path)
     end
   end
-  
 end

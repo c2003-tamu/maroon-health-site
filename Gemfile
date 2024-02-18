@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.8'
 
@@ -82,10 +81,10 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'brakeman'
-gem 'yaml_db'
 gem 'devise'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'yaml_db'
