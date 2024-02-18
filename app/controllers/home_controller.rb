@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     # this is a float
     days_since = (DateTime.now - start_of_year)
 
-    patients_count = (patient_served_per_day * days_since)
+    patients_count = Integer(patient_served_per_day * days_since)
     # add commas
     @patients_served = number_with_delimiter(patients_count)
   end
