@@ -12,7 +12,7 @@
         <%end%>
           
 
-        <%if current_member%>
+        <%if current_member && current_member.volunteer?%>
           <li><%= link_to "Medications", medications_path %></li>
           <li><%= link_to "Event Signup", signup_path %></li>
           <li><%= button_to "Logout", destroy_member_session_path, method: :delete, data: { turbo: "false" } %></li>
