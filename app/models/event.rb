@@ -11,6 +11,16 @@ class Event < ApplicationRecord
   validate :end_time_after_start_time?
   validate :event_not_in_the_past?
 
+  def decrement_ideal_volunteers
+    self.ideal_volunteers -= 1
+    save!
+  end
+
+  def increment_ideal_volunteers
+    self.ideal_volunteers += 1
+    save!
+  end
+
   def can_sign_up?
     ideal_volunteers.positive?
   end

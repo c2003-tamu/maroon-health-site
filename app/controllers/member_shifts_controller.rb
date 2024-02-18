@@ -19,7 +19,7 @@ class MemberShiftsController < ApplicationController
     @member_shift = MemberShift.new(member_shift_params)
     @member_shift.event = @event
     if @member_shift.save
-      @event.decrement(:ideal_volunteers)
+      @event.decrement_ideal_volunteers
       redirect_to(signup_url, notice: 'You have successfully signed up for this event.')
     else
       render(:new)
@@ -31,7 +31,7 @@ class MemberShiftsController < ApplicationController
     @event = @member_shift.event
     @member_shift.destroy!
 
-    @event.increment(:ideal_volunteers)
+    @event.increment_ideal_volunteers
 
     redirect_to(signup_url, notice: 'Successfully unregistered from this event.')
   end
