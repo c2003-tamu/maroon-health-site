@@ -26,6 +26,25 @@ RSpec.describe('/medication_transactions', type: :request) do
     skip('Add a hash of attributes invalid for your model')
   end
 
+  let(:admin_member) do
+    Member.create!(
+      email: 'ilovebeinganadmin@gmail.com',
+      password: 'adminstuff69',
+      role: 'admin'
+    )
+  end
+  let(:volunteer_member) do
+    Member.create!(
+      email: 'ilovevolunteering@gmail.com',
+      password: 'ilovehelpingpeople123',
+      role: 'volunteer'
+    )
+  end
+
+  before do
+    sign_in admin_member
+  end
+
   describe 'GET /index' do
     it 'renders a successful response' do
       MedicationTransaction.create!(valid_attributes)
