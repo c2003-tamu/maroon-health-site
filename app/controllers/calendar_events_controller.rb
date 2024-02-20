@@ -4,7 +4,7 @@ class CalendarEventsController < ApplicationController
 
   # GET /calendar_events or /calendar_events.json
   def index
-    @calendar_events = CalendarEvent.all
+    @calendar_events = CalendarEvent.all.order(:start_datetime)
   end
 
   # GET /calendar_events/1 or /calendar_events/1.json
