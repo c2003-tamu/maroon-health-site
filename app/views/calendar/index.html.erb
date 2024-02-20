@@ -1,7 +1,7 @@
-<h1>Calendar</h1>
+<h1>Upcoming Events</h1>
 <p>Click on an event title to view full details.</p>
 
-<% @calendar_events.group_by { |calendar_event| calendar_event.start_datetime.to_date }.each do |day, events_on_day| %>
+<% @grouped_events.each do |day, events_on_day| %>
   <h2><%= day.strftime("%A, %B %e, %Y") %></h2>
   <ul>
     <% events_on_day.each do |event_today| %>
