@@ -8,9 +8,11 @@ class CalendarEventsController < ApplicationController
   end
 
   # GET /calendar_events/1 or /calendar_events/1.json
+  # show is for the admin to see - it has links to edit and delete
   def show
   end
 
+  # display is different than show - it is for the public to see
   def display
   end
 
