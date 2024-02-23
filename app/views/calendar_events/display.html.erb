@@ -1,0 +1,15 @@
+<!-- app/views/calendar_events/display.html.erb -->
+<h1><%= @calendar_event.title %></h1>
+<p><strong>Description:</strong> <%= @calendar_event.description %></p>
+
+<% if @calendar_event.start_datetime.to_date == @calendar_event.end_datetime.to_date %>
+  <p><strong>Date and Time:</strong> <%= @calendar_event.start_datetime.strftime("%A, %B %e, %Y %l:%M %p") %>
+  - <%= @calendar_event.end_datetime.strftime("%l:%M %p") %></p>
+<% else %>
+  <p><strong>Start Date and Time:</strong> <%= @calendar_event.start_datetime.strftime("%A, %B %e, %Y %l:%M %p") %></p>
+  <p><strong>End Date and Time:</strong> <%= @calendar_event.end_datetime.strftime("%A, %B %e, %Y %l:%M %p") %></p>
+<% end %>
+
+<div>
+  <%= link_to "Back to calendar", calendar_path %>
+</div>
