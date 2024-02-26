@@ -1,0 +1,6 @@
+<h2>Photo Gallery</h2>
+<div class="photo-gallery">
+  <% @photo_files.each do |photo_path| %>
+    <%= image_tag photo_path.sub('app/assets/images/', '') %>
+  <% end %>
+</div>
