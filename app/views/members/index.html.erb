@@ -10,6 +10,9 @@
   <% else %>
     <%= link_to "Login", new_member_session_path %>
   <% end %>
+  <% if current_member.admin? %>
+    <%= button_to "Mass Email", data: { turbo: "false" } %>
+  <% end %>
 
 <h1>Members</h1>
 

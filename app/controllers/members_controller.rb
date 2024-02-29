@@ -64,6 +64,36 @@ class MembersController < ApplicationController
   def set_member
     @member = Member.find(params[:id])
   end
+  
+  def mass_email
+    @members = Member.all
+
+    @members.each do |member|
+      email_subject = 'Your Mass Email Subject'
+      email_content = 'Your Mass Email Content'
+
+      email_member(member.email, email_subject, email_content)
+    end
+  end
+
+  def email_member(to_email, email_subject, email_content)
+    require 'sendgrid-ruby'
+    include SendGrid
+
+    from = SendGrid::Email.new(email: 'seansayce@tamu.edu')
+    to = SendGrid::Email.new(email: current_member.email)
+    subject = 'test'
+    content = SendGrid::Content.new(type: 'text/plain', value: 'test words')
+    mail = SendGrid::Mail.new(from, subject, to, content)
+
+    #take this out before final deployment
+    sg = SendGrid::API.new(api_key: 'SG.5aenmBEsQrejCARv-UQQAw.RQjwC7w7Swn3EPE5C4pAqzMkEQ73AzOuvR1q0C2_cas')
+    response = sg.client.mail._('send').post(request_body: mail.to_json)
+
+    puts response.status_code
+    puts response.body
+    puts response.header
+  end
 
   # Only allow a list of trusted parameters through.
   def member_params
