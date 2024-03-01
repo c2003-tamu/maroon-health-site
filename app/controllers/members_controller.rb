@@ -66,21 +66,22 @@ class MembersController < ApplicationController
   end
   
   def mass_email
+    member = current_member.email
     @members = Member.all
 
     @members.each do |member|
       email_subject = 'Your Mass Email Subject'
       email_content = 'Your Mass Email Content'
 
-      email_member(member.email, email_subject, email_content)
+      email_member(member.email, member, email_subject, email_content)
     end
   end
 
-  def email_member(to_email, email_subject, email_content)
+  def email_member(to_email, from_email, email_subject, email_content)
     require 'sendgrid-ruby'
     include SendGrid
 
-    from = SendGrid::Email.new(email: 'seansayce@tamu.edu')
+    from = SendGrid::Email.new(email: from_email)
     to = SendGrid::Email.new(email: current_member.email)
     subject = 'test'
     content = SendGrid::Content.new(type: 'text/plain', value: 'test words')

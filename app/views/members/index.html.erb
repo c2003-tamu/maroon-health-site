@@ -11,7 +11,7 @@
     <%= link_to "Login", new_member_session_path %>
   <% end %>
   <% if current_member.admin? %>
-    <%= button_to "Mass Email", data: { turbo: "false" } %>
+    <%= link_to "Mass Email", mass_email_member_path(current_member), method: :get, data: { turbo: "false" } %>
   <% end %>
 
 <h1>Members</h1>

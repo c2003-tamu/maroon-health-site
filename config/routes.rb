@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   resources :events do
     resources :member_shifts, only: [:new, :create, :destroy]
   end
+  resources :members, except: [:new, :create] do
+    member do
+      get 'mass_email'
+    end
+  end
   resources :roles
   resources :faqs
   resources :member_shifts
