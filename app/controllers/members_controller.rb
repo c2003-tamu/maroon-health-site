@@ -65,15 +65,12 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
   end
   
-  def mass_email
-    member = current_member.email
-    @members = Member.all
+  def mass_email(email_subject, email_content)
+    my_email = current_member.email
+    @members = Member.where(role: 'volunteer')
 
     @members.each do |member|
-      email_subject = 'Your Mass Email Subject'
-      email_content = 'Your Mass Email Content'
-
-      email_member(member.email, member, email_subject, email_content)
+      email_member(member.email, my_email, email_subject, email_content)
     end
   end
 
@@ -93,7 +90,7 @@ class MembersController < ApplicationController
 
     puts response.status_code
     puts response.body
-    puts response.header
+    puts response.headers
   end
 
   # Only allow a list of trusted parameters through.
