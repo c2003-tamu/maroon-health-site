@@ -65,12 +65,17 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
   end
   
-  def mass_email(email_subject, email_content)
-    my_email = current_member.email
-    @members = Member.where(role: 'volunteer')
-
-    @members.each do |member|
-      email_member(member.email, my_email, email_subject, email_content)
+  def mass_email
+    if mass_email_form.submitted?
+      Rails.logger.info("Mass Email form submitted")
+      email_subject = params[:current_member][:subject]
+      email_content = params[:current_member][:contents]
+      my_email = current_member.email
+      @members = Member.where(role: 'volunteer')
+  
+      @members.each do |member|
+        email_member(member.email, my_email, email_subject, email_content)
+      end
     end
   end
 

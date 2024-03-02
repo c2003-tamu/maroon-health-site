@@ -1,0 +1,17 @@
+<%= form_with(model: current_member, url: mass_email_members_path, method: :post) do |mass_email_form| %>
+    <div>
+      <%= mass_email_form.label :Subject, style: "display: block" %>
+      <%= mass_email_form.text_field :subject %>
+    </div>
+  
+    <div>
+      <%= mass_email_form.label :Contents, style: "display: block" %>
+      <%= mass_email_form.text_field :contents %>
+    </div>
+  
+    <div>
+      <%= mass_email_form.submit "Send Mass Email", name: "mass_email_submit" %>
+      <%= link_to "Back to Index", members_path %>
+    </div>
+  <% end %>
+  
