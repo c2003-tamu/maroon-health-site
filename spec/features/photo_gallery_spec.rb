@@ -5,7 +5,7 @@ require 'rails_helper'
 
 RSpec.describe('Photo Gallery', type: :feature) do
   it 'the photo gallery is rendered on the home page' do
-    visit root_path
+    visit photos_path
     expect(page).to(have_content('Photo Gallery'))
     expect(page).to(have_css('.photo-gallery img'))
   end

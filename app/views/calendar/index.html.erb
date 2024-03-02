@@ -1,0 +1,11 @@
+<h1>Upcoming Events</h1>
+<p>Click on an event title to view full details.</p>
+
+<% @grouped_events.each do |day, events_on_day| %>
+  <h2><%= day.strftime("%A, %B %e, %Y") %></h2>
+  <ul>
+    <% events_on_day.each do |event_today| %>
+      <li><a href="<%= display_calendar_event_path(event_today) %>"><%= event_today.title %></a></li>
+    <% end %>
+  </ul>
+<% end %>
