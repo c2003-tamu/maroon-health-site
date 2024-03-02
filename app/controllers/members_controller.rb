@@ -58,6 +58,20 @@ class MembersController < ApplicationController
     end
   end
 
+  def mass_email_form; end
+
+  def send_mass_email
+    respond_to do |format|
+      if mass_email(email_params)
+        format.html { redirect_to(members_url, notice: 'Mass email successfully sent.') }
+        format.json { head(:no_content) }
+      else
+        format.html { render(:mass_email_form, status: :unprocessable_entity) }
+        format.json { render(json: errors, status: :unprocessable_entity) }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -65,17 +79,14 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
   end
   
-  def mass_email
-    if mass_email_form.submitted?
-      Rails.logger.info("Mass Email form submitted")
-      email_subject = params[:current_member][:subject]
-      email_content = params[:current_member][:contents]
-      my_email = current_member.email
-      @members = Member.where(role: 'volunteer')
-  
-      @members.each do |member|
-        email_member(member.email, my_email, email_subject, email_content)
-      end
+  def mass_email(email_params)
+    email_subject = email_params[:subject]
+    email_content = email_params[:contents]
+    my_email = current_member.email
+    @members = Member.where(role: 'volunteer')
+
+    @members.each do |member|
+      email_member(member.email, my_email, email_subject, email_content)
     end
   end
 
@@ -96,6 +107,11 @@ class MembersController < ApplicationController
     puts response.status_code
     puts response.body
     puts response.headers
+  end
+
+  # only allow trusted email parameters through
+  def email_params
+    params.require(:email).permit(:subject, :contents)
   end
 
   # Only allow a list of trusted parameters through.
