@@ -29,7 +29,7 @@ class CalendarEventsController < ApplicationController
     @calendar_event = CalendarEvent.new(calendar_event_params)
 
     respond_to do |format|
-      if @calendar_event.save
+      if @calendar_event
         format.html { redirect_to(calendar_event_url(@calendar_event), notice: 'Calendar event was successfully created.') }
         format.json { render(:show, status: :created, location: @calendar_event) }
       else

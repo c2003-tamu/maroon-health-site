@@ -83,8 +83,8 @@ class MembersController < ApplicationController
     email_subject = email_params[:subject]
     email_content = email_params[:contents]
     my_email = current_member.email
+    #@members = Member.where(role: 'volunteer')
     @members = Member.where(role: 'volunteer')
-
     @members.each do |member|
       email_member(member.email, my_email, email_subject, email_content)
     end
@@ -92,12 +92,11 @@ class MembersController < ApplicationController
 
   def email_member(to_email, from_email, email_subject, email_content)
     require 'sendgrid-ruby'
-    include SendGrid
 
     from = SendGrid::Email.new(email: from_email)
-    to = SendGrid::Email.new(email: current_member.email)
-    subject = 'test'
-    content = SendGrid::Content.new(type: 'text/plain', value: 'test words')
+    to = SendGrid::Email.new(email: to_email)
+    subject = email_subject
+    content = SendGrid::Content.new(type: 'text/plain', value: email_content)
     mail = SendGrid::Mail.new(from, subject, to, content)
 
     #take this out before final deployment

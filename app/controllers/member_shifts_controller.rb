@@ -20,6 +20,8 @@ class MemberShiftsController < ApplicationController
     @member_shift.event = @event
     if @member_shift.save
       @event.decrement_ideal_volunteers
+      members_controller = MembersController.new
+      members_controller.send(:email_member, current_member.email, 'seansayce@tamu.edu', 'Event Signup', 'You have been successfully signed up for the event.')
       redirect_to(signup_url, notice: 'You have successfully signed up for this event.')
     else
       render(:new)
