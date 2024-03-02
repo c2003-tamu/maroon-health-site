@@ -1,23 +1,13 @@
 # frozen_string_literal: true
 
-# seeds.rb
-
-# Roles
-# role_admin = Role.create!(name: 'Admin')
-# role_officer = Role.create!(name: 'Officer')
-# role_volunteer = Role.create!(name: 'Volunteer')
+# Empty all tables
+ActiveRecord::Base.connection.tables.each do |table|
+  ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} RESTART IDENTITY CASCADE;")
+end
 
 # Members
-# Member.create!(full_name: 'Ada', role: 'role_admin')
-# Member.create!(full_name: 'Alan', role: 'role_officer')
-# Member.create!(full_name: 'Grace', role: 'role_volunteer')
-# Member.create!(full_name: 'John', role: 'role_admin')
-# Member.create!(full_name: 'Linus', role: 'role_officer')
-# Member.create!(full_name: 'Margaret', role: 'role_volunteer')
-# Member.create!(full_name: 'Tim', role: 'role_admin')
-# Member.create!(full_name: 'Donald', role: 'role_officer')
-# Member.create!(full_name: 'Ada', role: 'role_volunteer')
-# Member.create!(full_name: 'Shafi', role: 'role_admin')
+Member.create!(email: 'thisisanemail@gmail.com', password: 'password', role: 'admin')
+Member.create!(email: 'chungus@gmail.com', password: 'password123', role: 'volunteer')
 
 # Events
 Event.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_officers: 2, start_time: Time.zone.now, end_time: Time.zone.now + 4.hours)
@@ -33,6 +23,30 @@ Event.create!(title: 'Weekend Shift', ideal_volunteers: 6, ideal_officers: 2, st
 Event.create!(title: 'Holiday Shift', ideal_volunteers: 8, ideal_officers: 3, start_time: Time.zone.now + 5.days,
               end_time: Time.zone.now + 5.days + 10.hours
 )
+
+# Calendar Events
+CalendarEvent.create!(title: 'Workshop on Stress Management', description: 'Learn how to manage stress effectively',
+                      start_datetime: Time.zone.now + 1.day, end_datetime: Time.zone.now + 1.day + 2.hours
+)
+CalendarEvent.create!(title: 'Seminar on Healthy Eating', description: 'Discover the benefits of a healthy diet',
+                      start_datetime: Time.zone.now + 1.day, end_datetime: Time.zone.now + 1.day + 3.hours
+)
+CalendarEvent.create!(title: 'Social Gathering', description: 'Join us for a fun evening of games and music', start_datetime: Time.zone.now + 3.days,
+                      end_datetime: Time.zone.now + 3.days + 4.hours
+)
+CalendarEvent.create!(title: 'Volunteer Orientation', description: 'Learn about our organization and how you can help',
+                      start_datetime: Time.zone.now + 4.days, end_datetime: Time.zone.now + 4.days + 1.hour
+)
+CalendarEvent.create!(title: 'Health Fair', description: 'Get free health screenings and learn about healthy living',
+                      start_datetime: Time.zone.now + 5.days, end_datetime: Time.zone.now + 5.days + 5.hours
+)
+
+# Resources
+Resource.create!(title: 'Volunteer Handbook', description: 'Guidelines for volunteers', url: 'https://www.example.com/volunteer-handbook')
+Resource.create!(title: 'Officer Handbook', description: 'Guidelines for officers', url: 'https://www.example.com/officer-handbook')
+Resource.create!(title: 'Medication Guide', description: 'Information on common medications', url: 'https://www.example.com/medication-guide')
+Resource.create!(title: 'Health and Safety Manual', description: 'Guidelines for maintaining a safe environment', url: 'https://www.example.com/health-and-safety-manual')
+Resource.create!(title: 'Event Planning Guide', description: 'Tips for planning successful events', url: 'https://www.example.com/event-planning-guide')
 
 # Medications
 Medication.create!(name: 'Panadol', stock: 100, notes: 'For headaches and fever')
