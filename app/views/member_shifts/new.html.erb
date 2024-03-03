@@ -11,6 +11,13 @@
     <%= @event.start_time %>
   </p>
 
+  <div>
+    <%= f.label :volunteer_category, "Class Year:" %>
+    <%= f.select :volunteer_category, [['M1-M2', 'M1-M2'], ['M3-M4', 'M3-M4']] %>
+  </div>
+
+  <br> <!-- Line break for spacing -->
+
     <%= f.hidden_field :member_id, value: current_member.id %>
     <%= f.submit "Sign Up" %>
   <% end %>

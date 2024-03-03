@@ -18,7 +18,14 @@ class MemberShiftsController < ApplicationController
   def create
     @member_shift = MemberShift.new(member_shift_params)
     @member_shift.event = @event
+
     if @member_shift.save
+      case @member_shift.volunteer_category
+      when 'M1-M2'
+        @event.decrement_m1_m2
+      when 'M3-M4'
+        @event.decrement_m3_m4
+      end
       @event.decrement_ideal_volunteers
       redirect_to(signup_url, notice: 'You have successfully signed up for this event.')
     else
@@ -31,6 +38,12 @@ class MemberShiftsController < ApplicationController
     @event = @member_shift.event
     @member_shift.destroy!
 
+    case @member_shift.volunteer_category
+    when 'M1-M2'
+      @event.increment_m1_m2
+    when 'M3-M4'
+      @event.increment_m3_m4
+    end
     @event.increment_ideal_volunteers
 
     redirect_to(signup_url, notice: 'Successfully unregistered from this event.')
@@ -43,6 +56,6 @@ class MemberShiftsController < ApplicationController
   end
 
   def member_shift_params
-    params.require(:member_shift).permit(:member_id)
+    params.require(:member_shift).permit(:member_id, :volunteer_category)
   end
 end

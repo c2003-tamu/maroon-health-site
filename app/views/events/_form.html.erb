@@ -17,13 +17,19 @@
   </div>
 
   <div>
-    <%= form.label :ideal_volunteers, style: "display: block" %>
+    <%= form.label :ideal_volunteers, "Total ideal volunteers", style: "display: block" %>
     <%= form.number_field :ideal_volunteers %>
   </div>
 
+  <!-- Additional fields for specifying M1-M2 and M3-M4 volunteers -->
   <div>
-    <%= form.label :ideal_officers, style: "display: block" %>
-    <%= form.number_field :ideal_officers %>
+    <%= form.label :m1_m2_volunteers, "How many M1-M2?", style: "display: block" %>
+    <%= form.number_field :m1_m2_volunteers %>
+  </div>
+
+  <div>
+    <%= form.label :m3_m4_volunteers, "How many M3-M4?", style: "display: block" %>
+    <%= form.number_field :m3_m4_volunteers %>
   </div>
 
   <div>
