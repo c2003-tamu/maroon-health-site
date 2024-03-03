@@ -16,6 +16,10 @@ class Event < ApplicationRecord
     save!
   end
 
+  def registered_members
+    members.joins(:member_shifts).where(member_shifts: { event_id: id })
+  end
+
   def increment_ideal_volunteers
     self.ideal_volunteers += 1
     save!

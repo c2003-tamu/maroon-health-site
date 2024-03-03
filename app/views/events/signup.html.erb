@@ -13,4 +13,7 @@
     <% else %>
       <p>Event is full</p>
     <% end %>
+    <% if current_member.admin? %>
+      <%= link_to "Event Email", mass_email_form_members_path(event_id: event.id) %>
+    <% end %>
   <% end %>

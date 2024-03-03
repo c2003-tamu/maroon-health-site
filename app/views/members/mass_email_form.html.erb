@@ -1,6 +1,10 @@
-<h1>Send Mass Email<h1>
-<h5>Warning: This will send an email to all volunteers.<h5>
-
+<% if params[:event_id].nil? %>
+  <h1>Send Mass Email</h1>
+  <h5>Warning: This will send an email to all volunteers.</h5>
+<% else %>
+  <h1>Send Shift Email</h1>
+  <h5>Warning: This will send an email to all members currently signed up for this shift.</h5>
+<% end %>
 <%= form_for(:email, url: send_mass_email_members_path, method: :post) do |mass_email_form| %>
     <div>
       <%= mass_email_form.label :Subject, style: "display: block" %>
@@ -11,7 +15,9 @@
       <%= mass_email_form.label :Contents, style: "display: block" %>
       <%= mass_email_form.text_area :contents %>
     </div>
-  
+
+    <%= hidden_field_tag :event_id, params[:event_id] %>
+
     <div>
       <%= mass_email_form.submit "Send Mass Email"%>
       <%= link_to "Back to Index", members_path %>

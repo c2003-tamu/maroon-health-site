@@ -79,16 +79,35 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
   end
   
-  def mass_email(email_params)
+  def mass_email(email_params, event_id = nil)
     email_subject = email_params[:subject]
     email_content = email_params[:contents]
     my_email = current_member.email
-    #@members = Member.where(role: 'volunteer')
-    @members = Member.where(role: 'volunteer')
-    @members.each do |member|
-      email_member(member.email, my_email, email_subject, email_content)
+    event_id ||= params[:event_id]
+    if !event_id.nil?
+      @members = Member.joins(:member_shifts).where(member_shifts: { event_id: event_id }).distinct
+      @members.each do |member|
+        email_member(member.email, my_email, email_subject, email_content)
+      end
+    else
+      @members = Member.where(role: 'volunteer')
+      @members.each do |member|
+        email_member(member.email, my_email, email_subject, email_content)
+        puts ('wrong')
+      end
     end
   end
+
+  # def mass_email(email_params)
+  #   email_subject = email_params[:subject]
+  #   email_content = email_params[:contents]
+  #   my_email = current_member.email
+  #   #@members = Member.where(role: 'volunteer')
+  #   @members = Member.where(role: 'volunteer')
+  #   @members.each do |member|
+  #     email_member(member.email, my_email, email_subject, email_content)
+  #   end
+  # end
 
   def email_member(to_email, from_email, email_subject, email_content)
     require 'sendgrid-ruby'

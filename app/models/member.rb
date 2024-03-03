@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Member < ApplicationRecord
+  has_many :member_shifts
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :rememberable, :validatable,
