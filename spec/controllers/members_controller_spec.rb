@@ -23,13 +23,6 @@ RSpec.describe(MembersController, type: :controller) do
       role: 'admin'
     )
   end
-  let(:volunteer_member) do
-    Member.create!(
-      email: 'ilovevolunteering@gmail.com',
-      password: 'ilovehelpingpeople123',
-      role: 'volunteer'
-    )
-  end
 
   before do
     sign_in admin_member
@@ -56,9 +49,7 @@ RSpec.describe(MembersController, type: :controller) do
       get :edit, params: { id: member.to_param }
       expect(response).to(be_successful)
     end
-  end
 
-  describe 'PUT #update' do
     context 'with valid params' do
       it 'updates the member and redirects to show' do
         member = Member.create!(valid_attributes)
@@ -90,24 +81,22 @@ RSpec.describe(MembersController, type: :controller) do
       it 'redirects to members_url with a notice' do
         post :send_mass_email, params: { email: email_params }
 
-        expect(response).to redirect_to(members_url)
-        expect(flash[:notice]).to eq('Mass email successfully sent.')
+        expect(response).to(redirect_to(members_url))
+        expect(flash[:notice]).to(eq('Mass email successfully sent.'))
       end
     end
 
     context 'when mass email fails to send' do
       before do
-        allow(controller).to receive(:mass_email).and_return(false)
+        allow(controller).to(receive(:mass_email).and_return(false))
       end
 
       it 'renders the mass_email_form with status :unprocessable_entity' do
         post :send_mass_email, params: { email: email_params }
 
-        expect(response).to render_template(:mass_email_form)
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to(render_template(:mass_email_form))
+        expect(response).to(have_http_status(:unprocessable_entity))
       end
     end
   end
-
-
 end
