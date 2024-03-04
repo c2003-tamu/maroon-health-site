@@ -33,6 +33,44 @@ class Event < ApplicationRecord
     save!
   end
 
+  def decrement_class(member)
+    case member.class_year
+      when 'M1'
+        self.ideal_m1 -= 1
+        save!
+      when 'M2'
+        self.ideal_m2 -= 1
+        save!
+      when 'M3'
+        self.ideal_m3 -= 1
+        save!
+      when 'M4'
+        self.ideal_m4 -= 1
+        save!
+      else
+        true
+    end
+  end
+
+  def increment_class(member)
+    case member.class_year
+      when 'M1'
+        self.ideal_m1 += 1
+        save!
+      when 'M2'
+        self.ideal_m2 += 1
+        save!
+      when 'M3'
+        self.ideal_m3 += 1
+        save!
+      when 'M4'
+        self.ideal_m4 += 1
+        save!
+      else
+        true
+    end
+  end
+
   def can_sign_up?
     ideal_volunteers.positive?
   end
