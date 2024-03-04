@@ -78,22 +78,22 @@ class MembersController < ApplicationController
   def set_member
     @member = Member.find(params[:id])
   end
-  
+
   def mass_email(email_params, event_id = nil)
     email_subject = email_params[:subject]
     email_content = email_params[:contents]
     my_email = current_member.email
     event_id ||= params[:event_id]
-    if !event_id.nil?
-      @members = Member.joins(:member_shifts).where(member_shifts: { event_id: event_id }).distinct
-      @members.each do |member|
-        email_member(member.email, my_email, email_subject, email_content)
-      end
-    else
+    if event_id.nil?
       @members = Member.where(role: 'volunteer')
       @members.each do |member|
         email_member(member.email, my_email, email_subject, email_content)
-        puts ('wrong')
+        Rails.logger.debug('wrong')
+      end
+    else
+      @members = Member.joins(:member_shifts).where(member_shifts: { event_id: event_id }).distinct
+      @members.each do |member|
+        email_member(member.email, my_email, email_subject, email_content)
       end
     end
   end
@@ -110,7 +110,7 @@ class MembersController < ApplicationController
   # end
 
   def email_member(to_email, from_email, email_subject, email_content)
-    require 'sendgrid-ruby'
+    require('sendgrid-ruby')
 
     from = SendGrid::Email.new(email: from_email)
     to = SendGrid::Email.new(email: to_email)
@@ -118,13 +118,13 @@ class MembersController < ApplicationController
     content = SendGrid::Content.new(type: 'text/plain', value: email_content)
     mail = SendGrid::Mail.new(from, subject, to, content)
 
-    #take this out before final deployment
+    # take this out before final deployment
     sg = SendGrid::API.new(api_key: 'SG.5aenmBEsQrejCARv-UQQAw.RQjwC7w7Swn3EPE5C4pAqzMkEQ73AzOuvR1q0C2_cas')
     response = sg.client.mail._('send').post(request_body: mail.to_json)
 
-    puts response.status_code
-    puts response.body
-    puts response.headers
+    Rails.logger.debug(response.status_code)
+    Rails.logger.debug(response.body)
+    Rails.logger.debug(response.headers)
   end
 
   # only allow trusted email parameters through

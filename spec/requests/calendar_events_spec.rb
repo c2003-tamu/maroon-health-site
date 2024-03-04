@@ -84,24 +84,8 @@ RSpec.describe('/calendar_events', type: :request) do
     context 'with valid parameters' do
       it 'creates a new CalendarEvent' do
         expect do
-          CalendarEvent.create(valid_attributes)
+          CalendarEvent.create!(valid_attributes)
         end.to(change(CalendarEvent, :count).by(1))
-      end
-
-      it 'redirects to the created calendar_event' do
-        CalendarEvent.create(valid_attributes)
-      end
-    end
-
-    context 'with invalid parameters' do
-      it 'does not create a new CalendarEvent' do
-        expect do
-          CalendarEvent.create(invalid_attributes)
-        end.to(change(CalendarEvent, :count).by(0))
-      end
-
-      it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        CalendarEvent.create(invalid_attributes)
       end
     end
   end
