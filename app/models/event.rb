@@ -16,11 +16,19 @@ class Event < ApplicationRecord
   validate :event_not_in_the_past?
 
   def validate_volunteers?
-    if ideal_volunteers > 0 && (ideal_m1 > 0 || ideal_m2 > 0 || ideal_m3 > 0 || ideal_m4 > 0)
-      errors.add(:base, "You may only choose between opening sign ups for all volunteers or restricting by class, not both.")
-    elsif ideal_volunteers == 0 && ideal_m1 == 0 && ideal_m2 == 0 && ideal_m3 == 0 && ideal_m4 == 0
-      errors.add(:base, "At least one volunteer slot must be assigned.")
+    if conflicting_volunteer_options?
+      errors.add(:base, 'You may only choose between opening sign ups for all volunteers or restricting by class, not both.')
+    elsif no_volunteer_slot_assigned?
+      errors.add(:base, 'At least one volunteer slot must be assigned.')
     end
+  end
+
+  def conflicting_volunteer_options?
+    ideal_volunteers.positive? && [ideal_m1, ideal_m2, ideal_m3, ideal_m4].any?(&:positive?)
+  end
+
+  def no_volunteer_slot_assigned?
+    [ideal_volunteers, ideal_m1, ideal_m2, ideal_m3, ideal_m4].all?(&:zero?)
   end
 
   def decrement_ideal_volunteers
@@ -35,39 +43,39 @@ class Event < ApplicationRecord
 
   def decrement_class(member)
     case member.class_year
-      when 'M1'
-        self.ideal_m1 -= 1
-        save!
-      when 'M2'
-        self.ideal_m2 -= 1
-        save!
-      when 'M3'
-        self.ideal_m3 -= 1
-        save!
-      when 'M4'
-        self.ideal_m4 -= 1
-        save!
-      else
-        true
+    when 'M1'
+      self.ideal_m1 -= 1
+      save!
+    when 'M2'
+      self.ideal_m2 -= 1
+      save!
+    when 'M3'
+      self.ideal_m3 -= 1
+      save!
+    when 'M4'
+      self.ideal_m4 -= 1
+      save!
+    else
+      true
     end
   end
 
   def increment_class(member)
     case member.class_year
-      when 'M1'
-        self.ideal_m1 += 1
-        save!
-      when 'M2'
-        self.ideal_m2 += 1
-        save!
-      when 'M3'
-        self.ideal_m3 += 1
-        save!
-      when 'M4'
-        self.ideal_m4 += 1
-        save!
-      else
-        true
+    when 'M1'
+      self.ideal_m1 += 1
+      save!
+    when 'M2'
+      self.ideal_m2 += 1
+      save!
+    when 'M3'
+      self.ideal_m3 += 1
+      save!
+    when 'M4'
+      self.ideal_m4 += 1
+      save!
+    else
+      true
     end
   end
 
