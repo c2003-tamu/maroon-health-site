@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_04_004954) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_29_004954) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_04_004954) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
+    t.integer "ideal_volunteers"
     t.integer "ideal_officers"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -35,7 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_04_004954) do
     t.integer "ideal_m2", default: 0
     t.integer "ideal_m3", default: 0
     t.integer "ideal_m4", default: 0
-    t.integer "ideal_volunteers", default: 0
   end
 
   create_table "faqs", force: :cascade do |t|
