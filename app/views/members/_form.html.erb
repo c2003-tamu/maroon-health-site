@@ -17,6 +17,11 @@
   </div>
 
   <div>
+    <%= form.label :class_year, style: "display: block" %>
+    <%= form.select :class_year, options_for_select(["M1", "M2", "M3", "M4", "Other"], @member.class_year) %>
+  </div>
+
+  <div>
     <%= form.label :full_name, style: "display: block" %>
     <%= form.text_field :full_name %>
   </div>

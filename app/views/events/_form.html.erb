@@ -12,18 +12,44 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :title, "Event Title", style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label :ideal_volunteers, style: "display: block" %>
-    <%= form.number_field :ideal_volunteers %>
+  <%= form.label :event_type, "Is this event open for all volunteers, or do you want to restrict by class?" %>
+  <div id="form-options">
+  <%= form.radio_button :event_type, "Free for All", id: "free-for-all" %>
+  <%= form.label :event_type, "Free for All", value: "Free for All" %>
+  <%= form.radio_button :event_type, "Restrict by Class", id: "restrict-by-class" %>
+  <%= form.label :event_type, "Restrict by Class", value: "Restrict by Class" %>
   </div>
 
-  <div>
-    <%= form.label :ideal_officers, style: "display: block" %>
-    <%= form.number_field :ideal_officers %>
+  <div id="ideal-volunteers" style="display: none;">
+    <%= form.label :ideal_volunteers %>
+    <%= form.number_field :ideal_volunteers, id: "ideal-volunteers-field" %>
+  </div>
+
+  <div id="class-restrictions" style="display: none;">
+    <text>How many volunteers do you want from each class?</text>
+    <div id="m1">
+      <%= form.label :ideal_m1, "M1" %>
+      <%= form.number_field :ideal_m1, id: "ideal-m1-field" %>
+    </div>
+
+    <div id="m2">
+    <%= form.label :ideal_m2, "M2" %>
+    <%= form.number_field :ideal_m2, id: "ideal-m2-field" %>
+    </div>
+
+    <div id="m3">
+    <%= form.label :ideal_m3, "M3" %>
+    <%= form.number_field :ideal_m3, id: "ideal-m3-field" %>
+    </div>
+
+    <div id="m4">
+    <%= form.label :ideal_m4, "M4" %>
+    <%= form.number_field :ideal_m4, id: "ideal-m4-field" %>
+    </div>
   </div>
 
   <div>
@@ -39,4 +65,22 @@
   <div>
     <%= form.submit %>
   </div>
+
+  <script>
+    document.getElementById('free-for-all').addEventListener('change', function(e) {
+      document.getElementById('ideal-volunteers').style.display = 'block';
+      document.getElementById('class-restrictions').style.display = 'none';
+      document.getElementById('ideal-m1-field').value = 0;
+      document.getElementById('ideal-m2-field').value = 0;
+      document.getElementById('ideal-m3-field').value = 0;
+      document.getElementById('ideal-m4-field').value = 0;
+    });
+
+    document.getElementById('restrict-by-class').addEventListener('change', function(e) {
+      document.getElementById('ideal-volunteers').style.display = 'none';
+      document.getElementById('class-restrictions').style.display = 'block';
+      document.getElementById('ideal-volunteers-field').value = 0;
+    });
+  </script>
 <% end %>
+

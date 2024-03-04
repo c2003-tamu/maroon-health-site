@@ -4,15 +4,30 @@
     <%= event.title %>
   </p>
 
-  <p>
-    <strong>Ideal volunteers:</strong>
-    <%= event.ideal_volunteers %>
-  </p>
-
-  <p>
-    <strong>Ideal officers:</strong>
-    <%= event.ideal_officers %>
-  </p>
+  
+  <% if event.class_select? %>
+    <p>
+      <strong>Open M1 Slots:</strong>
+      <%= event.ideal_m1 %>
+    </p>
+    <p>
+      <strong>Open M2 Slots:</strong>
+      <%= event.ideal_m2 %>
+    </p>
+    <p>
+      <strong>Open M3 Slots:</strong>
+      <%= event.ideal_m3 %>
+    </p>
+    <p>
+      <strong>Open M4 Slots:</strong>
+      <%= event.ideal_m4 %>
+    </p>
+  <% else %>
+    <p>
+      <strong>Open Volunteer Slots:</strong>
+      <%= event.ideal_volunteers %>
+    </p>
+  <% end %>
 
   <p>
     <strong>Start time:</strong>
