@@ -2,11 +2,12 @@
 
 class Event < ApplicationRecord
   has_many :member_shifts, dependent: :destroy
-
   validates :title, presence: true
   validates :ideal_volunteers, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 100 }
-  validates :m1_m2_volunteers, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: :ideal_volunteers }
-  validates :m3_m4_volunteers, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: :ideal_volunteers }
+  validates :m1_m2_volunteers, presence: true,
+                               numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: :ideal_volunteers }
+  validates :m3_m4_volunteers, presence: true,
+                               numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: :ideal_volunteers }
   validates :start_time, presence: true
   validates :end_time, presence: true
   validate :end_time_after_start_time?
@@ -57,5 +58,4 @@ class Event < ApplicationRecord
   def event_not_in_the_past?
     errors.add(:end_time, 'cannot be in the past') if end_time < Time.zone.now
   end
-  
 end
