@@ -82,4 +82,32 @@ RSpec.describe(MembersController, type: :controller) do
       expect(response).to(redirect_to(members_url))
     end
   end
+
+  describe 'POST #send_mass_email' do
+    let(:email_params) { { subject: 'Test Subject', contents: 'Test Contents' } }
+
+    context 'when mass email is successfully sent' do
+      it 'redirects to members_url with a notice' do
+        post :send_mass_email, params: { email: email_params }
+
+        expect(response).to redirect_to(members_url)
+        expect(flash[:notice]).to eq('Mass email successfully sent.')
+      end
+    end
+
+    context 'when mass email fails to send' do
+      before do
+        allow(controller).to receive(:mass_email).and_return(false)
+      end
+
+      it 'renders the mass_email_form with status :unprocessable_entity' do
+        post :send_mass_email, params: { email: email_params }
+
+        expect(response).to render_template(:mass_email_form)
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+
 end
