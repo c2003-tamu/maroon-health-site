@@ -2,6 +2,7 @@
 
 class Event < ApplicationRecord
   has_many :member_shifts, dependent: :destroy
+
   validates :title, presence: true
   validates :ideal_volunteers, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 100 }
   validates :m1_m2_volunteers, presence: true,

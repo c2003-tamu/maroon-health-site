@@ -32,7 +32,7 @@
   </p>
 
   <% member_shifts = MemberShift.where(event_id: event.id) %>
-  <% member_names = member_shifts.map { |ms| ms.member.full_name } %>
-  <%= member_names.join(', ') %>
+  <% member_names_with_specifications = member_shifts.map { |member_shift| "#{member_shift.member.full_name} (#{member_shift.volunteer_category})" } %>
+  <%= member_names_with_specifications.join(', ') %>
 
 </div>
