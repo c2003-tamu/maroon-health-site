@@ -13,11 +13,13 @@
           <li><%= link_to "Edit Events", events_path %></li>
           <li><%= link_to "Edit Calendar", calendar_events_path %></li>
         <%end%>
-          
 
-        <%if current_member && (current_member.volunteer? || current_member.admin?)%>
+        <% if current_member && (current_member.volunteer? || current_member.admin?)%>
           <li><%= link_to "Medications", medications_path %></li>
           <li><%= link_to "Event Signup", signup_path %></li>
+        <% end %>
+
+        <% if current_member %>
           <li><%= button_to "Logout", destroy_member_session_path, method: :delete, data: { turbo: "false" } %></li>
         <%else%>
           <li><%= link_to "Volunteer Login", new_member_session_path %></li>

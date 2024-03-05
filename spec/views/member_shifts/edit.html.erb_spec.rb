@@ -7,7 +7,10 @@ RSpec.describe('events/edit', type: :view) do
     Event.create!(
       title: 'MyString',
       ideal_volunteers: 1,
-      ideal_officers: 1,
+      ideal_m1: 0,
+      ideal_m2: 0,
+      ideal_m3: 0,
+      ideal_m4: 0,
       start_time: 1.day.from_now.strftime('%Y-%m-%d %H:%M:%S'),
       end_time: (1.day.from_now + 2.hours).strftime('%Y-%m-%d %H:%M:%S')
     )
@@ -39,7 +42,6 @@ RSpec.describe('events/edit', type: :view) do
     assert_select 'form[action=?][method=?]', event_path(event), 'post' do
       assert_select 'input[name=?]', 'event[title]'
       assert_select 'input[name=?]', 'event[ideal_volunteers]'
-      assert_select 'input[name=?]', 'event[ideal_officers]'
     end
   end
 end
