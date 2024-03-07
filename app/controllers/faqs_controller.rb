@@ -26,7 +26,7 @@ class FaqsController < ApplicationController
 
     respond_to do |format|
       if @faq.save
-        format.html { redirect_to(faq_url(@faq), notice: 'Faq was successfully created.') }
+        format.html { redirect_to(faqs_path, notice: 'FAQ was successfully created.') }
         format.json { render(:show, status: :created, location: @faq) }
       else
         format.html { render(:new, status: :unprocessable_entity) }
@@ -39,7 +39,7 @@ class FaqsController < ApplicationController
   def update
     respond_to do |format|
       if @faq.update(faq_params)
-        format.html { redirect_to(faq_url(@faq), notice: 'Faq was successfully updated.') }
+        format.html { redirect_to(faqs_path, notice: 'FAQ was successfully updated.') }
         format.json { render(:show, status: :ok, location: @faq) }
       else
         format.html { render(:edit, status: :unprocessable_entity) }
@@ -53,7 +53,7 @@ class FaqsController < ApplicationController
     @faq.destroy!
 
     respond_to do |format|
-      format.html { redirect_to(faqs_url, notice: 'Faq was successfully destroyed.') }
+      format.html { redirect_to(faqs_url, notice: 'FAQ was successfully deleted.') }
       format.json { head(:no_content) }
     end
   end
