@@ -48,13 +48,17 @@
 
 <h2 class="shadow">Frequently Asked Questions</h2>
 <% @faqs.each do |faq| %>
+  <div class="container">
     <strong><%= faq.question %></strong>
     <p><%= faq.answer %></p>
+  </div>
 <% end %>
 
 <h2 class="shadow">External Resources</h2>
 <% @resources.each do |resource| %>
+    <div class="container">
     <strong><%= resource.title %></strong>
     <p><%= resource.description %></p>
     <%= link_to "Learn more here", resource.url, target:"_blank" %>
+    </div>
 <% end %>
