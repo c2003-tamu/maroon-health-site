@@ -5,9 +5,9 @@ class HomeController < ApplicationController
   def index
     # set patients_served to be a function of time passed.
     patient_served_per_day = 100
-    start_of_year = DateTime.new(2024, 1, 1)
-    # this is a float
-    days_since = (DateTime.now - start_of_year)
+    start_of_clinic = DateTime.new(2019, 1, 1)
+    # days since start of clinic, unrounded. this is a float
+    days_since = (DateTime.now - start_of_clinic)
 
     patients_count = Integer(patient_served_per_day * days_since)
     # add commas
