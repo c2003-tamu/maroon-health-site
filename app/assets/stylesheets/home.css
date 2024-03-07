@@ -1,0 +1,21 @@
+.title {
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.mission-statement-title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 0px;
+}
+
+.mission-statement-body {
+    text-align: center;
+    font-size: 20px;
+    width: 70%;
+    font-style: italic;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}

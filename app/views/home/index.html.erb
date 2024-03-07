@@ -1,6 +1,8 @@
 <!-- app/views/home/index.html.erb -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap">
-<h1>Maroon Health</h1>
+<%= stylesheet_link_tag 'home', media: 'all', 'data-turbo-track': 'reload' %>
+
+<h1 class="title shadow-lg">Maroon Health</h1>
 
 <div class="stat-boxes-container">
 
@@ -39,5 +41,5 @@
 
 </div>
 
-<h2>Mission Statement</h2>
-<p>Maroon Health Free Clinic is a Texas A&M medical student-run free clinic in Houston operating through a partnership with Open Gate Homeless Ministries. Every other Sunday, we provide medical care to individuals experiencing homelessness in the Montrose neighborhood.</p>
+<h2 class="mission-statement-title shadow-lg">Mission Statement</h2>
+<p class="mission-statement-body">Maroon Health Free Clinic is a Texas A&M medical student-run free clinic in Houston operating through a partnership with Open Gate Homeless Ministries. Every other Sunday, we provide medical care to individuals experiencing homelessness in the Montrose neighborhood.</p>

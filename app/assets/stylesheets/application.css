@@ -21,6 +21,15 @@
     body {
         padding-top: 25px;
         font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        background-image: url('background.png');
+        background-repeat: repeat;
+    }
+
+    .shadow {
+        text-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+    }
+    .shadow-lg {
+        text-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
     }
 
     /*
@@ -31,7 +40,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #500000;
+        background-color: #732F2F;
         color: #ffffff;
     }
 
@@ -55,7 +64,7 @@
     }
 
     .navbar li a:hover {
-        background-color: #732F2F;
+        background-color: #500000;
     }
 
     /*
