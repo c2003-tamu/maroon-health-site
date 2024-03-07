@@ -24,9 +24,9 @@ RSpec.describe('calendar_events/index', type: :view) do
 
   it 'renders a list of calendar_events' do
     render
-    expect(rendered).to include('FirstEvent')
-    expect(rendered).to include('SecondEvent')
-    expect(rendered).to include('Description for Event 1')
-    expect(rendered).to include('Description for Event 2')
+    expect(rendered).to(include('FirstEvent'))
+    expect(rendered).to(include('SecondEvent'))
+    expect(rendered).to(include('Description for Event 1'))
+    expect(rendered).to(include('Description for Event 2'))
   end
 end
