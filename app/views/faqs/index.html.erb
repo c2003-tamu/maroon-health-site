@@ -1,7 +1,5 @@
 <%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<p style="color: green"><%= notice %></p>
-
 <div class="container">
   <h1 class="title shadow-lg">Edit FAQs</h1>
 
@@ -24,8 +22,8 @@
           </td>
           <td class="actions-container">
             <div class="actions">
-              <%= link_to "Show", faq %>
               <%= link_to "Edit", edit_faq_path(faq) %>
+              <%= button_to "Destroy", faq, method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
           </td>
         </tr>
