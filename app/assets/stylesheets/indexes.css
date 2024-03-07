@@ -44,3 +44,22 @@ th {
     border: 1px solid black;
     padding: 10px;
 }
+
+.add-new-button {
+    margin-top: 12px;
+    padding: 15px 30px;
+    background-color: #732F2F;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.add-new-button:hover {
+    background-color: #500000;
+    color: #fff;
+}
