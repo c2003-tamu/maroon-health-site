@@ -9,6 +9,11 @@
     margin-bottom: 5px;
 }
 
+.label-and-field-div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .form-actions {
     margin-top: 5px;
     display: flex;

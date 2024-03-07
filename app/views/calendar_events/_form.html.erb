@@ -1,37 +1,36 @@
 <%= form_with(model: calendar_event) do |form| %>
   <% if calendar_event.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(calendar_event.errors.count, "error") %> prohibited this calendar_event from being saved:</h2>
-
-      <ul>
-        <% calendar_event.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div>
+      <% calendar_event.errors.each do |error| %>
+        <div class="flash error"><%= error.full_message %></div>
+      <% end %>
     </div>
   <% end %>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, style: "width: 100%" %>
   </div>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, style: "width: 100%" %>
   </div>
 
-  <div>
-    <%= form.label :start_datetime, style: "display: block" %>
-    <%= form.datetime_field :start_datetime %>
+  <div class="label-and-field-div" style="display:flex; justify-content:flex-start;">
+    <div style="margin-right: 10px;">
+      <%= form.label :start_datetime, "Start Time", style: "display: block" %>
+      <%= form.datetime_field :start_datetime %>
+    </div>
+
+    <div>
+      <%= form.label :end_datetime, "End Time", style: "display: block" %>
+      <%= form.datetime_field :end_datetime %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :end_datetime, style: "display: block" %>
-    <%= form.datetime_field :end_datetime %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit nil, class: 'button btn-submit' %>
+    <%= link_to "Nevermind", calendar_events_path, class: 'button btn-cancel' %>
   </div>
 <% end %>
