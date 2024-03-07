@@ -33,7 +33,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-p, ul {
+p, .list-item {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
