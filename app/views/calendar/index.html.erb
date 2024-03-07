@@ -1,11 +1,17 @@
-<h1>Upcoming Events</h1>
-<p>Click on an event title to view full details.</p>
+<%= stylesheet_link_tag 'calendar', media: 'all', 'data-turbo-track': 'reload' %>
 
-<% @grouped_events.each do |day, events_on_day| %>
-  <h2><%= day.strftime("%A, %B %e, %Y") %></h2>
-  <ul>
-    <% events_on_day.each do |event_today| %>
-      <li><a href="<%= display_calendar_event_path(event_today) %>"><%= event_today.title %></a></li>
-    <% end %>
-  </ul>
-<% end %>
+<h1 class="title shadow-lg">Upcoming Events</h1>
+
+<div class="main-container">
+  <span class="instructions">Click on an event to view more details.</span>
+  <div class="solid-bar"></div>
+
+  <% @grouped_events.each do |day, events_on_day| %>
+    <h2 class="date shadow"><%= day.strftime("%A, %B %e, %Y") %></h2>
+    <ul>
+      <% events_on_day.each do |event_today| %>
+        <li><a href="<%= display_calendar_event_path(event_today) %>"><%= event_today.title %></a></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

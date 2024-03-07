@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Members
 Member.create!(email: 'thisisanemail@gmail.com', password: 'password', role: 'admin')
 Member.create!(email: 'chungus@gmail.com', password: 'password123', role: 'volunteer')
