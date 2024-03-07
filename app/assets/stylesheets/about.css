@@ -11,11 +11,17 @@ body {
 
     position: relative;
     text-align: center;
-    margin-bottom: 20px;
 
     background-size: cover;
     height: 250px;
     overflow: hidden;
+}
+
+.banner-bar {
+    background-color: #500000;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
 }
 
 .banner-text {
