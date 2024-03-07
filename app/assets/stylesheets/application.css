@@ -1,5 +1,7 @@
 .flash {
     padding: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
     border-radius: 5px;
     font-weight: bold;
     max-width: 50%;
@@ -48,7 +50,8 @@ a:hover {
 body {
     padding-top: 25px;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-    background-image: url('background.png');
+    background-image: url('background4.png');
+    background-size: 10% auto;
     background-repeat: repeat;
 }
 
