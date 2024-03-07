@@ -42,6 +42,7 @@
         width: 100%;
         background-color: #732F2F;
         color: #ffffff;
+        z-index: 100;
     }
 
     .navbar ul {
