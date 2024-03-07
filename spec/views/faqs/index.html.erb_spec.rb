@@ -19,7 +19,7 @@ RSpec.describe('faqs/index', type: :view) do
 
   it 'renders a list of faqs' do
     render
-    expect(rendered).to include('Howdy')
-    expect(rendered).to include('Bye')
+    expect(rendered).to(include('Howdy'))
+    expect(rendered).to(include('Bye'))
   end
 end

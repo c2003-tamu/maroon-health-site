@@ -1,3 +1,29 @@
+.flash {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    max-width: 50%;
+    display: inline-block;
+}
+
+.notice {
+    background-color: #E0FFE0;
+    color: #008000;
+    border: 1px solid #66CD66;
+}
+
+.alert {
+    background-color: #FFFFE0;
+    color: #808000;
+    border: 1px solid #CCCC00;
+}
+
+.error {
+    background-color: #FFE0E0;
+    color: #800000;
+    border: 1px solid #FF0000;
+}
+
 /* These colors and fonts were gotten from the Tamu Brand Guide */
 h1,
 h2,
