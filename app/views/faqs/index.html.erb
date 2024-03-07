@@ -23,7 +23,7 @@
           <td class="actions-container">
             <div class="actions">
               <%= link_to "Edit", edit_faq_path(faq) %>
-              <%= button_to "Destroy", faq, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Delete', faq_path(faq), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             </div>
           </td>
         </tr>
