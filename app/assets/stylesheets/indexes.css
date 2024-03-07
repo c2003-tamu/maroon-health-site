@@ -1,0 +1,46 @@
+.container {
+    width: 95%;
+    margin: auto;
+}
+
+.title {
+    font-size: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.actions-container {
+    white-space: nowrap;
+}
+
+.actions a {
+    margin-right: 10px;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #732F2F;
+    color: white;
+    height: 30px;
+    line-height: 30px;
+    /* Align text vertically in the middle */
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 10px;
+}
