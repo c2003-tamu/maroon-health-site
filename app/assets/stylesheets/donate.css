@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+}
+
+.banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('kindness_cropped.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    position: relative;
+    text-align: center;
+
+    background-size: cover;
+    height: 250px;
+    overflow: hidden;
+}
+
+.banner-bar {
+    background-color: #500000;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+}
+
+.banner-text {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 60px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+p, address {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+address {
+    text-align: center;
+}

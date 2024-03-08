@@ -1,0 +1,52 @@
+.container {
+    width: 50%;
+    margin: auto;
+}
+
+.title {
+    font-size: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.label-and-field-div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-actions {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.button:hover {
+    color: white;
+}
+
+.btn-submit {
+    background-color: #732F2F;
+}
+
+.btn-submit:hover {
+    background-color: #500000;
+}
+
+.btn-cancel {
+    background-color: #4F4F4F;
+}
+
+.btn-cancel:hover {
+    background-color: #2F2F2F;
+}

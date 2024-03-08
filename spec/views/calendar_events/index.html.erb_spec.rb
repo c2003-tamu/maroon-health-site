@@ -24,10 +24,9 @@ RSpec.describe('calendar_events/index', type: :view) do
 
   it 'renders a list of calendar_events' do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('FirstEvent'.to_s), count: 1
-    assert_select cell_selector, text: Regexp.new('SecondEvent'.to_s), count: 1
-    assert_select cell_selector, text: Regexp.new('Description for Event 1'.to_s), count: 1
-    assert_select cell_selector, text: Regexp.new('Description for Event 2'.to_s), count: 1
+    expect(rendered).to(include('FirstEvent'))
+    expect(rendered).to(include('SecondEvent'))
+    expect(rendered).to(include('Description for Event 1'))
+    expect(rendered).to(include('Description for Event 2'))
   end
 end

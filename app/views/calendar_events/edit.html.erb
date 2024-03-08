@@ -1,10 +1,7 @@
-<h1>Editing calendar event</h1>
+<%= stylesheet_link_tag 'editpages', media: 'all', 'data-turbo-track': 'reload' %>
 
-<%= render "form", calendar_event: @calendar_event %>
+<div class="container">
+  <h1 class="title shadow-lg">Editing Calendar Event</h1>
 
-<br>
-
-<div>
-  <%= link_to "Show this calendar event", @calendar_event %> |
-  <%= link_to "Back to calendar events", calendar_events_path %>
+  <%= render "form", calendar_event: @calendar_event %>
 </div>

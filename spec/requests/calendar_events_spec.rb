@@ -88,9 +88,9 @@ RSpec.describe('/calendar_events', type: :request) do
         end.to(change(CalendarEvent, :count).by(1))
       end
 
-      it 'redirects to the created calendar_event' do
+      it 'redirects to the index' do
         post calendar_events_url, params: { calendar_event: valid_attributes }
-        expect(response).to(redirect_to(calendar_event_url(CalendarEvent.last)))
+        expect(response).to(redirect_to(calendar_events_url))
       end
     end
 
@@ -121,11 +121,11 @@ RSpec.describe('/calendar_events', type: :request) do
         skip('Add assertions for updated state')
       end
 
-      it 'redirects to the calendar_event' do
+      it 'redirects to the index' do
         calendar_event = CalendarEvent.create!(valid_attributes)
         patch calendar_event_url(calendar_event), params: { calendar_event: new_attributes }
         calendar_event.reload
-        expect(response).to(redirect_to(calendar_event_url(calendar_event)))
+        expect(response).to(redirect_to(calendar_events_url))
       end
     end
 

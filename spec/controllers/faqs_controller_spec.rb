@@ -60,13 +60,13 @@ RSpec.describe(FaqsController, type: :controller) do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Faq and redirects to show' do
+      it 'creates a new Faq and redirects to index' do
         expect do
           post(:create, params: { faq: valid_attributes })
         end.to(change(Faq, :count).by(1))
 
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(faq_path(Faq.last)))
+        expect(response).to(redirect_to(faqs_path))
       end
     end
 
@@ -84,14 +84,14 @@ RSpec.describe(FaqsController, type: :controller) do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      it 'updates the Faq and redirects to show' do
+      it 'updates the Faq and redirects to index' do
         faq = Faq.create!(valid_attributes)
         updated_attributes = { question: 'Updated Question', answer: 'Updated Answer' }
 
         put :update, params: { id: faq.to_param, faq: updated_attributes }
 
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(faq_path(faq.reload)))
+        expect(response).to(redirect_to(faqs_path))
         # Ensure the question was updated
         expect(assigns(:faq).question).to(eq('Updated Question'))
         # Ensure the answer was updated
