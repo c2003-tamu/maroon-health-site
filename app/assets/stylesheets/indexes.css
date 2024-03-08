@@ -32,7 +32,7 @@ thead {
 
 /* Alternating row colors */
 tbody tr:nth-child(even) {
-    background-color: #d1d1d1;
+    background-color: #d0d0d0;
 }
 
 tbody tr:nth-child(odd) {
