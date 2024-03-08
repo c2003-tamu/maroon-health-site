@@ -66,7 +66,7 @@ class MedicationTransactionsController < ApplicationController
     @medication_transaction.destroy!
 
     respond_to do |format|
-      format.html { redirect_to(medication_transactions_url, notice: 'Medication transaction was successfully destroyed.') }
+      format.html { redirect_to(medication_transactions_url, notice: 'Medication transaction was successfully deleted.') }
       format.json { head(:no_content) }
     end
   end
@@ -112,7 +112,7 @@ class MedicationTransactionsController < ApplicationController
 
   def check_admin
     unless current_member && (current_member.admin? || current_member.volunteer?)
-      flash[:alert] = 'You are not authorized to access this page.'
+      flash[:alert] = 'You are not authorized to access that page.'
       redirect_to(root_path)
     end
   end

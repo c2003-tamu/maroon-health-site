@@ -30,7 +30,7 @@ class CalendarEventsController < ApplicationController
 
     respond_to do |format|
       if @calendar_event.save
-        format.html { redirect_to(calendar_event_url(@calendar_event), notice: 'Calendar event was successfully created.') }
+        format.html { redirect_to(calendar_events_url, notice: 'Calendar event was successfully created.') }
         format.json { render(:show, status: :created, location: @calendar_event) }
       else
         format.html { render(:new, status: :unprocessable_entity) }
@@ -43,7 +43,7 @@ class CalendarEventsController < ApplicationController
   def update
     respond_to do |format|
       if @calendar_event.update(calendar_event_params)
-        format.html { redirect_to(calendar_event_url(@calendar_event), notice: 'Calendar event was successfully updated.') }
+        format.html { redirect_to(calendar_events_url, notice: 'Calendar event was successfully updated.') }
         format.json { render(:show, status: :ok, location: @calendar_event) }
       else
         format.html { render(:edit, status: :unprocessable_entity) }
@@ -57,7 +57,7 @@ class CalendarEventsController < ApplicationController
     @calendar_event.destroy!
 
     respond_to do |format|
-      format.html { redirect_to(calendar_events_url, notice: 'Calendar event was successfully destroyed.') }
+      format.html { redirect_to(calendar_events_url, notice: 'Calendar event was successfully deleted.') }
       format.json { head(:no_content) }
     end
   end

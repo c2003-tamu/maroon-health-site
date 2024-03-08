@@ -1,14 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<h1>Calendar events</h1>
+<div class="container">
+  <h1 class="title shadow-lg">Edit Calendar Events</h1>
 
-<div id="calendar_events">
-  <% @calendar_events.each do |calendar_event| %>
-    <%= render calendar_event %>
-    <p>
-      <%= link_to "Show this calendar event", calendar_event %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @calendar_events.each do |event| %>
+        <tr>
+          <td>
+            <%= event.title %>
+          </td>
+          <td>
+            <%= event.description %>
+          </td>
+          <td>
+            <%= event.start_datetime.strftime('%a, %b %e, %Y %l:%M %p') %>
+          </td>
+          <td>
+            <%= event.end_datetime.strftime('%a, %b %e, %Y %l:%M %p') %>
+          </td>
+          
+          <td class="actions-container">
+            <div class="actions">
+              <%= link_to "Edit", edit_calendar_event_path(event) %>
+              <%= link_to 'Delete', calendar_event_path(event), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Add New Event', new_calendar_event_path, class: 'add-new-button' %>
 </div>
-
-<%= link_to "New calendar event", new_calendar_event_path %>

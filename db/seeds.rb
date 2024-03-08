@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-# Empty all tables
-ActiveRecord::Base.connection.tables.each do |table|
-  ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} RESTART IDENTITY CASCADE;")
-end
-
 # Members
 Member.create!(email: 'thisisanemail@gmail.com', password: 'password', role: 'admin')
 Member.create!(email: 'chungus@gmail.com', password: 'password123', role: 'volunteer')
@@ -85,6 +80,3 @@ Faq.create!(question: 'How often should I take Medication X?',
 Faq.create!(question: 'Is there a discount for purchasing medications in bulk?',
             answer: 'Yes, we offer discounts for bulk purchases. Please inquire at our pharmacy for more information.'
            )
-
-# Display a message
-Rails.logger.debug('Seed data created successfully!')

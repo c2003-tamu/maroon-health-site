@@ -1,13 +1,18 @@
-<h1>About Us</h1>
+<%= stylesheet_link_tag 'about', media: 'all', 'data-turbo-track': 'reload' %>
+
+<div class="banner">
+  <h1 class="banner-text shadow-lg">About Us</h1>
+</div>
+<div class="banner-bar"></div>
 
 <!-- Maroon Health Summaries -->
 
 <!-- Services We Offer -->
-<h2>Services We Offer</h2>
+<h2 class="shadow">Services We Offer</h2>
 <p>We are a walk-ins only clinic and offer check-ups, wellness visits, sick visits, blood pressure checks, and wound care.</p>
 
 <!-- Where to Find Us -->
-<h2>Where to Find Us</h2>
+<h2 class="shadow">Where to Find Us</h2>
 <p>
   <strong>Location:</strong> Open Gate Homeless Ministries<br>
   <strong>Address:</strong> 1440 Harold St, Houston, TX 77006<br>
@@ -15,20 +20,18 @@
   <strong>Contact:</strong> maroonhealth2022@gmail.com
 </p>
 
-<!-- Our Partners -->
-<h2>Our Partners</h2>
+<h2 class="shadow">Our Partners</h2>
 <p><a href="https://beringopengate.org/">Open Gate Homeless Ministries</a></p>
 
-<!-- Educational Sessions -->
-<h2>Educational Sessions</h2>
+<h2 class="shadow">Educational Sessions</h2>
+<p>Topics we cover:</p>
 <ul>
-  <li>Wound care clinics</li>
-  <li>Narcan workshops</li>
-  <li>CPR workshops</li>
+  <li class="list-item">Wound care clinics</li>
+  <li class="list-item">Narcan workshops</li>
+  <li class="list-item">CPR workshops</li>
 </ul>
 
-<!-- Volunteers -->
-<h2>Volunteers</h2>
+<h2 class="shadow">Volunteers</h2>
 <p>How to sign up - see under the orientation bullet point</p>
 <p>Templates: <a href="https://docs.google.com/document/d/1UmlQbrL07UyvwPFd_Pz4Skk0DIRXssae/edit?usp=sharing&ouid=106216841114327640693&rtpof=true&sd=true">Link</a></p>
 <p>Orientation materials: <a href="https://docs.google.com/presentation/d/1iJ_N-15xBmXGXb7ZrZU7FJ9P0Y7Ud-xG/edit?usp=drive_link&ouid=106216841114327640693&rtpof=true&sd=true">Link</a></p>
@@ -38,24 +41,25 @@
 <p>If you're backup you need to be available up to 18 hours before the clinic starts; if we don't reach out then your time is yours</p>
 <p>If you fail to show up/no call/not excused you will be on probation for 3 months</p>
 
-<!-- Research -->
-<h2>Research</h2>
 <p>QI google form</p>
 
-<!-- Grants and Awards -->
-<h2>Grants and Awards</h2>
+<h2 class="shadow">Grants and Awards</h2>
 <p>Texas A&M University - Good Bull Fund recipient</p>
 <p>Texas Medical Association - recipient of the Community Grant</p>
 
-<h2>Frequently Asked Questions</h2>
+<h2 class="shadow">Frequently Asked Questions</h2>
 <% @faqs.each do |faq| %>
+  <div class="container">
     <strong><%= faq.question %></strong>
     <p><%= faq.answer %></p>
+  </div>
 <% end %>
 
-<h2>External Resources</h2>
+<h2 class="shadow">External Resources</h2>
 <% @resources.each do |resource| %>
+    <div class="container">
     <strong><%= resource.title %></strong>
     <p><%= resource.description %></p>
     <%= link_to "Learn more here", resource.url, target:"_blank" %>
+    </div>
 <% end %>
