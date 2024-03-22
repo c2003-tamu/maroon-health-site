@@ -9,6 +9,6 @@ RSpec.describe('Photo Gallery', type: :feature) do
     expect(page).to(have_content('A Snapshot of Maroon Health'))
     expect(page).to(have_css('.image-container img'))
     # ensure there are multiple images on the page
-    expect(page).to have_selector('img', minimum: 2)
+    expect(page).to(have_selector('img', minimum: 2))
   end
 end
