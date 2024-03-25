@@ -1,132 +1,105 @@
-    /* These colors and fonts were gotten from the Tamu Brand Guide */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        color: #500000;
-        font-family: 'Oswald', sans-serif;
-        text-transform: uppercase;
-    }
-    a {
-        color: #006483
-    }
+.flash {
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    max-width: 50%;
+    display: inline-block;
+}
 
-    a:hover {
-        color: #004362
-    }
+.notice {
+    background-color: #E0FFE0;
+    color: #008000;
+    border: 1px solid #66CD66;
+}
 
-    /* Add padding to the body to push the content down below the navbar */
-    body {
-        padding-top: 25px;
-        font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-    }
+.alert {
+    background-color: #FFFFE0;
+    color: #808000;
+    border: 1px solid #CCCC00;
+}
 
-    /*
-        NAVBAR STYLING
-    */
-    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #500000;
-        color: #ffffff;
-    }
+.error {
+    background-color: #FFE0E0;
+    color: #800000;
+    border: 1px solid #FF0000;
+}
 
-    .navbar ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
+/* These colors and fonts were gotten from the Tamu Brand Guide */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #500000;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
 
-    .navbar li {
-        float: left;
-    }
+a {
+    color: #006483
+}
 
-    .navbar li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
+a:hover {
+    color: #004362
+}
 
-    .navbar li a:hover {
-        background-color: #732F2F;
-    }
+/* Add padding to the body to push the content down below the navbar */
+body {
+    padding-top: 25px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    background-image: url('background4.png');
+    background-size: 10% auto;
+    background-repeat: repeat;
+}
 
-    /*
-        PATIENTS SERVED STYLING
-    */
-    .stat-boxes-container {
-        display: flex;
-        justify-content: center;
-    }
-    .stat-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #732F2F;
-        color: white;
-        padding: 20px;
-        border-radius: 8px;
-        margin: 10px;
-        width: 150px;
-        height: 150px;
-    }
+.shadow {
+    text-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+}
 
-    .icon-container {
-        font-size: 3em;
-    }
-    
-    .text-container {
-        text-align: center;
-    }
-    
-    .text-container p {
-        margin: 0;
-        font-size: 1.2em;
-    }
-    
-    .stat {
-        font-size: 2em;
-        font-weight: bold;
-        margin-top: 5px;
-    }
-    
-    .icon {
-        width: 1.5em;
-        height: 1.5em;
-    }
+.shadow-lg {
+    text-shadow: 0 4px 2px rgba(0, 0, 0, 0.2);
+}
 
+/*
+    NAVBAR STYLING
+*/
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #732F2F;
+    color: #ffffff;
+    z-index: 100;
+}
 
-    /*
-        PHOTO GALLERY STYLING
-    */
-    .photo-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-top: 20px;
-    }
-    .photo-gallery img {
-        width: 300px;
-        height: 225px;
-        margin: 10px;
-        border: 2px solid #ddd;
-        /* Add a light gray border around the images */
-        border-radius: 8px;
-        /* Optional: Add rounded corners */
-        transition: 0.3s;
-        /* Add a smooth transition effect */
-    }
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 
-    .photo-gallery img:hover {
-        transform: scale(1.1);
-        /* Enlarge the image on hover */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        /* Add a subtle shadow on hover */
-    }
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #500000;
+}
+
+.navbar .navbar-item-right {
+    float: right;
+    margin-right: 20px;
+}

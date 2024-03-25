@@ -2,7 +2,7 @@
 
 class MembersController < ApplicationController
   before_action :set_member, only: %i[show edit update destroy]
-  # before_action :check_admin
+  before_action :check_admin
 
   # GET /members or /members.json
   def index
@@ -53,7 +53,7 @@ class MembersController < ApplicationController
     @member.destroy!
 
     respond_to do |format|
-      format.html { redirect_to(members_url, notice: 'Member was successfully destroyed.') }
+      format.html { redirect_to(members_url, notice: 'Member was successfully deleted.') }
       format.json { head(:no_content) }
     end
   end
@@ -74,7 +74,7 @@ class MembersController < ApplicationController
 
   def check_admin
     unless current_member&.admin?
-      flash[:alert] = 'You are not authorized to access this page.'
+      flash[:alert] = 'You are not authorized to access that page.'
       redirect_to(root_path)
     end
   end

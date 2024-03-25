@@ -1,14 +1,35 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<h1>Faqs</h1>
+<div class="container">
+  <h1 class="title shadow-lg">Edit FAQs</h1>
 
-<div id="faqs">
-  <% @faqs.each do |faq| %>
-    <%= render faq %>
-    <p>
-      <%= link_to "Show this faq", faq %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @faqs.each do |faq| %>
+        <tr>
+          <td>
+            <%= faq.question %>
+          </td>
+          <td>
+            <%= faq.answer %>
+          </td>
+          <td class="actions-container">
+            <div class="actions">
+              <%= link_to "Edit", edit_faq_path(faq) %>
+              <%= link_to 'Delete', faq_path(faq), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Add New FAQ', new_faq_path, class: 'add-new-button' %>
 </div>
-
-<%= link_to "New faq", new_faq_path %>
