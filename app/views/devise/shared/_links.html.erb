@@ -21,7 +21,7 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= form_for "login", url: omniauth_authorize_path(resource_name, provider), method: :post, data: {turbo: "false"} do |f| %>
-      <%= f.submit "login", type: "image", src: url_for("/assets/google_sign_in_button.png") %>
+      <%= f.submit "Login with Google" %>
     <% end %>
   <% end %>
 <% end %>
