@@ -34,9 +34,25 @@ body {
 }
 
 @media (max-width: 768px) {
+ 
+  .banner {
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('kindness_cropped.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+	
+      position: relative;
+      text-align: center;
+
+      background-size: cover;
+      height: 250px;
+      overflow: hidden;
+  }
+
   .banner-text {
       position: absolute;
-      top: 25%;
+      top: 35%;
       left: 50%;
       transform: translate(-50%, -50%);
       color: #fff;

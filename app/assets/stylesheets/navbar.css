@@ -52,7 +52,7 @@
     .navbar {
         flex-direction: column;
         align-items: flex-start;
-        padding: 1px; /* Reduce padding */
+        padding: 2px; /* Reduce padding */
     }
 
     .navbar ul {
@@ -78,8 +78,9 @@
     }
 
     .navbar .navbar-item-right {
-        float: none;
-        margin-right: 0;
+        float: right; /* Reapply float property */
+        margin-right: 20px;
+        width: auto; /* Set width to auto */ 
     }
 
     /* Hide the toggle button */
