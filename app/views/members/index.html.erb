@@ -21,7 +21,7 @@
           <td class="actions-container">
             <div class="actions">
               <%= link_to "Edit", edit_member_path(member) %>
-              <%= link_to "Delete", member, method: :delete %>
+              <%= link_to "Delete", member, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             </div>
           </td>
         </tr>
