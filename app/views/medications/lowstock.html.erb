@@ -1,17 +1,13 @@
 <!-- app/views/medications/lowstock.html.erb -->
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<h1>Medications with Low Stock</h1>
+<div class="container">
+  <h1 class="title shadow-lg">Low Stock Medications</h1>
+  
+  <%= link_to("Back to Medications", medications_path, class: 'add-new-button') %>
 
-<%= link_to "Medications Home", medications_path %>
-
-<%= render 'table' %>
-
-
-
-
-
-
-
-
-
+  <%= render 'searchbar' %>
+  
+  <%= render 'table' %>
+</div>
 

@@ -34,7 +34,7 @@ RSpec.describe('medications/new', type: :view) do
     assert_select 'form[action=?][method=?]', medications_path, 'post' do
       assert_select 'input[name=?]', 'medication[name]'
       assert_select 'input[name=?]', 'medication[stock]'
-      assert_select 'input[name=?]', 'medication[notes]'
+      assert_select 'textarea[name="medication[notes]"]'
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe('medications/new', type: :view) do
 
     click_button 'Create Medication'
 
-    expect(page).to(have_content('1 error prohibited this medication from being saved'))
+    expect(page).to(have_content('Stock must be greater than or equal to 0'))
   end
 
   it 'does not work when we put no name' do
@@ -69,7 +69,7 @@ RSpec.describe('medications/new', type: :view) do
     fill_in 'medication[notes]', with: 'hi'
 
     click_button 'Create Medication'
-    expect(page).to(have_content('1 error prohibited this medication from being saved'))
+    expect(page).to(have_content("Name can't be blank"))
   end
 
   it 'has 2 errors when no name and negative stock' do
@@ -79,6 +79,7 @@ RSpec.describe('medications/new', type: :view) do
     fill_in 'medication[notes]', with: 'hi'
 
     click_button 'Create Medication'
-    expect(page).to(have_content('2 errors prohibited this medication from being saved'))
+    expect(page).to(have_content("Name can't be blank"))
+    expect(page).to(have_content('Stock must be greater than or equal to 0'))
   end
 end

@@ -1,9 +1,7 @@
-<h1>New medication</h1>
+<%= stylesheet_link_tag 'editpages', media: 'all', 'data-turbo-track': 'reload' %>
 
-<%= render "form", medication: @medication %>
+<div class="container">
+  <h1 class="title shadow-lg">New Medication</h1>
 
-<br>
-
-<div>
-  <%= link_to "Back to medications", medications_path %>
+  <%= render "form", medication: @medication %>
 </div>

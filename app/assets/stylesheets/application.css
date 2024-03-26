@@ -76,6 +76,18 @@ body {
     z-index: 100;
 }
 
+.navbar .logo-container {
+    float: left;
+    vertical-align: top;
+    height: 46px;
+    width: auto;
+    margin: 0px 5px;
+}
+
+.navbar .logo-container .logo {
+    height: 100%;
+}
+
 .navbar ul {
     list-style-type: none;
     margin: 0;
