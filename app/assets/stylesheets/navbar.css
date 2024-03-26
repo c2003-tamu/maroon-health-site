@@ -91,7 +91,7 @@
     /* Keep navbar links visible without toggling */
     .navbar-links {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         width: 100%; /* Occupy full width */
         margin-top: 5px; /* Reduce margin top */
     }
