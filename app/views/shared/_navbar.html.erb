@@ -1,6 +1,11 @@
+  <%= stylesheet_link_tag 'navbar' %>
+  <%= javascript_include_tag 'navbar' %>
+  <%= csrf_meta_tags %>
+
 <nav class="navbar">
-    <ul>
-        <li><%= link_to "Home", root_path %></li>
+  <button class="navbar-toggle" id="navbar-toggle">Menu</button>
+  <ul class="navbar-links" id="navbar-links">
+    <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About Us", about_path %></li>
         <li><%= link_to "Donate", donation_path %></li>
         <li><%= link_to "Calendar", calendar_path %></li>
@@ -24,5 +29,8 @@
         <%else%>
           <li class="navbar-item-right"><%= link_to "Login", new_member_session_path %></li>
         <%end%>
-    </ul>
+  </ul>
 </nav>
+
+
+

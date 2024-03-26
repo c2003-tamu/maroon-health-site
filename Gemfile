@@ -81,6 +81,7 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'turbolinks'
 gem 'brakeman'
 gem 'devise'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
