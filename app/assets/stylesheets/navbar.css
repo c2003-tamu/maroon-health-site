@@ -47,32 +47,51 @@
   text-decoration: none;
 }
 
-
 /* Mobile styles */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1px; /* Reduce padding */
+    }
 
-  .navbar-toggle {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 2rem;
-    margin: 10px;
-    display: block; /* Display the button on mobile */
-  }
+    .navbar ul {
+        margin: 0;
+        padding: 0;
+    }
 
-  .navbar-links {
-    display: none;
-  }
+    .navbar li {
+        margin-bottom: 5px; /* Reduce margin between items */
+    }
 
-  .navbar-links.active {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-  }
+    .navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 2px; /* Further reduce padding */
+        text-decoration: none;
+        font-size: 10px; /* Smaller font size */
+    }
+
+    .navbar li a:hover {
+        background-color: #500000;
+    }
+
+    .navbar .navbar-item-right {
+        float: none;
+        margin-right: 0;
+    }
+
+    /* Hide the toggle button */
+    .navbar-toggle {
+        display: none;
+    }
+
+    /* Keep navbar links visible without toggling */
+    .navbar-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%; /* Occupy full width */
+        margin-top: 5px; /* Reduce margin top */
+    }
 }
