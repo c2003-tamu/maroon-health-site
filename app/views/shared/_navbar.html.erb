@@ -5,7 +5,11 @@
 <nav class="navbar">
   <button class="navbar-toggle" id="navbar-toggle">Menu</button>
   <ul class="navbar-links" id="navbar-links">
-    <li><%= link_to "Home", root_path %></li>
+    <div class="logo-container">
+      <%= image_tag "MH_icon_small.png", class: "logo" %>
+    </div>
+    <ul>
+        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About Us", about_path %></li>
         <li><%= link_to "Donate", donation_path %></li>
         <li><%= link_to "Calendar", calendar_path %></li>
