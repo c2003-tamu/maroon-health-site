@@ -1,12 +1,11 @@
-<div class="medications index">
-  <h1>Medications</h1>
-  
-  <%= link_to("View Low Stock Medication", lowstock_medications_path) %>
-  <br/>
-  <%= link_to("Add New Medication", new_medication_path, class: 'action new') %>
-  <br/>
-  <%= link_to("Transaction History", medication_transactions_path, class: 'action new') %>
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
+<div class="container">
+  <h1 class="title shadow-lg">Medications</h1>
+  
+  <%= link_to("View Low Stock Medication", lowstock_medications_path, class: 'add-new-button') %>
+  <%= link_to("Add New Medication", new_medication_path, class: 'add-new-button') %>
+  <%= link_to("Transaction History", medication_transactions_path, class: 'add-new-button') %>
 
   <%= render 'searchbar' %>
   
