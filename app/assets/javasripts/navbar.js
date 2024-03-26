@@ -3,16 +3,20 @@ function initializeNavbarToggle() {
   const navbarToggle = document.getElementById('navbar-toggle');
   const navbarLinks = document.getElementById('navbar-links');
 
-  navbarToggle.addEventListener('click', function() {
-    navbarLinks.classList.toggle('active');
-  });
+  // Check if navbarToggle and navbarLinks are valid elements
+  if (navbarToggle && navbarLinks) {
+    // Use arrow function to avoid issues with 'this' context
+    navbarToggle.addEventListener('click', () => {
+      navbarLinks.classList.toggle('active');
+    });
+  } else {
+    console.error('Navbar toggle or navbar links are not found.');
+  }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  initializeNavbarToggle();
-});
 
-document.addEventListener('turbolinks:load', function() {
+// Call initializeNavbarToggle function when Turbolinks has loaded a new page
+document.addEventListener('DOMContentLoaded', function() {
   initializeNavbarToggle();
 });
 
