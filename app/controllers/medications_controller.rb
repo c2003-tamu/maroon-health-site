@@ -4,7 +4,7 @@ class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[show edit update destroy]
   before_action :check_admin
   def lowstock
-    @medications = Medication.where('stock <= ?', 10)
+    @medications = Medication.where('stock <= ?', 10).order(:name)
   end
 
   # GET /medications or /medications.json
