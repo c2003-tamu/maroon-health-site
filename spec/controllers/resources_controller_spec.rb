@@ -60,13 +60,13 @@ RSpec.describe(ResourcesController, type: :controller) do
 
   describe 'POST #create' do
     context 'with valid params' do
-      it 'creates a new Resource and redirects to show' do
+      it 'creates a new Resource and redirects to index' do
         expect do
           post(:create, params: { resource: valid_attributes })
         end.to(change(Resource, :count).by(1))
 
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(resource_path))
+        expect(response).to(redirect_to(resources_path))
       end
     end
 
@@ -84,10 +84,10 @@ RSpec.describe(ResourcesController, type: :controller) do
     let(:resource) { Resource.create!(valid_attributes) }
 
     context 'with valid params' do
-      it 'updates the Resource and redirects to show' do
+      it 'updates the Resource and redirects to index' do
         put :update, params: { id: resource.to_param, resource: valid_attributes }
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(resource_path))
+        expect(response).to(redirect_to(resources_path))
       end
     end
 
