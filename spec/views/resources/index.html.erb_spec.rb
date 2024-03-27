@@ -14,7 +14,7 @@ RSpec.describe('resources/index', type: :view) do
         url: 'MyText',
         title: 'Title',
         description: 'MyText'
-      )
+      ),
       Resource.create!(
         url: 'MyText',
         title: 'MyText',
