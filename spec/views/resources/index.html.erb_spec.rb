@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 require 'rails_helper'
@@ -7,18 +8,13 @@ RSpec.describe('resources/index', type: :view) do
     assign(:resources, [
       Resource.create!(
         url: 'Url',
-        title: 'MyText',
-        description: 'MyText'
-      ),
-      Resource.create!(
-        url: 'MyText',
         title: 'Title',
         description: 'MyText'
       ),
       Resource.create!(
-        url: 'MyText',
-        title: 'MyText',
-        description: 'Description'
+        url: 'Url',
+        title: 'Title',
+        description: 'MyText'
       )
     ]
     )
@@ -26,8 +22,9 @@ RSpec.describe('resources/index', type: :view) do
 
   it 'renders a list of resources' do
     render
-    expect(rendered).to(include('Url'))
-    expect(rendered).to(include('Title'))
-    expect(rendered).to(include('MyText'))
+    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    assert_select cell_selector, text: Regexp.new('Url'.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new('Title'.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new('MyText'.to_s), count: 2
   end
 end
