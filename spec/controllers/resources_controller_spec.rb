@@ -66,7 +66,7 @@ RSpec.describe(ResourcesController, type: :controller) do
         end.to(change(Resource, :count).by(1))
 
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(resource_path(Resource.last)))
+        expect(response).to(redirect_to(resource_path))
       end
     end
 
@@ -87,7 +87,7 @@ RSpec.describe(ResourcesController, type: :controller) do
       it 'updates the Resource and redirects to show' do
         put :update, params: { id: resource.to_param, resource: valid_attributes }
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(resource_path(resource.reload)))
+        expect(response).to(redirect_to(resource_path))
       end
     end
 
