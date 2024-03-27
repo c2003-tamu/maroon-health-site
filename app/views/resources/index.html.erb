@@ -1,14 +1,35 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<h1>Resources</h1>
+<div class="container">
+  <h1 class="title shadow-lg">Edit Resources</h1>
 
-<div id="resources">
-  <% @resources.each do |resource| %>
-    <%= render resource %>
-    <p>
-      <%= link_to "Show this resource", resource %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resources.each do |resource| %>
+        <tr>
+          <td>
+            <%= resource.title %>
+          </td>
+          <td>
+            <%= resource.description %>
+          </td>
+          <td class="actions-container">
+            <div class="actions">
+              <%= link_to "Edit", edit_resource_path(resource) %>
+              <%= link_to 'Delete', resource_path(resource), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Add New resource", new_resource_path, class: 'add-new-button' %>
 </div>
-
-<%= link_to "New resource", new_resource_path %>

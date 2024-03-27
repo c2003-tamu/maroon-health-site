@@ -11,22 +11,23 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :url, style: "display: block" %>
-    <%= form.text_field :url %>
+    <%= form.text_field :url, style: "width: 100%" %>
   </div>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, style: "width: 100%" %>
   </div>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, style: "width: 100%" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="label-and-field-div">
+    <%= form.submit nil, class: 'button btn-submit' %>
+    <%= link_to "Nevermind", resources_path, class: 'button btn-cancel' %>
   </div>
 <% end %>
