@@ -2,6 +2,7 @@
 
 class CalendarEventsController < ApplicationController
   before_action :set_calendar_event, only: %i[show display edit update destroy]
+  before_action :check_admin, except: [:display]
 
   # GET /calendar_events or /calendar_events.json
   def index
