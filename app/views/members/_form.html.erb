@@ -11,22 +11,23 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :role, style: "display: block" %>
     <%= form.select :role, options_for_select(["admin", "volunteer"], @member.role) %>
   </div>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :class_year, style: "display: block" %>
     <%= form.select :class_year, options_for_select(["M1", "M2", "M3", "M4", "Other"], @member.class_year) %>
   </div>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :full_name, style: "display: block" %>
     <%= form.text_field :full_name %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit nil, class: 'button btn-submit' %>
+    <%= link_to "Nevermind", faqs_path, class: 'button btn-cancel' %>
   </div>
 <% end %>

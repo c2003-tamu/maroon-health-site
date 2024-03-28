@@ -18,10 +18,12 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
+<div class="stat-boxes-container">
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= form_for "login", url: omniauth_authorize_path(resource_name, provider), method: :post, data: {turbo: "false"} do |f| %>
-      <%= f.submit "login", type: "image", src: url_for("/assets/google_sign_in_button.png") %>
+      <%= f.submit "Login with Google", class: "", style: "font-size: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; background-color: #732F2F; color: white; padding: 20px; border-radius: 8px; margin: 10px;" %>
     <% end %>
   <% end %>
 <% end %>
+</div>
