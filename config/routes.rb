@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :events do
     resources :member_shifts, only: [:new, :create, :destroy]
   end
-  resources :roles
   resources :faqs
   resources :member_shifts
   resources :calendar_events

@@ -1,0 +1,98 @@
+/* Desktop styles */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #732F2F;
+    color: #ffffff;
+    z-index: 100;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #500000;
+}
+
+.navbar .navbar-item-right {
+    float: right;
+    margin-right: 20px;
+}
+
+.navbar-toggle {
+  display: none; /* Hide the button on desktop */
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2px; /* Reduce padding */
+    }
+
+    .navbar ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar li {
+        margin-bottom: 5px; /* Reduce margin between items */
+    }
+
+    .navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 2px; /* Further reduce padding */
+        text-decoration: none;
+        font-size: 10px; /* Smaller font size */
+    }
+
+    .navbar li a:hover {
+        background-color: #500000;
+    }
+
+    .navbar .navbar-item-right {
+        float: right; /* Reapply float property */
+        margin-right: 20px;
+        width: auto; /* Set width to auto */ 
+    }
+
+    /* Hide the toggle button */
+    .navbar-toggle {
+        display: none;
+    }
+
+    /* Keep navbar links visible without toggling */
+    .navbar-links {
+        display: flex;
+        flex-direction: row;
+        width: 100%; /* Occupy full width */
+        margin-top: 5px; /* Reduce margin top */
+    }
+}

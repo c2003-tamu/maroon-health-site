@@ -1,15 +1,17 @@
-<div id="<%= dom_id member %>">
-  <p>
-    <strong>Full name:</strong>
-    <%= member.full_name %>
-  </p>
-  <p>
-    <strong>Role:</strong>
-    <%= member.role %>
-  </p>
-  <p>
-    <strong>Class Year:</strong>
-    <%= member.class_year %>
-  </p>
-
-</div>
+<td>
+  <% if member.avatar_url.present? %>
+    <%= image_tag(member.avatar_url) %>
+  <% end %>
+</td>
+<td>
+  <%= member.full_name %>
+</td>
+<td>
+  <%= member.email %>
+</td>
+<td style="<%= member.role == 'admin' ? 'background-color: #ff5c5c;' : '' %>">
+  <%= member.role %>
+</td>
+<td>
+  <%= member.class_year %>
+</td>
