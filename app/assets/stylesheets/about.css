@@ -3,7 +3,7 @@ body {
 }
 
 .banner {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('tamu_panoramic_cropped.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('houston_cropped.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
