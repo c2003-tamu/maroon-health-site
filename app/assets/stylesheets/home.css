@@ -4,9 +4,18 @@
     margin-bottom: 20px;
 }
 
+.large-logo-container {
+    text-align: center;
+}
+
+.large-logo-container img {
+    max-width: 40%;
+    height: auto;
+}
+
 /*
-        PATIENTS SERVED STYLING
-    */
+    PATIENTS SERVED STYLING
+*/
 .stat-boxes-container {
     display: flex;
     justify-content: center;
