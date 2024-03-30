@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe('events/index', type: :view) do
   before do
     allow(view).to(receive(:current_member).and_return(admin_member))
-
     assign(:events, [
       Event.create!(
         title: 'Title',
