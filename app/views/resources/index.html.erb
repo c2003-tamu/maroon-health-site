@@ -9,6 +9,7 @@
         <th>Title</th>
         <th>Description</th>
         <th>URL</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -20,10 +21,13 @@
           <td>
             <%= resource.description %>
           </td>
+          <td>
+            <%= resource.url %>
+          </td>
           <td class="actions-container">
             <div class="actions">
               <%= link_to "Edit", edit_resource_path(resource) %>
-              <%= link_to 'Delete', resource_path(resource), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+              <%= link_to 'Delete', (resource), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             </div>
           </td>
         </tr>

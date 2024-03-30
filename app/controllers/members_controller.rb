@@ -64,7 +64,7 @@ class MembersController < ApplicationController
   def set_member
     @member = Member.find(params[:id])
   end
-
+  
   # Only allow a list of trusted parameters through.
   def member_params
     params.require(:member).permit(:role, :full_name, :class_year).tap do |allowlisted|

@@ -12,6 +12,9 @@
   <% end %>
 
 <h1>Members</h1>
+<% if current_member.admin? %>
+  <%= link_to "Mass Email", mass_email_form_members_path %>
+<% end %>
 
 <div id="members">
   <% @members.each do |member| %>

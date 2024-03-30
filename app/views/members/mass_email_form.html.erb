@@ -1,0 +1,58 @@
+<%= stylesheet_link_tag 'editpages', media: 'all', 'data-turbo-track': 'reload' %>
+<div class="container">    
+    <% if params[:event_id].nil? %>
+        <h1 class="title shadow-lg">Send Mass Email</h1>
+        <h5>Warning: This template has included every member connected to the website. </h5>
+        <%= form_for(:email, url: send_mass_email_members_path, method: :post) do |mass_email_form| %>
+            
+            <div class="label-and-field-div">
+            <%= mass_email_form.label :Recipients, style: "display: block" %>
+            <%= mass_email_form.text_field :recipients, value: Member.pluck(:email).join(','), style: "width: 100%" %>
+            </div>
+            
+            <div class="label-and-field-div">
+            <%= mass_email_form.label :Subject, style: "display: block" %>
+            <%= mass_email_form.text_field :subject, value: "MaroonHealth Update", style: "width: 100%" %>
+            </div>
+        
+            <div class="label-and-field-div">
+            <%= mass_email_form.label :Contents, style: "display: block" %>
+            <%= mass_email_form.text_area :contents, value: "This is an update directed to everyone here at Maroon Health.", style: "width: 100%" %>
+            </div>
+
+            <%= hidden_field_tag :event_id, params[:event_id] %>
+
+            <div class="label-and-field-div">
+            <%= link_to "Back to Index", members_path, class: 'button btn-cancel'%>
+            </div>
+        <% end %>
+    <% else %>
+
+        <h1 class="title shadow-lg">Send Shift Email</h1>
+        <h5>Warning: This template has only included the members who volunteered for this event.</h5>
+        <%= form_for(:email, url: send_mass_email_members_path, method: :post) do |mass_email_form| %>
+            
+            <div class="label-and-field-div">
+            <%= mass_email_form.label :Recipients, style: "display: block" %>
+            <%= mass_email_form.text_field :recipients, value: Member.where(id: MemberShift.where(event_id: params[:event_id]).distinct.pluck(:member_id)).pluck(:email).join(", "), style: "width: 100%" %>
+            </div>
+            
+            <div class="label-and-field-div">
+            <%= mass_email_form.label :Subject, style: "display: block" %>
+            <%= mass_email_form.text_field :subject, value: "Shift Update", style: "width: 100%" %>
+            </div>
+        
+            <div class="label-and-field-div">
+            <%= mass_email_form.label :Contents, style: "display: block" %>
+            <%= mass_email_form.text_area :contents, value: "This is an update regarding the shift you have signed up for.", style: "width: 100%" %>
+            </div>
+
+            <%= hidden_field_tag :event_id, params[:event_id] %>
+
+            <div class="label-and-field-div">
+            <%= link_to "Back to Events", events_path, class: 'button btn-cancel' %>
+            </div>
+    <% end %>
+    <% end %>
+</div>
+  
