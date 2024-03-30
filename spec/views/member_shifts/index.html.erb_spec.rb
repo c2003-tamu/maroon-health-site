@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe('events/index', type: :view) do
   before do
+    allow(view).to(receive(:current_member).and_return(admin_member))
+
     assign(:events, [
       Event.create!(
         title: 'Title',
@@ -27,7 +29,6 @@ RSpec.describe('events/index', type: :view) do
       )
     ]
     )
-    sign_in admin_member
   end
 
   let(:admin_member) do
@@ -35,13 +36,6 @@ RSpec.describe('events/index', type: :view) do
       email: 'ilovebeinganadmin@gmail.com',
       password: 'adminstuff69',
       role: 'admin'
-    )
-  end
-  let(:volunteer_member) do
-    Member.create!(
-      email: 'ilovevolunteering@gmail.com',
-      password: 'ilovehelpingpeople123',
-      role: 'volunteer'
     )
   end
 
