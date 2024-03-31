@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'editpages', media: 'all', 'data-turbo-track': 'reload' %>
-<div class="container">    
+<div class="container">
+<%if current_member.admin? %>
     <% if params[:event_id].nil? %>
         <h1 class="title shadow-lg">Send Mass Email</h1>
         <h5>Warning: This template has included every member connected to the website. </h5>
@@ -54,5 +55,6 @@
             </div>
     <% end %>
     <% end %>
+<% end %>
 </div>
   
