@@ -34,7 +34,7 @@ class MedicationTransactionsController < ApplicationController
       if @medication_transaction.save
         update_medication_stock(@medication_transaction, :decrease)
 
-        format.html { redirect_to(medications_path, notice: 'Medication transaction was successfully created.') }
+        format.html { redirect_to(medication_transactions_path, notice: 'Medication transaction was successfully created.') }
         format.json { render(:show, status: :created, location: @medication_transaction) }
       else
         format.html { render(:new, status: :unprocessable_entity) }
@@ -50,7 +50,7 @@ class MedicationTransactionsController < ApplicationController
         @medication_transaction.member_id = current_member.id
         update_medication_stock(@medication_transaction, :update)
 
-        format.html { redirect_to(medication_transaction_url(@medication_transaction), notice: 'Medication transaction was successfully updated.') }
+        format.html { redirect_to(medication_transactions_path, notice: 'Medication transaction was successfully updated.') }
         format.json { render(:show, status: :ok, location: @medication_transaction) }
       else
         format.html { render(:edit, status: :unprocessable_entity) }
