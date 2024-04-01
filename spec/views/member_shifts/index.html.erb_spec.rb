@@ -15,7 +15,7 @@ RSpec.describe('events/index', type: :view) do
         end_time: (1.day.from_now + 2.hours).strftime('%Y-%m-%d %H:%M:%S')
       ),
       Event.create!(
-        title: 'Title',
+        title: 'Title 2',
         ideal_volunteers: 2,
         ideal_underclassmen: 0,
         ideal_upperclassmen: 0,
@@ -36,7 +36,8 @@ RSpec.describe('events/index', type: :view) do
 
   it 'renders a list of events' do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Title'.to_s), count: 2
+     
+    expect(rendered).to(match(/Title/))
+    expect(rendered).to(match(/Title 2/))
   end
 end

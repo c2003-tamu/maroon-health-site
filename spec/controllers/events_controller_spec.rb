@@ -12,7 +12,7 @@ RSpec.describe(EventsController, type: :controller) do
   end
 
   let(:valid_attributes) do
-    { title: 'test event', ideal_volunteers: 0, ideal_m1: 1, ideal_m2: 1, ideal_m3: 1, ideal_m4: 1, start_time: DateTime.now, end_time: DateTime.now + 1.hour }
+    { title: 'test event', ideal_underclassmen: 2, ideal_upperclassmen: 2, start_time: DateTime.now, end_time: DateTime.now + 1.hour }
   end
 
   # let(:invalid_attributes) do
@@ -69,7 +69,7 @@ RSpec.describe(EventsController, type: :controller) do
         end.to(change(Event, :count).by(1))
 
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(event_path(Event.last)))
+        expect(response).to(redirect_to(events_path))
       end
     end
   end
