@@ -1,15 +1,28 @@
 <!-- app/views/calendar_events/display.html.erb -->
-<h1><%= @calendar_event.title %></h1>
-<p><strong>Description:</strong> <%= @calendar_event.description %></p>
 
-<% if @calendar_event.start_datetime.to_date == @calendar_event.end_datetime.to_date %>
-  <p><strong>Date and Time:</strong> <%= @calendar_event.start_datetime.strftime("%A, %B %e, %Y %l:%M %p") %>
-  - <%= @calendar_event.end_datetime.strftime("%l:%M %p") %></p>
-<% else %>
-  <p><strong>Start Date and Time:</strong> <%= @calendar_event.start_datetime.strftime("%A, %B %e, %Y %l:%M %p") %></p>
-  <p><strong>End Date and Time:</strong> <%= @calendar_event.end_datetime.strftime("%A, %B %e, %Y %l:%M %p") %></p>
-<% end %>
+<%= stylesheet_link_tag 'eventdetails', media: 'all', 'data-turbo-track': 'reload' %>
 
-<div>
-  <%= link_to "Back to calendar", calendar_path %>
+<div class="container">
+
+  <h1 class="title shadow-lg"><%= @calendar_event.title %></h1>
+
+  <% if @calendar_event.start_datetime.to_date == @calendar_event.end_datetime.to_date %>
+    <h2 class="date shadow"><%= @calendar_event.start_datetime.strftime("%A, %B %e, %Y") %></h2>
+    <p class="time"><%= @calendar_event.start_datetime.strftime("%l:%M %p") %> - <%= @calendar_event.end_datetime.strftime("%l:%M %p") %></p>
+  <% else %>
+    <h2 class="date shadow">Multiple Day Event</h2>
+    <p class="time"><%= @calendar_event.start_datetime.strftime("%A, %B %e, %Y %l:%M %p") %> - <%= @calendar_event.end_datetime.strftime("%A, %B %e, %Y %l:%M %p") %></p>
+  <% end %>
+
+  <div class="description-container">
+    <div class="accent-bar"></div>
+    <p><%= @calendar_event.description %></p>
+  </div>
+
+  <div class="actions">
+    <%= link_to "Back to Calendar", calendar_path, class: "back-button" %>
+  </div>
+
 </div>
+
+

@@ -6,15 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_include_tag 'navbar' %> <!-- Include your shared JavaScript file -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
     <!-- Oswald font from Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap">
-    <%= favicon_link_tag asset_path('maroon_health_logo_heart.png') %>
+    <%= favicon_link_tag asset_path('favicon.png') %>
   </head>
 
-  <body>
+  <body data-turbolinks="true">
     <%= render 'shared/navbar' %>
     </br>
     <% flash.each do |type, msg| %>

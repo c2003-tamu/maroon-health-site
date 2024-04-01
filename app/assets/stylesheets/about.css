@@ -3,7 +3,8 @@ body {
 }
 
 .banner {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('tamu_panoramic_cropped.png');
+    display: flex;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('tmc.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -56,4 +57,32 @@ p, .container, .list-item {
     margin-right: unset;
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+ 
+  .banner {
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('tmc.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+	
+      position: relative;
+      text-align: center;
+
+      background-size: cover;
+      height: 300px;
+      overflow: hidden;
+  }
+
+  .banner-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 40px;
+  }
+
 }

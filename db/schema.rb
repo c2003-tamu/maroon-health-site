@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_29_004954) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_03_194251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_004954) do
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "m1_m2_volunteers"
+    t.integer "m3_m4_volunteers"
     t.integer "ideal_m1", default: 0
     t.integer "ideal_m2", default: 0
     t.integer "ideal_m3", default: 0
@@ -68,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_004954) do
     t.integer "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "volunteer_category"
   end
 
   create_table "members", force: :cascade do |t|

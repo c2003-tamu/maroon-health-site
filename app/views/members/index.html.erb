@@ -1,26 +1,46 @@
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 <p style="color: green"><%= notice %></p>
 
-<% if current_member %>
-  <h2><%= current_member.email %></h2>
-    <% if current_member.avatar_url.present? %>
-      <%= image_tag(current_member.avatar_url) %>
-    <%end%>
-    <%= link_to "Edit Account", edit_member_url(current_member) %>
-    <%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete %>
-  <% else %>
-    <%= link_to "Login", new_member_session_path %>
-  <% end %>
+<div class="container">
+  <h1 class="title shadow-lg">Members</h1>
+  <table>
+    <thead>
+    <tr>
+      <td>Profile Picture</td>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Role</td>
+      <td>Class year</td>
+      <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+      <% @members.each_with_index do |member, index| %>
+        <tr">
+          <%= render member %>
+          <td class="actions-container">
+            <div class="actions">
+              <%= link_to "Edit", edit_member_path(member) %>
+              <%= link_to "Delete", member, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <h1>Members</h1>
 <% if current_member.admin? %>
   <%= link_to "Mass Email", mass_email_form_members_path %>
 <% end %>
 
-<div id="members">
-  <% @members.each do |member| %>
-    <%= render member %>
-    <p>
-      <%= link_to "Show this member", member %>
-    </p>
+  <% if current_member %>
+    <h2>Logged in as:</h2>
+    <% if current_member.avatar_url.present? %>
+      <%= image_tag(current_member.avatar_url) %>
+    <% end %>
+    <p><%= current_member.full_name %></p>
+    <p><%= current_member.email %></p>
+    <%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete, class: 'add-new-button' %>
   <% end %>
 </div>

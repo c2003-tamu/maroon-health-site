@@ -1,10 +1,7 @@
-<h1>Editing medication transaction</h1>
+<%= stylesheet_link_tag 'editpages', media: 'all', 'data-turbo-track': 'reload' %>
 
-<%= render "form", medication_transaction: @medication_transaction %>
+<div class="container">
+  <h1 class="title shadow-lg">Editing Transaction</h1>
 
-<br>
-
-<div>
-  <%= link_to "Show this medication transaction", @medication_transaction %> |
-  <%= link_to "Back to medication transactions", medication_transactions_path %>
+  <%= render "form", medication_transaction: @medication_transaction %>
 </div>

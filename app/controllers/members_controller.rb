@@ -48,6 +48,16 @@ class MembersController < ApplicationController
     end
   end
 
+  def update_class_year
+    @member = current_member
+    if @member.update(member_params)
+      redirect_back(fallback_location: signup_path, notice: 'Class year updated successfully.')
+    else
+      flash[:alert] = 'Failed to update class year.'
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
   # DELETE /members/1 or /members/1.json
   def destroy
     @member.destroy!
@@ -67,13 +77,11 @@ class MembersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def member_params
-    params.require(:member).permit(:role, :full_name, :class_year).tap do |allowlisted|
-      allowlisted[:role] = params[:member][:role] if %w[admin volunteer].include?(params[:member][:role])
-    end
+    params.require(:member).permit(:role, :full_name, :class_year)
   end
 
   def check_admin
-    unless current_member&.admin?
+    unless current_member&.admin? || params[:action] == 'update_class_year'
       flash[:alert] = 'You are not authorized to access that page.'
       redirect_to(root_path)
     end

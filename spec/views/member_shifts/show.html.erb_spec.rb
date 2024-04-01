@@ -6,7 +6,7 @@ RSpec.describe('events/show', type: :view) do
   before do
     assign(:event, Event.create!(
                      title: 'Title',
-                     ideal_volunteers: 2,
+                     ideal_volunteers: 3,
                      ideal_m1: 0,
                      ideal_m2: 0,
                      ideal_m3: 0,
