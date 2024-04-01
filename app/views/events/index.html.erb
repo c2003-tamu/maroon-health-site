@@ -10,6 +10,9 @@
     <%= render event %>
     <p>
       <%= link_to "Show this event", event %>
+      <% if current_member && current_member.admin? %>
+        <%= link_to "Event Email", mass_email_form_members_path(event_id: event.id) %>
+      <% end %>
     </p>
   <% end %>
 <%end%>

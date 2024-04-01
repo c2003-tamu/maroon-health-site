@@ -1,9 +1,8 @@
-<h1>New resource</h1>
+<%= stylesheet_link_tag 'editpages', media: 'all', 'data-turbo-track': 'reload' %>
 
-<%= render "form", resource: @resource %>
+<div class="container">
+  <h1 class="title shadow-lg">New Resources</h1>
 
-<br>
-
-<div>
-  <%= link_to "Back to resources", resources_path %>
+  <%= render "form", resource: @resource %>
 </div>
+
