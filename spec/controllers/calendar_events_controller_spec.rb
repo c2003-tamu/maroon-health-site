@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe(EventsController, type: :controller) do
+RSpec.describe(CalendarEventsController, type: :controller) do
   let(:admin_member) do
     Member.create!(
       email: 'ilovebeinganadmin@gmail.com',
@@ -12,7 +12,7 @@ RSpec.describe(EventsController, type: :controller) do
   end
 
   let(:valid_attributes) do
-    { title: 'test event', ideal_volunteers: 0, ideal_m1: 1, ideal_m2: 1, ideal_m3: 1, ideal_m4: 1, start_time: DateTime.now, end_time: DateTime.now + 1.hour }
+    { title: 'test event', description: 'this is a test', start_datetime: DateTime.now, end_datetime: DateTime.now + 1.hour }
   end
 
   let(:volunteer_member) do
@@ -61,11 +61,11 @@ RSpec.describe(EventsController, type: :controller) do
     context 'with valid params' do
       it 'creates a new Event and redirects to show' do
         expect do
-          post(:create, params: { event: valid_attributes })
+          post(:create, params: { calendar_event: valid_attributes })
         end.to(change(CalendarEvent, :count).by(1))
 
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(event_path(CalendarEvent.last)))
+        expect(response).to(redirect_to(calendar_events_path))
       end
     end
   end
