@@ -5,10 +5,8 @@ class Event < ApplicationRecord
 
   validates :title, presence: true
   validates :ideal_volunteers, presence: true, numericality: { only_integer: true, greater_than: -1, less_than: 100 }
-  validates :ideal_m1, presence: true, numericality: { only_integer: true, greater_than: -1, less_than: 100 }
-  validates :ideal_m2, presence: true, numericality: { only_integer: true, greater_than: -1, less_than: 100 }
-  validates :ideal_m3, presence: true, numericality: { only_integer: true, greater_than: -1, less_than: 100 }
-  validates :ideal_m4, presence: true, numericality: { only_integer: true, greater_than: -1, less_than: 100 }
+  validates :ideal_underclassmen, presence: true, numericality: { only_integer: true, greater_than: -1, less_than: 100 }
+  validates :ideal_upperclassmen, presence: true, numericality: { only_integer: true, greater_than: -1, less_than: 100 }
   validates :start_time, presence: true
   validates :end_time, presence: true
   validate :validate_volunteers?
@@ -24,11 +22,11 @@ class Event < ApplicationRecord
   end
 
   def conflicting_volunteer_options?
-    ideal_volunteers.positive? && [ideal_m1, ideal_m2, ideal_m3, ideal_m4].any?(&:positive?)
+    ideal_volunteers.positive? && [ideal_underclassmen, ideal_upperclassmen].any?(&:positive?)
   end
 
   def no_volunteer_slot_assigned?
-    [ideal_volunteers, ideal_m1, ideal_m2, ideal_m3, ideal_m4].all?(&:zero?)
+    [ideal_volunteers, ideal_underclassmen, ideal_upperclassmen].all?(&:zero?)
   end
 
   def decrement_ideal_volunteers
@@ -44,16 +42,16 @@ class Event < ApplicationRecord
   def decrement_class(member)
     case member.class_year
     when 'M1'
-      self.ideal_m1 -= 1
+      self.ideal_underclassmen -= 1
       save!
     when 'M2'
-      self.ideal_m2 -= 1
+      self.ideal_underclassmen -= 1
       save!
     when 'M3'
-      self.ideal_m3 -= 1
+      self.ideal_upperclassmen -= 1
       save!
     when 'M4'
-      self.ideal_m4 -= 1
+      self.ideal_upperclassmen -= 1
       save!
     else
       true
@@ -63,16 +61,16 @@ class Event < ApplicationRecord
   def increment_class(member)
     case member.class_year
     when 'M1'
-      self.ideal_m1 += 1
+      self.ideal_underclassmen += 1
       save!
     when 'M2'
-      self.ideal_m2 += 1
+      self.ideal_underclassmen += 1
       save!
     when 'M3'
-      self.ideal_m3 += 1
+      self.ideal_upperclassmen += 1
       save!
     when 'M4'
-      self.ideal_m4 += 1
+      self.ideal_upperclassmen += 1
       save!
     else
       true
@@ -96,19 +94,19 @@ class Event < ApplicationRecord
   end
 
   def class_select?
-    ideal_m1.positive? || ideal_m2.positive? || ideal_m3.positive? || ideal_m4.positive?
+    ideal_underclassmen.positive? || ideal_upperclassmen.positive?
   end
 
   def can_sign_up_class?(member)
     case member.class_year
     when 'M1'
-      ideal_m1.positive?
+      ideal_underclassmen.positive?
     when 'M2'
-      ideal_m2.positive?
+      ideal_underclassmen.positive?
     when 'M3'
-      ideal_m3.positive?
+      ideal_upperclassmen.positive?
     when 'M4'
-      ideal_m4.positive?
+      ideal_upperclassmen.positive?
     else
       true
     end

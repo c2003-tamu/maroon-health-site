@@ -11,76 +11,43 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :title, "Event Title", style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, style: "width: 100%" %>
   </div>
 
-  <%= form.label :event_type, "Is this event open for all volunteers, or do you want to restrict by class?" %>
-  <div id="form-options">
-  <%= form.radio_button :event_type, "Free for All", id: "free-for-all" %>
-  <%= form.label :event_type, "Free for All", value: "Free for All" %>
-  <%= form.radio_button :event_type, "Restrict by Class", id: "restrict-by-class" %>
-  <%= form.label :event_type, "Restrict by Class", value: "Restrict by Class" %>
+  <h2>Allocate Volunteers by Class</h2>
+  <div class="label-and-field-div">
+    <%= form.label :ideal_underclassmen, "M1/M2 Volunteers", style: "display: block" %>
+    <%= form.number_field :ideal_underclassmen, style: "width: 100%" %>
   </div>
 
-  <div id="ideal-volunteers" style="display: none;">
-    <%= form.label :ideal_volunteers %>
-    <%= form.number_field :ideal_volunteers, id: "ideal-volunteers-field" %>
+  <div class="label-and-field-div">
+    <%= form.label :ideal_upperclassmen, "M3/M4 Volunteers", style: "display: block" %>
+    <%= form.number_field :ideal_upperclassmen, style: "width: 100%" %>
   </div>
 
-  <div id="class-restrictions" style="display: none;">
-    <text>How many volunteers do you want from each class?</text>
-    <div id="m1">
-      <%= form.label :ideal_m1, "M1" %>
-      <%= form.number_field :ideal_m1, id: "ideal-m1-field" %>
+  <h2>Or, Allocate Volunteers For Everyone</h2>
+  <div class="label-and-field-div">
+    <%= form.label :ideal_volunteers, "Free-for-all Sign-Ups", style: "display: block" %>
+    <%= form.number_field :ideal_volunteers, style: "width: 100%" %>
+  </div>
+
+  <div class="label-and-field-div" style="display:flex; justify-content:flex-start;">
+    <div style="margin-right: 10px;">
+      <%= form.label :start_time, "Start Time", style: "display: block" %>
+      <%= form.datetime_field :start_time %>
     </div>
 
-    <div id="m2">
-    <%= form.label :ideal_m2, "M2" %>
-    <%= form.number_field :ideal_m2, id: "ideal-m2-field" %>
-    </div>
-
-    <div id="m3">
-    <%= form.label :ideal_m3, "M3" %>
-    <%= form.number_field :ideal_m3, id: "ideal-m3-field" %>
-    </div>
-
-    <div id="m4">
-    <%= form.label :ideal_m4, "M4" %>
-    <%= form.number_field :ideal_m4, id: "ideal-m4-field" %>
+    <div>
+      <%= form.label :end_time, "End Time", style: "display: block" %>
+      <%= form.datetime_field :end_time %>
     </div>
   </div>
 
-  <div>
-    <%= form.label :start_time, style: "display: block" %>
-    <%= form.datetime_field :start_time %>
+  <div class="form-actions">
+    <%= form.submit nil, class: 'button btn-submit' %>
+    <%= link_to "Nevermind", events_path, class: 'button btn-cancel' %>
   </div>
-
-  <div>
-    <%= form.label :end_time, style: "display: block" %>
-    <%= form.datetime_field :end_time %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-
-  <script>
-    document.getElementById('free-for-all').addEventListener('change', function(e) {
-      document.getElementById('ideal-volunteers').style.display = 'block';
-      document.getElementById('class-restrictions').style.display = 'none';
-      document.getElementById('ideal-m1-field').value = 0;
-      document.getElementById('ideal-m2-field').value = 0;
-      document.getElementById('ideal-m3-field').value = 0;
-      document.getElementById('ideal-m4-field').value = 0;
-    });
-
-    document.getElementById('restrict-by-class').addEventListener('change', function(e) {
-      document.getElementById('ideal-volunteers').style.display = 'none';
-      document.getElementById('class-restrictions').style.display = 'block';
-      document.getElementById('ideal-volunteers-field').value = 0;
-    });
-  </script>
 <% end %>
 

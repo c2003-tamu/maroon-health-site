@@ -6,14 +6,10 @@
     <p>Starts at <%= event.start_time %></p>
     <% if event.class_select? && (current_member.class_year != "Other") %>
       <% case current_member.class_year %>
-        <% when 'M1' %>
-          <p><%= event.ideal_m1 %> M1 volunteer slots open</p>
-        <% when 'M2' %>
-          <p><%= event.ideal_m2 %> M2 volunteer slots open</p>
-        <% when 'M3' %>
-          <p><%= event.ideal_m3 %> M3 volunteer slots open</p>
-        <% when 'M4' %>
-          <p><%= event.ideal_m4 %> M4 volunteer slots open</p>
+        <% when 'M1' || 'M2' %>
+          <p><%= event.ideal_underclassmen %> M1+M2 volunteer slots open</p>
+        <% when 'M3' || 'M4' %>
+          <p><%= event.ideal_upperclassmen %> M3+M4 volunteer slots open</p>
       <% end %>
     <% else %>
       <p><%= event.ideal_volunteers %> slots open</p>
