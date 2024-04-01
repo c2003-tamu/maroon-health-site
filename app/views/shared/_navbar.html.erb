@@ -18,13 +18,13 @@
           <li><%= link_to "Members", members_path %></li>
           <li><%= link_to "Add FAQS", faqs_path %></li>
           <li><%= link_to "Add Resources", resources_path %></li>
-          <li><%= link_to "Edit Events", events_path %></li>
+          <li><%= link_to "Edit Shifts", events_path %></li>
           <li><%= link_to "Edit Calendar", calendar_events_path %></li>
         <%end%>
 
         <% if current_member && (current_member.volunteer? || current_member.admin?)%>
           <li><%= link_to "Medications", medications_path %></li>
-          <li><%= link_to "Event Signup", signup_path %></li>
+          <li><%= link_to "Shift Signup", signup_path %></li>
         <% end %>
 
         <% if current_member %>
