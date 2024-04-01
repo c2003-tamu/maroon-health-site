@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe('events/index', type: :view) do
-  
   before do
     allow(view).to(receive(:current_member).and_return(admin_member))
     assign(:events, [
@@ -37,7 +36,7 @@ RSpec.describe('events/index', type: :view) do
 
   it 'renders a list of events' do
     render
-     
+
     expect(rendered).to(match(/Title/))
     expect(rendered).to(match(/Title 2/))
   end

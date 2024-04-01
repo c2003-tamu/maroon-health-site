@@ -41,16 +41,10 @@ class Event < ApplicationRecord
 
   def decrement_class(member)
     case member.class_year
-    when 'M1'
+    when 'M1', 'M2'
       self.ideal_underclassmen -= 1
       save!
-    when 'M2'
-      self.ideal_underclassmen -= 1
-      save!
-    when 'M3'
-      self.ideal_upperclassmen -= 1
-      save!
-    when 'M4'
+    when 'M3', 'M4'
       self.ideal_upperclassmen -= 1
       save!
     else
@@ -60,16 +54,10 @@ class Event < ApplicationRecord
 
   def increment_class(member)
     case member.class_year
-    when 'M1'
+    when 'M1', 'M2'
       self.ideal_underclassmen += 1
       save!
-    when 'M2'
-      self.ideal_underclassmen += 1
-      save!
-    when 'M3'
-      self.ideal_upperclassmen += 1
-      save!
-    when 'M4'
+    when 'M3', 'M4'
       self.ideal_upperclassmen += 1
       save!
     else
@@ -99,13 +87,9 @@ class Event < ApplicationRecord
 
   def can_sign_up_class?(member)
     case member.class_year
-    when 'M1'
+    when 'M1', 'M2'
       ideal_underclassmen.positive?
-    when 'M2'
-      ideal_underclassmen.positive?
-    when 'M3'
-      ideal_upperclassmen.positive?
-    when 'M4'
+    when 'M3', 'M4'
       ideal_upperclassmen.positive?
     else
       true

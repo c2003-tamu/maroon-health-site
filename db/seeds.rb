@@ -10,7 +10,9 @@ Member.create!(email: 'thisisanemail@gmail.com', password: 'password', role: 'ad
 Member.create!(email: 'chungus@gmail.com', password: 'password123', role: 'volunteer')
 
 # Events
-Event.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now, end_time: Time.zone.now + 4.hours)
+Event.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now,
+              end_time: Time.zone.now + 4.hours
+)
 Event.create!(title: 'Evening Shift', ideal_volunteers: 3, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now + 5.hours,
               end_time: Time.zone.now + 9.hours
 )

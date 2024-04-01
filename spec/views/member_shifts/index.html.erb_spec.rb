@@ -36,7 +36,7 @@ RSpec.describe('events/index', type: :view) do
 
   it 'renders a list of events' do
     render
-     
+
     expect(rendered).to(match(/Title/))
     expect(rendered).to(match(/Title 2/))
   end
