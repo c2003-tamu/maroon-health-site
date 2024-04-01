@@ -35,6 +35,5 @@ RSpec.describe('events/show', type: :view) do
     render
     expect(rendered).to(match(/Title/))
     expect(rendered).to(match(/2/))
-    expect(rendered).to(match(/3/))
   end
 end

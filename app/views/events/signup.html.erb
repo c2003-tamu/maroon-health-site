@@ -1,6 +1,9 @@
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
+
 <% if @events.count == 0 %>
   <p>Currently no events</p>
 <%end%>
+
 <% @events.each do |event| %>
     <p><strong><%= event.title %></strong></p>
     <p>Starts at <%= event.start_time %></p>
@@ -25,3 +28,13 @@
       <p>Event is full.</p>
     <% end %>
   <% end %>
+
+<div style="margin-top: 20px;"></div>
+
+<%= form_for current_member, url: update_class_year_path, method: :patch do |f| %>
+  <div class="form-group">
+    <%= f.label :class_year, "Class Year" %>
+    <%= f.select :class_year, options_for_select(['M1', 'M2', 'M3', 'M4', 'Other'], current_member.class_year), {}, { class: 'form-control' } %>
+  </div>
+  <%= f.submit "Update Class Year", class: 'add-new-button' %>
+<% end %>

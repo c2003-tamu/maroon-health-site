@@ -1,7 +1,5 @@
 <%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<p style="color: green"><%= notice %></p>
-
 <h1 class="title shadow-lg">Edit Volunteering Events</h1>
 
 <div id="events">
@@ -51,6 +49,7 @@
             <div class="actions">
               <%= link_to "Edit", edit_event_path(event) %>
               <%= link_to 'Delete', event_path(event), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+              <%= link_to "Event Email", mass_email_form_members_path(event_id: event.id) %>
             </div>
           </td>
         </tr>
@@ -59,4 +58,4 @@
   </table>
 </div>
 
-<%= link_to "New event", new_event_path %>
+<%= link_to "New Volunteering Event", new_event_path, class: 'add-new-button' %>

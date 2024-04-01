@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_084514) do
     t.integer "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "volunteer_category"
   end
 
   create_table "members", force: :cascade do |t|

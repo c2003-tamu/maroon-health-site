@@ -2,18 +2,22 @@
 
 class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[show edit update destroy]
+  # we have this behind administrator authentication
   before_action :check_admin
+
+  # lowstock page only takes medications with <= 10 stock, this can be changed as needed by developers
   def lowstock
-    @medications = Medication.where('stock <= ?', 10)
+    @medications = Medication.where('stock <= ?', 10).order(:name)
   end
 
   # GET /medications or /medications.json
   def index
+    # if there is a search engaged, only show the medications that match the name close enough
     @medications = if params[:search]
                      search_term = ActiveRecord::Base.sanitize_sql(params[:search].downcase)
+                     # we use Arel to match names to similar names when the user inputs
                      similarity_expression = Arel.sql("similarity(name, '#{search_term}')")
                      Medication.where('name % ?', search_term).order(similarity_expression.desc)
-                     # Medication.where("name % ?", params[:search].downcase).order(Arel.sql("similarity(name, '#{params[:search].downcase}') DESC"))
                    else
                      Medication.order(:name)
                    end
@@ -81,6 +85,7 @@ class MedicationsController < ApplicationController
   end
 
   def check_admin
+    # used to check if the current member is an admin or volunteer
     unless current_member && (current_member.admin? || current_member.role == 'volunteer')
       flash[:alert] = 'You are not authorized to access that page.'
       redirect_to(root_path)

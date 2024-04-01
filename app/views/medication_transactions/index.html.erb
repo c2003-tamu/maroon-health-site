@@ -1,16 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<h1>Medication transactions</h1>
+<div class="container">
+  <h1 class="title shadow-lg">Medication Transactions</h1>
 
-<%= link_to "Back to Medications", medications_path %>
+  <table>
+    <thead>
+      <tr>
+        <th>Medication Name</th>
+        <th>Member</th>
+        <th>Amount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @medication_transactions.each do |medication_transaction| %>
+        <tr>
+          <td>
+            <%= medication_transaction.medication.name %>
+          </td>
+          <td>
+            <%= medication_transaction.member.full_name %>
+          </td>
+          <td>
+            <%= medication_transaction.amount %>
+          </td>
+          <td class="actions-container">
+            <div class="actions">
+              <%= link_to "Edit", edit_medication_transaction_path(medication_transaction) %>
+              <%= link_to 'Delete', medication_transaction_path(medication_transaction), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<div id="medication_transactions">
-  <% @medication_transactions.each do |medication_transaction| %>
-    <%= render medication_transaction %>
-    <p>
-      <%= link_to "Show this medication transaction", medication_transaction %>
-    </p>
-  <% end %>
+  <%= link_to 'New Transaction', new_medication_transaction_path, class: 'add-new-button' %>
+  <%= link_to 'Back to Medications', medications_path, class: 'add-new-button' %>
 </div>
-
-<%= link_to "New medication transaction", new_medication_transaction_path %>
