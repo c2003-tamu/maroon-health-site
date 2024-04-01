@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   resources :events do
     resources :member_shifts, only: [:new, :create, :destroy]
   end
+  resources :members do
+    # Custom route for the mass email form
+    get 'mass_email_form', on: :collection, to: 'members#mass_email_form'
+   
+    # Custom route for processing the mass email
+    post 'send_mass_email', on: :collection, to: 'members#send_mass_email'
+ end
+  resources :roles
   resources :faqs
   resources :member_shifts
   resources :calendar_events
