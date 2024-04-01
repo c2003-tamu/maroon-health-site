@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'calendar_events/display/:id', to: 'calendar_events#display', as: 'display_calendar_event'
   get '/signup', to: 'events#signup', as: 'signup'
   resources :members, except: [:new, :create]
+  patch '/update_class_year', to: 'members#update_class_year', as: 'update_class_year'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

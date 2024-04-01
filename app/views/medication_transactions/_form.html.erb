@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :medication_id, "Medication ID:", style: "display: block" %>
     <%= form.text_field :medication_id %>
   </div>
 
-  <div>
+  <div class="label-and-field-div">
     <%= form.label :amount, style: "display: block" %>
     <%= form.number_field :amount %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit nil, class: 'button btn-submit' %>
+    <%= link_to "Nevermind", medication_transactions_path, class: 'button btn-cancel' %>
   </div>
 <% end %>
