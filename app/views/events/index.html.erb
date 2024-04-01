@@ -1,21 +1,62 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
-<h1>Events</h1>
+<h1 class="title shadow-lg">Edit Volunteering Events</h1>
 
 <div id="events">
-  <% if @events.count == 0 %>
-    <p>Currently no events</p>
-  <%else%>
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-      <% if current_member && current_member.admin? %>
-        <%= link_to "Event Email", mass_email_form_members_path(event_id: event.id) %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>M1/M2 Slots Open</th>
+        <th>M3/M4 Slots Open</th>
+        <th>Free-For-All Slots Open</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Volunteers</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td>
+            <%= event.title %>
+          </td>
+          <td>
+            <%= event.ideal_underclassmen %>
+          </td>
+          <td>
+            <%= event.ideal_upperclassmen %>
+          </td>
+          <td>
+            <%= event.ideal_volunteers %>
+          </td>
+          <td>
+            <%= event.start_time.strftime('%a, %b %e, %Y %l:%M %p') %>
+          </td>
+          <td>
+            <%= event.end_time.strftime('%a, %b %e, %Y %l:%M %p') %>
+          </td>
+          <td>
+            <% member_shifts = MemberShift.where(event_id: event.id) %>
+            <ul>
+              <% member_shifts.each do |ms| %>
+                <li><%= ms.member.full_name %> (<%= ms.member.class_year %>)</li>
+              <% end %>
+            </ul>
+          </td>
+          <td class="actions-container">
+            <div class="actions">
+              <%= link_to "Edit", edit_event_path(event) %>
+              <%= link_to 'Delete', event_path(event), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+              <%= link_to "Event Email", mass_email_form_members_path(event_id: event.id) %>
+            </div>
+          </td>
+        </tr>
       <% end %>
-    </p>
-  <% end %>
-<%end%>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New event", new_event_path %>
+<p><%= link_to "View All Member Shifts", member_shifts_path %></p>
+<p><%= link_to "New Volunteering Event", new_event_path, class: 'add-new-button' %></p>

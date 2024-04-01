@@ -1,10 +1,6 @@
-<h1>Editing member shift</h1>
+<%= stylesheet_link_tag 'editpages', media: 'all', 'data-turbo-track': 'reload' %>
 
-<%= render "form", event: @event %>
-
-<br>
-
-<div>
-  <%= link_to "Show this member shift", @event %> |
-  <%= link_to "Back to member shifts", events_path %>
+<div class="container">
+  <h1>Editing member shift</h1>
+  <%= render "form", event: @event %>
 </div>

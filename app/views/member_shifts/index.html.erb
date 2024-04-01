@@ -1,12 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
 
 <h1>Member Shifts</h1>
 
 <div id="membershifts">
-  <% @member_shifts.each do |member_shift| %>
-    <%= render member_shift %>
-    <p>
-      <%= link_to "Show this member shift", member_shift %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Volutneer Name</th>
+        <th>Class</th>
+        <th>Event Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @member_shifts.each do |member_shift| %>
+        <tr>
+          <td>
+            <%= member_shift.member.full_name %>
+          </td>
+          <td>
+            <%= member_shift.member.class_year %>
+          </td>
+          <td>
+            <%= member_shift.event.title %>
+          </td>
+          <td class="actions-container">
+            <div class="actions">
+              <%= link_to 'Delete', member_shift_path(member_shift), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
