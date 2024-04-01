@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = Event.order(start_time: :asc)
   end
 
   # GET /events/1 or /events/1.json
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to(event_url(@event), notice: 'Event was successfully created.') }
+        format.html { redirect_to(events_path, notice: 'Event was successfully created.') }
         format.json { render(:show, status: :created, location: @event) }
       else
         format.html { render(:new, status: :unprocessable_entity) }
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to(event_url(@event), notice: 'Event was successfully updated.') }
+        format.html { redirect_to(events_url, notice: 'Event was successfully updated.') }
         format.json { render(:show, status: :ok, location: @event) }
       else
         format.html { render(:edit, status: :unprocessable_entity) }
@@ -72,7 +72,7 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:title, :ideal_volunteers, :ideal_m1, :ideal_m2, :ideal_m3, :ideal_m4, :start_time, :end_time)
+    params.require(:event).permit(:title, :ideal_volunteers, :ideal_underclassmen, :ideal_upperclassmen, :start_time, :end_time)
   end
 
   def check_vol

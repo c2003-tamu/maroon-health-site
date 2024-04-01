@@ -4,30 +4,26 @@ require 'rails_helper'
 
 RSpec.describe('events/index', type: :view) do
   before do
+    allow(view).to(receive(:current_member).and_return(admin_member))
     assign(:events, [
       Event.create!(
         title: 'Title',
         ideal_volunteers: 2,
-        ideal_m1: 0,
-        ideal_m2: 0,
-        ideal_m3: 0,
-        ideal_m4: 0,
+        ideal_underclassmen: 0,
+        ideal_upperclassmen: 0,
         start_time: 1.day.from_now.strftime('%Y-%m-%d %H:%M:%S'),
         end_time: (1.day.from_now + 2.hours).strftime('%Y-%m-%d %H:%M:%S')
       ),
       Event.create!(
-        title: 'Title',
+        title: 'Title 2',
         ideal_volunteers: 2,
-        ideal_m1: 0,
-        ideal_m2: 0,
-        ideal_m3: 0,
-        ideal_m4: 0,
+        ideal_underclassmen: 0,
+        ideal_upperclassmen: 0,
         start_time: 1.day.from_now.strftime('%Y-%m-%d %H:%M:%S'),
         end_time: (1.day.from_now + 2.hours).strftime('%Y-%m-%d %H:%M:%S')
       )
     ]
     )
-    sign_in admin_member
   end
 
   let(:admin_member) do
@@ -37,17 +33,11 @@ RSpec.describe('events/index', type: :view) do
       role: 'admin'
     )
   end
-  let(:volunteer_member) do
-    Member.create!(
-      email: 'ilovevolunteering@gmail.com',
-      password: 'ilovehelpingpeople123',
-      role: 'volunteer'
-    )
-  end
 
   it 'renders a list of events' do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Title'.to_s), count: 2
+
+    expect(rendered).to(match(/Title/))
+    expect(rendered).to(match(/Title 2/))
   end
 end

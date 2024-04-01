@@ -24,7 +24,7 @@ RSpec.describe('MemberShifts', type: :request) do
 
   describe 'GET /new' do
     it 'renders the new template successfully' do
-      event = Event.create!(title: 'Event Title', ideal_volunteers: 5, ideal_officers: 5, start_time: Time.zone.now, end_time: Time.zone.now + 2.hours)
+      event = Event.create!(title: 'Event Title', ideal_volunteers: 5, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now, end_time: Time.zone.now + 2.hours)
       get '/member_shifts/new', params: { event_id: event.id }
 
       expect(response).to(have_http_status(:success))
@@ -33,7 +33,7 @@ RSpec.describe('MemberShifts', type: :request) do
 
   describe 'POST /create' do
     it 'creates a new member shift successfully' do
-      event = Event.create!(title: 'Event Title', ideal_volunteers: 5, ideal_officers: 5, start_time: Time.zone.now, end_time: Time.zone.now + 2.hours)
+      event = Event.create!(title: 'Event Title', ideal_volunteers: 5, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now, end_time: Time.zone.now + 2.hours)
       member = Member.create!(email: 'user@example.com', password: 'password', role: 'volunteer')
 
       post '/member_shifts', params: { member_shift: { member_id: member.id }, event_id: event.id }
