@@ -3,5 +3,9 @@
 <div class="container">
   <h1 class="title shadow-lg">New Transaction</h1>
 
+  <div class="alert alert-danger custom-alert">
+    <p><strong>Tip:</strong> In the Amount category, input a negative number if you wish to take from the stock. Input a positive number if you wish to add to it. </p>
+  </div>
+
   <%= render "form", medication_transaction: @medication_transaction %>
 </div>

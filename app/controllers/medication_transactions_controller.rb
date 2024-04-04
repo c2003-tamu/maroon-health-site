@@ -89,24 +89,26 @@ class MedicationTransactionsController < ApplicationController
 
     case type
     when :increase
-      medication.update!(stock: medication.stock + amount)
+      if amount < 0
+        medication.update!(stock: medication.stock + amount.abs)
+      else
+        medication.update!(stock: medication.stock - amount)
+      end
     when :update
       original_amount = transaction.amount_before_last_save
       difference = amount - original_amount
 
-      if transaction.saved_change_to_medication_id?
-        original_medication_id, updated_medication_id = transaction.saved_changes[:medication_id]
-        original_medication = Medication.find_by(id: original_medication_id)
-        updated_medication = Medication.find_by(id: updated_medication_id)
-
-        original_medication.update!(stock: original_medication.stock + transaction.amount_before_last_save)
-
-        updated_medication&.update!(stock: updated_medication.stock - transaction.amount_before_last_save)
+      if difference < 0
+        medication.update!(stock: medication.stock - difference.abs)
       else
-        medication.update!(stock: medication.stock - difference)
+        medication.update!(stock: medication.stock + difference)
       end
     when :decrease
-      medication.update!(stock: medication.stock - amount)
+      if amount < 0
+        medication.update!(stock: medication.stock - amount.abs)
+      else
+        medication.update!(stock: medication.stock + amount)
+      end
     end
   end
 

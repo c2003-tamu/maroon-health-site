@@ -31,8 +31,7 @@
       <p>Event is full.</p>
     <% end %>
   </div>
-
-
+<% end %>
 
 <div style="margin-top: 20px;"></div>
 
@@ -42,5 +41,4 @@
     <%= f.select :class_year, options_for_select(['M1', 'M2', 'M3', 'M4', 'Other'], current_member.class_year), {}, { class: 'form-control' } %>
   </div>
   <%= f.submit "Update Class Year", class: 'add-new-button' %>
-<% end %>
 <% end %>
