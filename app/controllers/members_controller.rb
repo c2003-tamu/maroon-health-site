@@ -39,7 +39,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to(member_url(@member), notice: 'Member was successfully updated.') }
+        format.html { redirect_to(members_url, notice: 'Member was successfully updated.') }
         format.json { render(:show, status: :ok, location: @member) }
       else
         format.html { render(:edit, status: :unprocessable_entity) }
