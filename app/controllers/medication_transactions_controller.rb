@@ -89,7 +89,7 @@ class MedicationTransactionsController < ApplicationController
 
     case type
     when :increase
-      if amount < 0
+      if amount.negative?
         medication.update!(stock: medication.stock + amount.abs)
       else
         medication.update!(stock: medication.stock - amount)
@@ -98,13 +98,13 @@ class MedicationTransactionsController < ApplicationController
       original_amount = transaction.amount_before_last_save
       difference = amount - original_amount
 
-      if difference < 0
+      if difference.negative?
         medication.update!(stock: medication.stock - difference.abs)
       else
         medication.update!(stock: medication.stock + difference)
       end
     when :decrease
-      if amount < 0
+      if amount.negative?
         medication.update!(stock: medication.stock - amount.abs)
       else
         medication.update!(stock: medication.stock + amount)
