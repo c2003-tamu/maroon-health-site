@@ -11,10 +11,11 @@
     </div>
   <% end %>
 
-  <div class="label-and-field-div">
-    <%= form.label :medication_id, "Medication ID:", style: "display: block" %>
-    <%= form.text_field :medication_id %>
-  </div>
+  <%= form.hidden_field :medication_id, value: @medication_transaction.medication_id %>
+
+  <p> <b>Name:</b> <%= @medication.name %> </p>
+
+  <p> <b>ID:</b> <%= @medication_transaction.medication_id %> </p>
 
   <div class="label-and-field-div">
     <%= form.label :amount, style: "display: block" %>
@@ -23,6 +24,6 @@
 
   <div class="form-actions">
     <%= form.submit nil, class: 'button btn-submit' %>
-    <%= link_to "Nevermind", medication_transactions_path, class: 'button btn-cancel' %>
+    <%= link_to "Nevermind", medications_path, class: 'button btn-cancel' %>
   </div>
 <% end %>
