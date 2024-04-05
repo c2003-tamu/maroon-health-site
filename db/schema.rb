@@ -32,8 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_084514) do
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "m1_m2_volunteers"
-    t.integer "m3_m4_volunteers"
     t.integer "ideal_underclassmen", default: 0
     t.integer "ideal_upperclassmen", default: 0
   end
@@ -68,7 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_084514) do
     t.integer "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "volunteer_category"
   end
 
   create_table "members", force: :cascade do |t|
