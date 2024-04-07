@@ -1,10 +1,13 @@
+<%= stylesheet_link_tag 'indexes', media: 'all', 'data-turbo-track': 'reload' %>
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @medication %>
 
 <div>
-  <%= link_to "Edit this medication", edit_medication_path(@medication) %> |
-  <%= link_to "Back to medications", medications_path %>
+  <%= button_to "Edit this Medication", edit_medication_path(@medication), class: 'add-new-button', method: :get %> 
 
-  <%= button_to "Destroy this medication", @medication, method: :delete %>
+  <%= button_to "Delete this Medication", @medication, method: :delete, class: 'add-new-button' %>
+
+  <%= link_to "Back to Medications", medications_path, class: 'add-new-button' %>
 </div>

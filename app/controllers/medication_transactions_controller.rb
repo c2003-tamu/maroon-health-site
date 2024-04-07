@@ -6,7 +6,7 @@ class MedicationTransactionsController < ApplicationController
 
   # GET /medication_transactions or /medication_transactions.json
   def index
-    @medication_transactions = MedicationTransaction.all
+    @medication_transactions = MedicationTransaction.all.order(created_at: :asc)
   end
 
   # GET /medication_transactions/1 or /medication_transactions/1.json
@@ -15,15 +15,18 @@ class MedicationTransactionsController < ApplicationController
   # GET /medication_transactions/new
   def new
     if params[:id].present?
-      @medication_transaction = MedicationTransaction.new(id: params[:id])
-      @medication_transaction.medication_id = params[:id]
+      @medication = Medication.find(params[:id])
+      @medication_transaction = MedicationTransaction.new(medication_id: @medication.id)
     else
-      @medication_transaction = MedicationTransaction.new
+      redirect_to(root_path, alert: 'Medication ID is required.')
     end
   end
 
   # GET /medication_transactions/1/edit
-  def edit; end
+  def edit
+    @medication_transaction = MedicationTransaction.find(params[:id])
+    @medication = Medication.find(@medication_transaction.medication_id)
+  end
 
   # POST /medication_transactions or /medication_transactions.json
   def create
@@ -89,24 +92,26 @@ class MedicationTransactionsController < ApplicationController
 
     case type
     when :increase
-      medication.update!(stock: medication.stock + amount)
+      if amount.negative?
+        medication.update!(stock: medication.stock + amount.abs)
+      else
+        medication.update!(stock: medication.stock - amount)
+      end
     when :update
       original_amount = transaction.amount_before_last_save
       difference = amount - original_amount
 
-      if transaction.saved_change_to_medication_id?
-        original_medication_id, updated_medication_id = transaction.saved_changes[:medication_id]
-        original_medication = Medication.find_by(id: original_medication_id)
-        updated_medication = Medication.find_by(id: updated_medication_id)
-
-        original_medication.update!(stock: original_medication.stock + transaction.amount_before_last_save)
-
-        updated_medication&.update!(stock: updated_medication.stock - transaction.amount_before_last_save)
+      if difference.negative?
+        medication.update!(stock: medication.stock - difference.abs)
       else
-        medication.update!(stock: medication.stock - difference)
+        medication.update!(stock: medication.stock + difference)
       end
     when :decrease
-      medication.update!(stock: medication.stock - amount)
+      if amount.negative?
+        medication.update!(stock: medication.stock - amount.abs)
+      else
+        medication.update!(stock: medication.stock + amount)
+      end
     end
   end
 
