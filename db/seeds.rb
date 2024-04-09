@@ -1,21 +1,28 @@
 # frozen_string_literal: true
 
+# Empty all tables
+ActiveRecord::Base.connection.tables.each do |table|
+  ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table} RESTART IDENTITY CASCADE;")
+end
+
 # Members
 Member.create!(email: 'thisisanemail@gmail.com', password: 'password', role: 'admin')
 Member.create!(email: 'chungus@gmail.com', password: 'password123', role: 'volunteer')
 
 # Events
-Event.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_officers: 2, start_time: Time.zone.now, end_time: Time.zone.now + 4.hours)
-Event.create!(title: 'Evening Shift', ideal_volunteers: 3, ideal_officers: 1, start_time: Time.zone.now + 5.hours,
+Event.create!(title: 'Morning Shift', ideal_volunteers: 5, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now,
+              end_time: Time.zone.now + 4.hours
+)
+Event.create!(title: 'Evening Shift', ideal_volunteers: 3, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now + 5.hours,
               end_time: Time.zone.now + 9.hours
 )
-Event.create!(title: 'Night Shift', ideal_volunteers: 4, ideal_officers: 1, start_time: Time.zone.now + 10.hours,
+Event.create!(title: 'Night Shift', ideal_volunteers: 4, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now + 10.hours,
               end_time: Time.zone.now + 14.hours
 )
-Event.create!(title: 'Weekend Shift', ideal_volunteers: 6, ideal_officers: 2, start_time: Time.zone.now + 2.days,
+Event.create!(title: 'Weekend Shift', ideal_volunteers: 6, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now + 2.days,
               end_time: Time.zone.now + 2.days + 8.hours
 )
-Event.create!(title: 'Holiday Shift', ideal_volunteers: 8, ideal_officers: 3, start_time: Time.zone.now + 5.days,
+Event.create!(title: 'Holiday Shift', ideal_volunteers: 8, ideal_underclassmen: 0, ideal_upperclassmen: 0, start_time: Time.zone.now + 5.days,
               end_time: Time.zone.now + 5.days + 10.hours
 )
 
@@ -80,3 +87,6 @@ Faq.create!(question: 'How often should I take Medication X?',
 Faq.create!(question: 'Is there a discount for purchasing medications in bulk?',
             answer: 'Yes, we offer discounts for bulk purchases. Please inquire at our pharmacy for more information.'
            )
+
+# Display a message
+Rails.logger.debug('Seed data created successfully!')

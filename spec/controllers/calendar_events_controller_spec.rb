@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe(EventsController, type: :controller) do
+RSpec.describe(CalendarEventsController, type: :controller) do
   let(:admin_member) do
     Member.create!(
       email: 'ilovebeinganadmin@gmail.com',
@@ -12,12 +12,8 @@ RSpec.describe(EventsController, type: :controller) do
   end
 
   let(:valid_attributes) do
-    { title: 'test event', ideal_underclassmen: 2, ideal_upperclassmen: 2, start_time: DateTime.now, end_time: DateTime.now + 1.hour }
+    { title: 'test event', description: 'this is a test', start_datetime: DateTime.now, end_datetime: DateTime.now + 1.hour }
   end
-
-  # let(:invalid_attributes) do
-  #  {title: nil, ideal_volunteers: nil, ideal_m1: nil, ideal_m2: nil, ideal_m3: nil, ideal_m4: nil, start_time: nil, end_time: nil}
-  # end
 
   let(:volunteer_member) do
     Member.create!(
@@ -40,7 +36,7 @@ RSpec.describe(EventsController, type: :controller) do
 
   describe 'GET #show' do
     it 'returns a success response' do
-      medication = Event.create!(valid_attributes)
+      medication = CalendarEvent.create!(valid_attributes)
       get :show, params: { id: medication.to_param }
       expect(response).to(be_successful)
     end
@@ -55,7 +51,7 @@ RSpec.describe(EventsController, type: :controller) do
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      medication = Event.create!(valid_attributes)
+      medication = CalendarEvent.create!(valid_attributes)
       get :edit, params: { id: medication.to_param }
       expect(response).to(be_successful)
     end
@@ -65,11 +61,11 @@ RSpec.describe(EventsController, type: :controller) do
     context 'with valid params' do
       it 'creates a new Event and redirects to show' do
         expect do
-          post(:create, params: { event: valid_attributes })
-        end.to(change(Event, :count).by(1))
+          post(:create, params: { calendar_event: valid_attributes })
+        end.to(change(CalendarEvent, :count).by(1))
 
         expect(response).to(have_http_status(:redirect))
-        expect(response).to(redirect_to(events_path))
+        expect(response).to(redirect_to(calendar_events_path))
       end
     end
   end

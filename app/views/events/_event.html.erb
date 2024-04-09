@@ -7,20 +7,12 @@
   
   <% if event.class_select? %>
     <p>
-      <strong>Open M1 Slots:</strong>
-      <%= event.ideal_m1 %>
+      <strong>Open M1/M2 Slots:</strong>
+      <%= event.ideal_underclassmen %>
     </p>
     <p>
-      <strong>Open M2 Slots:</strong>
-      <%= event.ideal_m2 %>
-    </p>
-    <p>
-      <strong>Open M3 Slots:</strong>
-      <%= event.ideal_m3 %>
-    </p>
-    <p>
-      <strong>Open M4 Slots:</strong>
-      <%= event.ideal_m4 %>
+      <strong>Open M3/M4 Slots:</strong>
+      <%= event.ideal_upperclassmen %>
     </p>
   <% else %>
     <p>
