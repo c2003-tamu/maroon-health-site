@@ -13,7 +13,7 @@
 
   <div class="label-and-field-div">
     <%= form.label :role, style: "display: block" %>
-    <%= form.select :role, options_for_select(["admin", "volunteer"], @member.role) %>
+    <%= form.select :role, options_for_select(["", "admin", "volunteer"], @member.role) %>
   </div>
 
   <div class="label-and-field-div">
@@ -28,6 +28,6 @@
 
   <div class="form-actions">
     <%= form.submit nil, class: 'button btn-submit' %>
-    <%= link_to "Nevermind", faqs_path, class: 'button btn-cancel' %>
+    <%= link_to "Nevermind", members_path, class: 'button btn-cancel' %>
   </div>
 <% end %>

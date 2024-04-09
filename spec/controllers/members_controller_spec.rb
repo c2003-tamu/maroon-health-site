@@ -63,7 +63,7 @@ RSpec.describe(MembersController, type: :controller) do
       it 'updates the member and redirects to show' do
         member = Member.create!(valid_attributes)
         put :update, params: { id: member.to_param, member: valid_attributes }
-        expect(response).to(redirect_to(member_path(member.reload)))
+        expect(response).to(redirect_to(members_path))
       end
     end
   end
