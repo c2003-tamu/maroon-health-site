@@ -33,6 +33,12 @@ class MedicationTransactionsController < ApplicationController
     @medication_transaction = MedicationTransaction.new(medication_transaction_params)
     @medication_transaction.member_id = current_member.id
 
+    handle_medication_absence_and_amount_validation
+    return if performed?
+
+    handle_insufficient_stock
+    return if performed?
+
     respond_to do |format|
       if @medication_transaction.save
         update_medication_stock(@medication_transaction, :decrease)
@@ -75,6 +81,21 @@ class MedicationTransactionsController < ApplicationController
   end
 
   private
+
+  def handle_medication_absence_and_amount_validation
+    if @medication_transaction.medication.nil?
+      redirect_to(medications_path, alert: 'Medication not found.')
+    elsif @medication_transaction.amount.blank? || @medication_transaction.amount.zero?
+      redirect_to(medications_path, alert: 'Transaction amount cannot be blank or zero.')
+    end
+  end
+
+  def handle_insufficient_stock
+    medication = @medication_transaction.medication
+    if @medication_transaction.amount.negative? && (medication.stock + @medication_transaction.amount).negative?
+      redirect_to(medications_path, alert: 'Insufficient stock.')
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_medication_transaction

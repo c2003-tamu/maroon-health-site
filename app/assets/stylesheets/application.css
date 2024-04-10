@@ -8,7 +8,7 @@
     display: inline-block;
 }
 
-.notice {
+.notice, .success {
     background-color: #E0FFE0;
     color: #008000;
     border: 1px solid #66CD66;
