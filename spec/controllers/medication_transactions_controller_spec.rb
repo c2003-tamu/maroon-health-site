@@ -79,11 +79,10 @@ RSpec.describe(MedicationTransactionsController, type: :controller) do
     end
 
     context 'with invalid params' do
-      it 'renders the edit template with unprocessable_entity status' do
-        put :update, params: { id: transaction.to_param, medication_transaction: invalid_attributes }
-        expect(response).to(have_http_status(:unprocessable_entity))
-        expect(response).to(render_template('edit'))
-        expect(assigns(:medication_transaction).errors).not_to(be_empty)
+      it 'redirects to the root path with alert' do
+        post :create, params: { medication_transaction: invalid_attributes }
+        expect(response).to(redirect_to(medications_path))
+        expect(flash[:alert]).to(eq('Medication not found.'))
       end
     end
   end
