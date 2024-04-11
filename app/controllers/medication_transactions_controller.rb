@@ -33,6 +33,12 @@ class MedicationTransactionsController < ApplicationController
     @medication_transaction = MedicationTransaction.new(medication_transaction_params)
     @medication_transaction.member_id = current_member.id
 
+    handle_medication_absence_and_amount_validation
+    return if performed?
+
+    handle_insufficient_stock
+    return if performed?
+
     respond_to do |format|
       if @medication_transaction.save
         update_medication_stock(@medication_transaction, :decrease)
@@ -48,6 +54,13 @@ class MedicationTransactionsController < ApplicationController
 
   # PATCH/PUT /medication_transactions/1 or /medication_transactions/1.json
   def update
+    @medication_transaction = MedicationTransaction.find(params[:id])
+    handle_medication_absence_and_amount_validation_on_update
+    return if performed?
+
+    handle_insufficient_stock_on_update
+    return if performed?
+
     respond_to do |format|
       if @medication_transaction.update(medication_transaction_params)
         @medication_transaction.member_id = current_member.id
@@ -75,6 +88,37 @@ class MedicationTransactionsController < ApplicationController
   end
 
   private
+
+  def handle_medication_absence_and_amount_validation
+    if @medication_transaction.medication.nil?
+      redirect_to(medications_path, alert: 'Medication not found.')
+    elsif @medication_transaction.amount.blank? || @medication_transaction.amount.zero?
+      redirect_to(medications_path, alert: 'Transaction amount cannot be blank or zero.')
+    end
+  end
+
+  def handle_insufficient_stock
+    medication = @medication_transaction.medication
+    if @medication_transaction.amount.negative? && (medication.stock + @medication_transaction.amount).negative?
+      redirect_to(medications_path, alert: 'Insufficient stock.')
+    end
+  end
+
+  def handle_medication_absence_and_amount_validation_on_update
+    if @medication_transaction.medication.nil?
+      redirect_to(edit_medication_transaction_path(@medication_transaction), alert: 'Medication not found.')
+    elsif medication_transaction_params[:amount].blank? || Integer(medication_transaction_params[:amount], 10).zero?
+      redirect_to(edit_medication_transaction_path(@medication_transaction), alert: 'Transaction amount cannot be blank or zero.')
+    end
+  end
+
+  def handle_insufficient_stock_on_update
+    original_transaction = MedicationTransaction.find(params[:id])
+    difference = Integer(medication_transaction_params[:amount], 10) - original_transaction.amount
+    if difference.negative? && (@medication_transaction.medication.stock - difference.abs).negative?
+      redirect_to(edit_medication_transaction_path(@medication_transaction), alert: 'Insufficient stock to update transaction.')
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_medication_transaction
