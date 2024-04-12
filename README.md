@@ -18,16 +18,16 @@ This code has been run and tested on:
 
 - Docker - Download latest version at https://www.docker.com/products/docker-desktop
 - Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
-- Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+- Git - Download latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 - GitHub Desktop (Not needed, but HELPFUL) at https://desktop.github.com/
 
 ## Installation
 
 Download this code repository by using git:
 
-`git clone https://github.com/CSCE431-Software-Engineering/maroon_health_site.git`
+`git clone https://github.com/c2003-tamu/maroon-health-site.git`
  or 
- `git clone https://github.com/CSCE431-Software-Engineering/maroon_health_site/`
+ `git clone https://github.com/c2003-tamu/maroon-health-site`
 
 ## Tests
 
@@ -38,7 +38,7 @@ An RSpec test suite is available and can be ran using:
 You can run all the test cases by running the following. This will run both the unit and integration tests.
 `rspec .`
 
-We have set up automatic testing for every commit here in GitHub: https://github.com/CSCE431-Software-Engineering/maroon_health_site/actions
+We have set up automatic testing for every commit here in GitHub: https://github.com/c2003-tamu/maroon-health-site/actions
 
 ## Execute Code
 
@@ -65,7 +65,7 @@ The application can be seen using a browser and navigating to http://localhost:3
 We have environment variables setup for Google oAuth Authentication and for database credentials.
 
 ## CI/CD
-CI/CD has been implemented in the repo here -> https://github.com/CSCE431-Software-Engineering/maroon_health_site/deployments
+CI/CD has been implemented in the repo here -> https://github.com/c2003-tamu/maroon-health-site
 
 ## Support
 We will be developing this app until the end of the Spring 2024 semester. After this point, we will no longer be supporting the project.
