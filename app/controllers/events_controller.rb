@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.order(start_time: :asc)
+    @events = Event.where('start_time > ?', DateTime.now)
   end
 
   # GET /events/1 or /events/1.json
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
 
   def signup
     check_vol
-    @events = Event.all
+    @events = Event.where('start_time > ?', DateTime.now)
   end
 
   private
