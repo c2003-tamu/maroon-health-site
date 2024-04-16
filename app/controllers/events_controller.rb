@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.where('start_time > ?', DateTime.now)
+    @events = Event.order(start_time: :asc)
   end
 
   # GET /events/1 or /events/1.json
